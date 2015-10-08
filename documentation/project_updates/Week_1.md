@@ -15,6 +15,6 @@ Week 1
 * Get some use cases for Sfarro
 * Finish off spec 
 * Break spec into small, workable components. Assign these components stories to work on.
-** I used alot of [Kanban https://www.atlassian.com/agile/kanban] during my work placement. I'm comfortable with it
+*** I used alot of [Kanban https://www.atlassian.com/agile/kanban] during my work placement. I'm comfortable with it
 * Create Trello board for these stories
 * Add in CUnit libraries for testing

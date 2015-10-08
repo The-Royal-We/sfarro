@@ -12,6 +12,8 @@ Filesystem mounting
 ~$ autofs4 									(~/dev/Linux/Documentation)
 ~$ Autofs 									(https://help.ubuntu.com/community/Autofs)
 ~$ How to mount filsystems in Linux 		(http://www.thegeekstuff.com/2013/01/mount-umount-examples/) (<- eugh)
+~$ Automounter Wiki Page					(https://en.wikipedia.org/wiki/Automounter)
+
 Virtual Filesystems
 -------------------------------------
 *$ CS135 FUSE Documentation 				(https://www.cs.hmc.edu/~geoff/classes/hmc.cs135.201109/..)
