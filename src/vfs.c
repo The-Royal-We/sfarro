@@ -52,7 +52,7 @@ static int vfs_access(const char *path, char *buf, int mask)
 {
   int res;
   res = access(path, mask); 
-  
+
   if(res == -1) 
     return -errno; 
 
@@ -70,7 +70,7 @@ static int vfs_readlink(const char *path, char *buf, size_t size)
 }
 
 static int vfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
-  off_t offset, struct fuse_file_info *fi)
+    off_t offset, struct fuse_file_info *fi)
 {
   DIR *dp;
   struct dirent *de;
@@ -95,7 +95,7 @@ static int vfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
   return 0;
 }
 
-static vfs_mknod(const char *path, mode_t mode, dev_t rdev)
+static int vfs_mknod(const char *path, mode_t mode, dev_t rdev)
 {
   int res;
 
@@ -104,13 +104,13 @@ static vfs_mknod(const char *path, mode_t mode, dev_t rdev)
     if (res >= 0)
       res = close(res);
   } else if (S_ISFIFO(mode))
-      res = mkfifo(path, mode);
-    else
-      res = mknod(path, mode, rdev);
-    if(res == -1)
-      return -errno;
+    res = mkfifo(path, mode);
+  else
+    res = mknod(path, mode, rdev);
+  if(res == -1)
+    return -errno;
 
-    return 0;
+  return 0;
 }
 
 static int vfs_mkdir(const char *path, mode_t mode)
@@ -239,7 +239,7 @@ static int vfs_open(const char *path, struct fuse_file_info *fi)
 }
 
 static int vfs_read(const char *path, char *buf, size_t size, off_t offset,
-        struct fuse_file_info *fi)
+    struct fuse_file_info *fi)
 {
   int fd;
   int res;
@@ -258,7 +258,7 @@ static int vfs_read(const char *path, char *buf, size_t size, off_t offset,
 }
 
 static int vfs_write(const char *path, const char *buf, size_t size,
-         off_t offset, struct fuse_file_info *fi)
+    off_t offset, struct fuse_file_info *fi)
 {
   int fd;
   int res;
@@ -298,7 +298,7 @@ static int vfs_release(const char *path, struct fuse_file_info *fi)
 }
 
 static int vfs_fsync(const char *path, int isdatasync,
-         struct fuse_file_info *fi)
+    struct fuse_file_info *fi)
 {
   /* Just a stub.  This method is optional and can safely be left
      unimplemented */
@@ -311,7 +311,7 @@ static int vfs_fsync(const char *path, int isdatasync,
 
 #ifdef HAVE_POSIX_FALLOCATE
 static int vfs_fallocate(const char *path, int mode,
-      off_t offset, off_t length, struct fuse_file_info *fi)
+    off_t offset, off_t length, struct fuse_file_info *fi)
 {
   int fd;
   int res;
@@ -335,7 +335,7 @@ static int vfs_fallocate(const char *path, int mode,
 #ifdef HAVE_SETXATTR
 /* xattr operations are optional and can safely be left unimplemented */
 static int vfs_setxattr(const char *path, const char *name, const char *value,
-      size_t size, int flags)
+    size_t size, int flags)
 {
   int res = lsetxattr(path, name, value, size, flags);
   if (res == -1)
@@ -344,7 +344,7 @@ static int vfs_setxattr(const char *path, const char *name, const char *value,
 }
 
 static int vfs_getxattr(const char *path, const char *name, char *value,
-      size_t size)
+    size_t size)
 {
   int res = lgetxattr(path, name, value, size);
   if (res == -1)
