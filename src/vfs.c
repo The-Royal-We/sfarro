@@ -64,9 +64,8 @@ static int vfs_readlink(const char *path, char *buf, size_t size)
 {
   int res;
   res = readlink(path, buf, size - 1);
-  if (res == -1 ) {
+  if (res == -1 ) 
     return -errno;
-  }
 }
 
 static int vfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
@@ -404,9 +403,10 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-int main(int argc, char *argv[])
+int vfs_main(int argc, char *argv[])
 {
   umask(0);
+  printf("Hit me\n");
   return fuse_main(argc, argv, &vfs_oper, NULL);
 }
 
