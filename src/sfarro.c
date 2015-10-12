@@ -1,10 +1,14 @@
-#include "vfs.c"
+#include "vfs.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
-//	int res = vfs_main(argc, argv);
-//	return res;
+	vfs(NULL,NULL);
+	return 0;
+}
 
-	printf("Hello World");
+int process_timer(){
+	//method stub
 	return 0;
 }
