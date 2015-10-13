@@ -2,10 +2,9 @@
 #include "constants.h"
 #include <stdlib.h>
 
-int main(int argc, char const *argv[])
-{
-	vfs(argc,argv);
-	return 0;
+int main(int argc, char const *argv[]) {
+    vfs(argc, argv);
+    return 0;
 }
 
 /*
