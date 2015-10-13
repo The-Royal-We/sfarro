@@ -285,6 +285,10 @@ static int vfs_fsync(const char *path, int isdatasync,
   return 0;
 }
 
+//static int vfs_remount(const char *path, struct fuse_file_info *fi) {
+//  return 1;
+//}
+
 #ifdef HAVE_POSIX_FALLOCATE
 static int vfs_fallocate(const char *path, int mode,
     off_t offset, off_t length, struct fuse_file_info *fi)

@@ -11,7 +11,11 @@ set(CMAKE_C_FLAGS "-D_FILE_OFFSET_BITS=64 -lulockmgr")
 set(SOURCE_FILES
     src/sfarro.c
     src/vfs.c
-    README.md src/vfs.h)
+    src/vfs.h
+    src/constants.h
+    src/log.h
+    src/log.c
+    src/params.h)
 
 add_executable(sfarro ${SOURCE_FILES} src/vfs.h)
 

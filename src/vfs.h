@@ -23,3 +23,4 @@
 #endif
 
 extern int vfs(int argc, char *argv[]);
+extern int vfs_remount(enum is_read_only);
