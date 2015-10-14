@@ -22,5 +22,6 @@
 #include <sys/xattr.h>
 #endif
 
-extern int vfs(int argc, char *argv[]);
-extern int vfs_remount(enum is_read_only);
+int vfs(int argc, char *argv[]);
+static int vfs_chmod(const char *path, mode_t mode);
+static int vfs_statfs(const char *path, struct statvfs *stbuf);
