@@ -4,7 +4,7 @@
 
 #ifndef SFARRO_CONSTANTS_H
 #define SFARRO_CONSTANTS_H
+#define PATH_MAX 300
 
-static const unsigned int _LOCK_TIMER = 5000;
 
 #endif //SFARRO_CONSTANTS_H

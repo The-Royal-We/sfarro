@@ -1,27 +1,77 @@
+#include <stdlib.h>
 #include "vfs.h"
+
+/*
+ * Adding in custom error handler
+ * Want to report all errors to a logfile instead of stdout
+ */
+
+
+
+static int vfs_error(char *str) {
+    int ret = -errno;
+    log_msg("   ERROR %s: %s \n", str, strerror(errno));
+    return ret;
+}
+
+
+/*
+ * All paths that we pull out will be relative to the root
+ * of the mounted filesystem. This method should pull out the
+ * mountpoint, so we can construct all paths with the mount in
+ * mind
+ */
+
+static void vfs_fullpath(char fpath[PATH_MAX], const char *path) {
+    strcpy(fpath, VFS_DATA->rootdir);
+    strncat(fpath, path, PATH_MAX);
+
+    log_msg("    vfs_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
+            VFS_DATA->rootdir, path, fpath);
+}
+
+
+/*
+ * Get object attributes
+ */
 
 static int vfs_getattr(const char *path, struct stat *stbuf) {
     int res;
+    char fpath[PATH_MAX];
+
+    log_msg("\nvfs_fgetattr(path=\"%s\", stbuf=0x%08x\n",
+            path, stbuf);
+    vfs_fullpath(fpath, path);
 
     res = lstat(path, stbuf);
 
-    if (res == -1) {
-        return -errno;
+    if (res != 0) {
+        return vfs_error("vfs_gettr lstat");
     }
-    return 0;
+
+    log_stat(stbuf);
+    return res;
 }
 
-static int vfs_fgetattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi) {
-    int res;
 
+/*
+ *Get file attributes
+ */
+
+static int vfs_fgetattr(const char *path, struct stat *stbuf, struct fuse_file_info *fi) {
+
+    int res;
     (void) path;
+
+    log_msg("\nvfs_fgetattr(path=\"%s\", stbuf=0x%08x\n",
+            path, stbuf);
 
     res = fstat(fi->fh, stbuf);
 
-    if (res == -1)
-        return -errno;
+    if (res != -1)
+        return vfs_error("vfs_fgettr fstat");
 
-    return 0;
+    return res;
 }
 
 static int vfs_access(const char *path, char *buf, int mask) {
@@ -37,9 +87,20 @@ static int vfs_access(const char *path, char *buf, int mask) {
 
 static int vfs_readlink(const char *path, char *buf, size_t size) {
     int res;
+    char fpath[PATH_MAX];
+
+    log_msg("bb_readlink(path=\"%s\", link=\"%s\", size=%d)\n",
+            path, buf, size);
+    vfs_fullpath(fpath, path);
+
     res = readlink(path, buf, size - 1);
-    if (res == -1)
-        return -errno;
+    if (res < 0) {
+        res = vfs_error("vfs_readlink readlink");
+    } else {
+        buf[res] = '\0';
+        res = 0;
+    }
+    return res;
 }
 
 static int vfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
@@ -69,6 +130,11 @@ static int vfs_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
 
 static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
     int res;
+    char fpath[PATH_MAX];
+
+    log_msg("\nbb_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
+            path, mode, rdev);
+    vfs_fullpath(fpath, path);
 
     if (S_ISREG(mode)) {
         res = open(path, O_CREAT | O_EXCL | O_WRONLY, mode);
@@ -78,10 +144,10 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
         res = mkfifo(path, mode);
     else
         res = mknod(path, mode, rdev);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        res = vfs_error("vfs_mknod mknod");
 
-    return 0;
+    return res;
 }
 
 static int vfs_mkdir(const char *path, mode_t mode) {
@@ -366,10 +432,27 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-int vfs(int argc, char *argv[]) {
+int vfs(int argc, const char *argv[]) {
+    int fuse_status;
+    struct vfs_state *vfs_data;
+
+    if ((getuid() == 0) || (geteuid() == 0)) {
+        fprintf(stderr, "Running sfarro as root opens security holes\n");
+        fprintf(stderr, "But it's cool brah\n");
+//        return 1;
+    }
+    vfs_data = malloc(sizeof(struct vfs_state));
+    if (vfs_data == NULL) {
+        perror("main calloc");
+        abort();
+    }
+
+    vfs_data->logfile = log_open();
+
+    fprintf(stderr, "Calling fuse_main\n");
+    fuse_status = fuse_main(argc, argv, &vfs_oper, NULL);
+    fprintf(stderr, "fuse_main returned %d\n", fuse_status);
     umask(0);
-    printf("Hit me\n");
-    return fuse_main(argc, argv, &vfs_oper, NULL);
-//  return 0;
+    return fuse_status;
 }
 

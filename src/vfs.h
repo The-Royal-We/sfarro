@@ -18,10 +18,15 @@
 #include <dirent.h>
 #include <errno.h>
 #include <sys/time.h>
+
+#include "log.h"
+#include "constants.h"
+#include "params.h"
+
 #ifdef HAVE_SETXATTR
 #include <sys/xattr.h>
 #endif
 
-int vfs(int argc, char *argv[]);
+int vfs(int argc, const char *argv[]);
 static int vfs_chmod(const char *path, mode_t mode);
 static int vfs_statfs(const char *path, struct statvfs *stbuf);
