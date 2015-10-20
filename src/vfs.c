@@ -442,10 +442,23 @@ int vfs(int argc, const char *argv[]) {
 //        return 1;
     }
     vfs_data = malloc(sizeof(struct vfs_state));
+
     if (vfs_data == NULL) {
         perror("main calloc");
         abort();
     }
+
+    /*
+     * Pull the root directory from the argument list and save it in my internal data
+     */
+
+    vfs_data->rootdir = realpath(argv[argc - 2], NULL);
+
+    fprintf(stderr, "Allocated rootdir: %s", argv[argc - 2]);
+
+//    argv[argc-2] = argv[argc-1];
+//    argv[argc-1] = NULL;
+//    argc--;
 
     vfs_data->logfile = log_open();
 
