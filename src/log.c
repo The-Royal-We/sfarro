@@ -2,6 +2,9 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include "log.h"
 
@@ -11,7 +14,7 @@
 FILE *log_open() {
     FILE *logfile;
 
-    logfile = fopen("sfarro.log", "w");
+    logfile = fopen("/opt/sfarro_test/Debug/sfarro.log", "w");
     if (logfile == NULL) {
         perror("logfile");
         exit(EXIT_FAILURE);
@@ -25,7 +28,9 @@ void log_msg(const char *format, ...) {
     va_list ap;
     va_start(ap, format);
 
-    vfprintf(VFS_DATA->logfile, format, ap);
+    FILE* logfile = VFS_DATA->logfile;
+
+    vfprintf(logfile, format, ap);
 }
 
 void log_fuse_context(struct fuse_context *context) {

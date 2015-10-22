@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include "vfs.h"
+#include "log.h"
 
 /*
  * Adding in custom error handler
@@ -13,7 +14,6 @@ static int vfs_error(char *str) {
     log_msg("   ERROR %s: %s \n", str, strerror(errno));
     return ret;
 }
-
 
 /*
  * All paths that we pull out will be relative to the root
@@ -46,7 +46,7 @@ static int vfs_getattr(const char *path, struct stat *stbuf) {
     res = lstat(path, stbuf);
 
     if (res != 0) {
-        return vfs_error("vfs_gettr lstat");
+        res = vfs_error("vfs_gettr lstat");
     }
 
     log_stat(stbuf);
@@ -333,10 +333,6 @@ static int vfs_fsync(const char *path, int isdatasync,
     return 0;
 }
 
-//static int vfs_remount(const char *path, struct fuse_file_info *fi) {
-//  return 1;
-//}
-
 #ifdef HAVE_POSIX_FALLOCATE
 static int vfs_fallocate(const char *path, int mode,
     off_t offset, off_t length, struct fuse_file_info *fi)
@@ -452,9 +448,9 @@ int vfs(int argc, const char *argv[]) {
      * Pull the root directory from the argument list and save it in my internal data
      */
 
-    vfs_data->rootdir = realpath(argv[argc - 2], NULL);
+    vfs_data->rootdir = realpath(argv[1], NULL);
 
-    fprintf(stderr, "Allocated rootdir: %s", argv[argc - 2]);
+    fprintf(stderr, "Allocated rootdir: %s", vfs_data->rootdir);
 
 //    argv[argc-2] = argv[argc-1];
 //    argv[argc-1] = NULL;
@@ -462,8 +458,10 @@ int vfs(int argc, const char *argv[]) {
 
     vfs_data->logfile = log_open();
 
+    FILE* lgs = vfs_data->logfile;
+
     fprintf(stderr, "Calling fuse_main\n");
-    fuse_status = fuse_main(argc, argv, &vfs_oper, NULL);
+    fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
     fprintf(stderr, "fuse_main returned %d\n", fuse_status);
     umask(0);
     return fuse_status;

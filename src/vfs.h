@@ -19,7 +19,6 @@
 #include <errno.h>
 #include <sys/time.h>
 
-#include "log.h"
 #include "constants.h"
 #include "params.h"
 

@@ -5,10 +5,6 @@
 #ifndef SFARRO_PARAMS_H
 #define SFARRO_PARAMS_H
 
-#define FUSE_USE_VERSION 26
-
-#define _XOPEN_SOURCE 500
-
 #include <limits.h>
 #include <stdio.h>
 
