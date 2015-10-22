@@ -4,7 +4,5 @@
 
 #ifndef SFARRO_CONSTANTS_H
 #define SFARRO_CONSTANTS_H
-#define PATH_MAX 300
-
 
 #endif //SFARRO_CONSTANTS_H

@@ -428,7 +428,7 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-int vfs(int argc, const char *argv[]) {
+int vfs(int argc, char *argv[]) {
     int fuse_status;
     struct vfs_state *vfs_data;
 
