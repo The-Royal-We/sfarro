@@ -2,19 +2,18 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "log.h"
-
 #include "params.h"
 
 
 FILE *log_open() {
     FILE *logfile;
+    char logpath[2048];
 
-    logfile = fopen("/opt/sfarro_test/Debug/sfarro.log", "w");
+    logfile = fopen(strcat(getcwd(logpath, sizeof(logpath)),"/sfarro.log"), "w");
     if (logfile == NULL) {
         perror("logfile");
         exit(EXIT_FAILURE);

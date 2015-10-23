@@ -2,12 +2,12 @@
 #include "vfs.h"
 #include "log.h"
 
+time_t LAST_TIME_WRITTEN;
+
 /*
  * Adding in custom error handler
  * Want to report all errors to a logfile instead of stdout
  */
-
-
 
 static int vfs_error(char *str) {
     int ret = -errno;
@@ -132,7 +132,7 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
     int res;
     char fpath[PATH_MAX];
 
-    log_msg("\nbb_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
+    log_msg("\nvfs_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
             path, mode, rdev);
     vfs_fullpath(fpath, path);
 
@@ -152,12 +152,15 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
 
 static int vfs_mkdir(const char *path, mode_t mode) {
     int res;
+    char fpath[PATH_MAX];
+
+    log_msg("\nvfs_mkdir(path=\"%s\", mode");
 
     res = mkdir(path, mode);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_mkdir mkfdir");
 
-    return 0;
+    return res;
 }
 
 static int vfs_unlink(const char *path) {
@@ -284,6 +287,9 @@ static int vfs_read(const char *path, char *buf, size_t size, off_t offset,
     close(fd);
     return res;
 }
+/*
+ * Set LAST_TIME_WRITTEN every time a successful write has taken place
+*/
 
 static int vfs_write(const char *path, const char *buf, size_t size,
                      off_t offset, struct fuse_file_info *fi) {
@@ -300,6 +306,7 @@ static int vfs_write(const char *path, const char *buf, size_t size,
         res = -errno;
 
     close(fd);
+    LAST_TIME_WRITTEN=get_current_time();
     return res;
 }
 
@@ -457,9 +464,6 @@ int vfs(int argc, char *argv[]) {
 //    argc--;
 
     vfs_data->logfile = log_open();
-
-    FILE* lgs = vfs_data->logfile;
-
     fprintf(stderr, "Calling fuse_main\n");
     fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
     fprintf(stderr, "fuse_main returned %d\n", fuse_status);

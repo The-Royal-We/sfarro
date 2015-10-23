@@ -22,6 +22,7 @@
 #include <sys/time.h>
 
 #include "constants.h"
+#include "timer.h"
 #include "params.h"
 
 #ifdef HAVE_SETXATTR

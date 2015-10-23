@@ -4,5 +4,5 @@
 
 #ifndef SFARRO_CONSTANTS_H
 #define SFARRO_CONSTANTS_H
-
+#define TIME_LIMIT 5000l
 #endif //SFARRO_CONSTANTS_H

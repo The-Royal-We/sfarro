@@ -18,7 +18,7 @@ set(SOURCE_FILES
     src/params.h
 )
 
-add_executable(sfarro ${SOURCE_FILES})
+add_executable(sfarro ${SOURCE_FILES} src/timer.h src/timer.c)
 
 target_include_directories(sfarro PRIVATE ${FUSE_INCLUDE_DIR})
 target_link_libraries(sfarro ${FUSE_LIBRARIES})
