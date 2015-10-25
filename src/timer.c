@@ -1,20 +1,34 @@
 #include "timer.h"
 
-time_t get_current_time() {
+time_t *get_current_time() {
     time_t rawtime;
     time(&rawtime);
-    return rawtime;
+    return &rawtime;
 }
 
-int is_last_read_time_over_limit(time_t *last_read) {
+bool ready_to_remount() {
+    if (is_last_written_time_over_limit() == 1)
+        return true;
+    return false;
+}
 
+
+/**
+ * We check the difference between the last time we wrote to the fs.
+ * If the difference exceeds the allocated limit (default_time=5000ms)
+ * then we return 1. Else return 0
+ *
+ * Ready to remount:        1
+ * Not ready to remount:    0
+ *
+ */
+
+int is_last_written_time_over_limit() {
     int res;
-    time_t current_rawtime = get_current_time();
-    if (compare_times_to_limit(last_read, current_rawtime) > 0) {
-//        Then we start to remount the system
+    time_t *current_rawtime = get_current_time();
+    if (compare_times_to_limit(&LAST_TIME_WRITTEN, current_rawtime) > 0) {
         res = 1;
     } else {
-//         It's not time yet
         res = 0;
     }
 

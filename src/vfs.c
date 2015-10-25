@@ -2,7 +2,7 @@
 #include "vfs.h"
 #include "log.h"
 
-time_t LAST_TIME_WRITTEN;
+
 
 /*
  * Adding in custom error handler
@@ -167,80 +167,80 @@ static int vfs_unlink(const char *path) {
     int res;
 
     res = unlink(path);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_unlink unlink");
 
-    return 0;
+    return res;
 }
 
 static int vfs_rmdir(const char *path) {
     int res;
 
     res = rmdir(path);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_rmdir rmdir");
 
-    return 0;
+    return res;
 }
 
 static int vfs_symlink(const char *from, const char *to) {
     int res;
 
     res = symlink(from, to);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_symlink symlink");
 
-    return 0;
+    return res;
 }
 
 static int vfs_rename(const char *from, const char *to) {
     int res;
 
     res = rename(from, to);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_rename rename");
 
-    return 0;
+    return res;
 }
 
 static int vfs_link(const char *from, const char *to) {
     int res;
 
     res = link(from, to);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_rename rename");
 
-    return 0;
+    return res;
 }
 
 static int vfs_chmod(const char *path, mode_t mode) {
     int res;
 
     res = chmod(path, mode);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_chmod chmod");
 
-    return 0;
+    return res;
 }
 
 static int vfs_chown(const char *path, uid_t uid, gid_t gid) {
     int res;
 
     res = lchown(path, uid, gid);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_chown lchown");
 
-    return 0;
+    return res;
 }
 
 static int vfs_truncate(const char *path, off_t size) {
     int res;
 
     res = truncate(path, size);
-    if (res == -1)
-        return -errno;
+    if (res < 0)
+        return vfs_error("vfs_truncate truncate");
 
-    return 0;
+    return res;
 }
 
 #ifdef HAVE_UTIMENSAT
@@ -458,10 +458,6 @@ int vfs(int argc, char *argv[]) {
     vfs_data->rootdir = realpath(argv[1], NULL);
 
     fprintf(stderr, "Allocated rootdir: %s", vfs_data->rootdir);
-
-//    argv[argc-2] = argv[argc-1];
-//    argv[argc-1] = NULL;
-//    argc--;
 
     vfs_data->logfile = log_open();
     fprintf(stderr, "Calling fuse_main\n");
