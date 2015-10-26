@@ -23,17 +23,13 @@ void *threadproc() {
 }
 
 void init_sfarro_monitor() {
-
     pthread_t tid;
     pthread_create(&tid, NULL, &threadproc, NULL);
-
     return;
 }
 
 int remount() {
     int res;
-
     res = mount(VFS_DATA->rootdir, VFS_DATA->rootdir, MS_REMOUNT | O_RDONLY, NULL, NULL);
-
     return 0;
 }

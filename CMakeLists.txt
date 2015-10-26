@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.2.3)
 project(sfarro)
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
@@ -6,7 +6,13 @@ set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR})
 #Find FUSE
 FIND_PACKAGE(FUSE)
 
-set(CMAKE_C_FLAGS "-D_FILE_OFFSET_BITS=64 -lulockmgr")
+#Find Thread package
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+
+
+set(CMAKE_C_FLAGS "-D_FILE_OFFSET_BITS=64 -lulockmgr -lpthread")
 
 set(SOURCE_FILES
     src/sfarro.c
@@ -20,5 +26,7 @@ set(SOURCE_FILES
 
 add_executable(sfarro ${SOURCE_FILES} src/timer.h src/timer.c src/remount.h src/remount.c)
 
+message(${CMAKE_THREAD_LIBS_INIT})
+
 target_include_directories(sfarro PRIVATE ${FUSE_INCLUDE_DIR})
-target_link_libraries(sfarro ${FUSE_LIBRARIES})
+target_link_libraries(sfarro ${FUSE_LIBRARIES} )
