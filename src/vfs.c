@@ -2,8 +2,6 @@
 #include "vfs.h"
 #include "log.h"
 
-
-
 /*
  * Adding in custom error handler
  * Want to report all errors to a logfile instead of stdout
@@ -306,7 +304,8 @@ static int vfs_write(const char *path, const char *buf, size_t size,
         res = -errno;
 
     close(fd);
-    LAST_TIME_WRITTEN=get_current_time();
+//    LAST_TIME_WRITTEN=get_current_time();
+
     return res;
 }
 

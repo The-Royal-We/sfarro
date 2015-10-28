@@ -1,5 +1,7 @@
 #include "timer.h"
 
+time_t LAST_TIME_WRITTEN = LONG_MAX;
+
 time_t *get_current_time() {
     time_t rawtime;
     time(&rawtime);
@@ -11,7 +13,6 @@ bool ready_to_remount() {
         return true;
     return false;
 }
-
 
 /**
  * We check the difference between the last time we wrote to the fs.
@@ -50,4 +51,13 @@ int compare_times_to_limit(time_t *last_read, time_t *current_time) {
     return res;
 
 
+}
+
+time_t get_last_time_written() {
+    return LAST_TIME_WRITTEN;
+}
+
+void set_last_time_written(time_t* new_time) {
+    LAST_TIME_WRITTEN = *new_time;
+    return;
 }

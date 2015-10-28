@@ -10,23 +10,23 @@ FIND_PACKAGE(FUSE)
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-
-
-set(CMAKE_C_FLAGS "-D_FILE_OFFSET_BITS=64 -lulockmgr -lpthread")
+set(CMAKE_C_FLAGS "-D_FILE_OFFSET_BITS=64 -lulockmgr")
 
 set(SOURCE_FILES
-    src/sfarro.c
-    src/vfs.c
-    src/vfs.h
-    src/constants.h
-    src/log.h
-    src/log.c
-    src/params.h
+        src/sfarro.c
+        src/vfs.c
+        src/vfs.h
+        src/constants.h
+        src/log.h
+        src/log.c
+        src/params.h
+        src/timer.h
+        src/timer.c
+        src/remount.h
+        src/remount.c
 )
 
-add_executable(sfarro ${SOURCE_FILES} src/timer.h src/timer.c src/remount.h src/remount.c)
-
-message(${CMAKE_THREAD_LIBS_INIT})
+add_executable(sfarro ${SOURCE_FILES})
 
 target_include_directories(sfarro PRIVATE ${FUSE_INCLUDE_DIR})
-target_link_libraries(sfarro ${FUSE_LIBRARIES} )
+target_link_libraries(sfarro ${FUSE_LIBRARIES} Threads::Threads)

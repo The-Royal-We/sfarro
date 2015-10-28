@@ -23,6 +23,7 @@ void *threadproc() {
 }
 
 void init_sfarro_monitor() {
+    LAST_TIME_WRITTEN = LONG_MAX;
     pthread_t tid;
     pthread_create(&tid, NULL, &threadproc, NULL);
     return;

@@ -29,6 +29,8 @@
 #include <sys/xattr.h>
 #endif
 
+
+
 int vfs(int argc, char *argv[]);
 static int vfs_chmod(const char *path, mode_t mode);
 static int vfs_statfs(const char *path, struct statvfs *stbuf);
