@@ -31,6 +31,7 @@ void init_sfarro_monitor() {
 
 int remount() {
     int res;
-    res = mount(VFS_DATA->rootdir, VFS_DATA->rootdir, MS_REMOUNT | O_RDONLY, NULL, NULL);
+//    res = mount(VFS_DATA->rootdir, VFS_DATA->rootdir, MS_REMOUNT | O_RDONLY, NULL, NULL);
+    printf("REMOUNT");
     return 0;
 }

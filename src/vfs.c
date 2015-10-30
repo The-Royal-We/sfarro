@@ -454,9 +454,12 @@ int vfs(int argc, char *argv[]) {
      * Pull the root directory from the argument list and save it in my internal data
      */
 
-    vfs_data->rootdir = realpath(argv[1], NULL);
+    vfs_data->rootdir = realpath(argv[2], NULL);
+    argv[argc - 2] = argv[argc - 1];
+    argv[argc - 1] = NULL;
+    argc--;
 
-    fprintf(stderr, "Allocated rootdir: %s", vfs_data->rootdir);
+    fprintf(stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
 
     vfs_data->logfile = log_open();
     fprintf(stderr, "Calling fuse_main\n");
