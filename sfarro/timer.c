@@ -37,11 +37,14 @@ int is_last_written_time_over_limit() {
 }
 
 int compare_times_to_limit(time_t *last_read, time_t *current_time) {
-    long last_read_in_seconds = (long) last_read;
-    long current_time_in_seconds = (long) current_time;
+    time_t last_read_in_seconds = *last_read;
+    time_t current_time_in_seconds = *current_time;
     int res;
+    double time_difference;
 
-    if (current_time_in_seconds - last_read_in_seconds > TIME_LIMIT) {
+    time_difference = difftime(current_time_in_seconds, last_read_in_seconds);
+
+    if (time_difference > TIME_LIMIT) {
 //        We've exceeded the limit
         res = -1;
     } else {
@@ -50,14 +53,13 @@ int compare_times_to_limit(time_t *last_read, time_t *current_time) {
 
     return res;
 
-
 }
 
-time_t get_last_time_written() {
+extern time_t get_last_time_written() {
     return LAST_TIME_WRITTEN;
 }
 
-void set_last_time_written(time_t* new_time) {
+extern void set_last_time_written(time_t *new_time) {
     LAST_TIME_WRITTEN = *new_time;
     return;
 }
