@@ -304,9 +304,14 @@ static int vfs_write(const char *path, const char *buf, size_t size,
         res = -errno;
 
     close(fd);
-//    LAST_TIME_WRITTEN=get_current_time();
+
+    set_new_written_time_to_current_time();
 
     return res;
+}
+
+void set_new_written_time_to_current_time() {
+    set_last_time_written(get_current_time());
 }
 
 static int vfs_statfs(const char *path, struct statvfs *stbuf) {

@@ -8,6 +8,7 @@ set(HEADER_FILES
         remount.h
         timer.h
         vfs.h
+        monitor.h
         params.h
         )
 
@@ -15,6 +16,7 @@ set(SOURCE_FILES
         log.c
         remount.c
         timer.c
+        monitor.c
         vfs.c
         )
 

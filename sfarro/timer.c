@@ -1,6 +1,6 @@
 #include "timer.h"
 
-time_t LAST_TIME_WRITTEN = LONG_MAX;
+time_t last_time_written;
 
 time_t *get_current_time() {
     time_t rawtime;
@@ -27,7 +27,7 @@ bool ready_to_remount() {
 int is_last_written_time_over_limit() {
     int res;
     time_t *current_rawtime = get_current_time();
-    if (compare_times_to_limit(&LAST_TIME_WRITTEN, current_rawtime) > 0) {
+    if (compare_times_to_limit(&last_time_written, current_rawtime) > 0) {
         res = 1;
     } else {
         res = 0;
@@ -56,10 +56,10 @@ int compare_times_to_limit(time_t *last_read, time_t *current_time) {
 }
 
 extern time_t get_last_time_written() {
-    return LAST_TIME_WRITTEN;
+    return last_time_written;
 }
 
 extern void set_last_time_written(time_t *new_time) {
-    LAST_TIME_WRITTEN = *new_time;
+    last_time_written = *new_time;
     return;
 }

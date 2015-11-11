@@ -10,8 +10,6 @@
 #include <limits.h>
 
 #include "constants.h"
-
-extern time_t LAST_TIME_WRITTEN;
 extern bool ready_to_remount();
 
 time_t* get_current_time();

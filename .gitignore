@@ -42,3 +42,4 @@ Makefile
 cmake_install.cmake
 install_manifest.txt
 
+/test/lib/gtest-1.7.0/msvc
