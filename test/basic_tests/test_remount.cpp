@@ -1,15 +1,14 @@
 #include "test_remount.h"
 /*
- * int remount(char *remount_directory) {
+
+  int remount(char *remount_directory) {
     int res;
     res = mount(remount_directory, remount_directory, MS_REMOUNT | O_RDONLY, NULL, NULL);
     printf("\n **** Remount occured at %s ***** \n", remount_directory);
     return 0;
 }
- *
- */
 
-
+*/
 
 TEST(test_remount, test_remount_function) {
     char *test_path = get_test_path();
