@@ -19,7 +19,9 @@ TEST(test_remount, test_remount_function) {
 }
 
 char *get_test_path() {
-    std::string testpath("/opt/TEST");
+    char path[] = "/tmp/text_sfarro_XXXXXX";
+    mktemp(path);
+    std::string testpath(path);
     char *ctestpath = new char[testpath.length() + 1];
     std::strcpy(ctestpath, testpath.c_str());
 
