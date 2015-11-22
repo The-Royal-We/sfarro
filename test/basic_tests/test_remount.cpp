@@ -1,29 +1,36 @@
 #include "test_remount.h"
-/*
-
-  int remount(char *remount_directory) {
-    int res;
-    res = mount(remount_directory, remount_directory, MS_REMOUNT | O_RDONLY, NULL, NULL);
-    printf("\n **** Remount occured at %s ***** \n", remount_directory);
-    return 0;
-}
-
-*/
 
 TEST(test_remount, test_remount_function) {
-    char *test_path = get_test_path();
-    EXPECT_EQ(0, remount(test_path));
-    EXPECT_EQ(0, access(test_path, R_OK));
+    char *source_path = get_test_path();
+    char *dest_path = get_test_path();
+    int res = setup_fuse(source_path, dest_path);
+    EXPECT_EQ(0, res);
+    EXPECT_EQ(0, remount(dest_path));
     printf("%d\n", errno);
-    EXPECT_EQ(1, access(test_path, W_OK));
+    EXPECT_EQ(0, access(dest_path, R_OK));
+    EXPECT_EQ(1, access(dest_path, W_OK));
 }
 
 char *get_test_path() {
-    char path[] = "/tmp/text_sfarro_XXXXXX";
-    mktemp(path);
-    std::string testpath(path);
-    char *ctestpath = new char[testpath.length() + 1];
-    std::strcpy(ctestpath, testpath.c_str());
+    char path[] = "/tmp/sfarro_dir_XXXXXX";
+    std::string testpath(mkdtemp(path));
+    return get_c_str(testpath);
+}
 
-    return ctestpath;
+
+int setup_fuse(char *source_path, char *dest_path) {
+    char *flags = get_c_str("-d");
+
+
+    char *argv[] = {flags, source_path, dest_path};
+    int argc = sizeof(argv) / sizeof(*argv);
+
+    return vfs(argc, argv);
+}
+
+
+char *get_c_str(std::string in) {
+    char *c_str = new char[in.length() + 1];
+    std::strcpy(c_str, in.c_str());
+    return c_str;
 }

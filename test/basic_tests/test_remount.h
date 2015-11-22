@@ -8,8 +8,12 @@
 
 extern "C" {
 #include "remount.h"
+#include "vfs.h"
 }
 
 char *get_test_path();
 
+char *get_c_str(std::string in);
+
+int setup_fuse(char *source_path, char *dest_path);
 #endif
