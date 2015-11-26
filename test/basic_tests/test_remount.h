@@ -9,6 +9,7 @@
 extern "C" {
 #include "remount.h"
 #include "vfs.h"
+#include <fuse.h>
 }
 
 char *get_test_path();
