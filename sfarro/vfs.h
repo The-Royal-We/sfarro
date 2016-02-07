@@ -9,8 +9,6 @@
 #define _XOPEN_SOURCE 700
 #endif
 
-#define PATH_MAX 300
-
 #include <fuse.h>
 #include <stdio.h>
 #include <string.h>
@@ -20,6 +18,7 @@
 #include <dirent.h>
 #include <errno.h>
 #include <sys/time.h>
+#include <signal.h>
 
 #include "constants.h"
 #include "timer.h"

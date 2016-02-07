@@ -1,17 +1,5 @@
 #include <stdlib.h>
 #include "vfs.h"
-#include "log.h"
-
-/*
- * Adding in custom error handler
- * Want to report all errors to a logfile instead of stdout
- */
-
-static int vfs_error(char *str) {
-    int ret = -errno;
-    log_msg("   ERROR %s: %s \n", str, strerror(errno));
-    return ret;
-}
 
 /*
  * All paths that we pull out will be relative to the root
@@ -24,8 +12,6 @@ static void vfs_fullpath(char fpath[PATH_MAX], const char *path) {
     strcpy(fpath, VFS_DATA->rootdir);
     strncat(fpath, path, PATH_MAX);
 
-    log_msg("    vfs_fullpath:  rootdir = \"%s\", path = \"%s\", fpath = \"%s\"\n",
-            VFS_DATA->rootdir, path, fpath);
 }
 
 
@@ -37,17 +23,12 @@ static int vfs_getattr(const char *path, struct stat *stbuf) {
     int res;
     char fpath[PATH_MAX];
 
-    log_msg("\nvfs_fgetattr(path=\"%s\", stbuf=0x%08x\n",
-            path, stbuf);
     vfs_fullpath(fpath, path);
-
     res = lstat(path, stbuf);
 
     if (res != 0) {
-        res = vfs_error("vfs_gettr lstat");
+        res = -errno;
     }
-
-    log_stat(stbuf);
     return res;
 }
 
@@ -61,13 +42,10 @@ static int vfs_fgetattr(const char *path, struct stat *stbuf, struct fuse_file_i
     int res;
     (void) path;
 
-    log_msg("\nvfs_fgetattr(path=\"%s\", stbuf=0x%08x\n",
-            path, stbuf);
-
     res = fstat(fi->fh, stbuf);
 
     if (res != -1)
-        return vfs_error("vfs_fgettr fstat");
+        return -errno;
 
     return res;
 }
@@ -87,13 +65,11 @@ static int vfs_readlink(const char *path, char *buf, size_t size) {
     int res;
     char fpath[PATH_MAX];
 
-    log_msg("bb_readlink(path=\"%s\", link=\"%s\", size=%d)\n",
-            path, buf, size);
     vfs_fullpath(fpath, path);
 
     res = readlink(path, buf, size - 1);
     if (res < 0) {
-        res = vfs_error("vfs_readlink readlink");
+        res = -errno;
     } else {
         buf[res] = '\0';
         res = 0;
@@ -130,8 +106,6 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
     int res;
     char fpath[PATH_MAX];
 
-    log_msg("\nvfs_mknod(path=\"%s\", mode=0%3o, dev=%lld)\n",
-            path, mode, rdev);
     vfs_fullpath(fpath, path);
 
     if (S_ISREG(mode)) {
@@ -143,7 +117,7 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
     else
         res = mknod(path, mode, rdev);
     if (res < 0)
-        res = vfs_error("vfs_mknod mknod");
+        res = -errno;
 
     return res;
 }
@@ -152,11 +126,10 @@ static int vfs_mkdir(const char *path, mode_t mode) {
     int res;
     char fpath[PATH_MAX];
 
-    log_msg("\nvfs_mkdir(path=\"%s\", mode");
 
     res = mkdir(path, mode);
     if (res < 0)
-        return vfs_error("vfs_mkdir mkfdir");
+        return -errno;
 
     return res;
 }
@@ -166,7 +139,7 @@ static int vfs_unlink(const char *path) {
 
     res = unlink(path);
     if (res < 0)
-        return vfs_error("vfs_unlink unlink");
+        return -errno;
 
     return res;
 }
@@ -176,7 +149,7 @@ static int vfs_rmdir(const char *path) {
 
     res = rmdir(path);
     if (res < 0)
-        return vfs_error("vfs_rmdir rmdir");
+        return -errno;
 
     return res;
 }
@@ -186,7 +159,7 @@ static int vfs_symlink(const char *from, const char *to) {
 
     res = symlink(from, to);
     if (res < 0)
-        return vfs_error("vfs_symlink symlink");
+        return -errno;
 
     return res;
 }
@@ -196,7 +169,7 @@ static int vfs_rename(const char *from, const char *to) {
 
     res = rename(from, to);
     if (res < 0)
-        return vfs_error("vfs_rename rename");
+        return -errno;
 
     return res;
 }
@@ -206,7 +179,7 @@ static int vfs_link(const char *from, const char *to) {
 
     res = link(from, to);
     if (res < 0)
-        return vfs_error("vfs_rename rename");
+        return -errno;
 
     return res;
 }
@@ -216,7 +189,7 @@ static int vfs_chmod(const char *path, mode_t mode) {
 
     res = chmod(path, mode);
     if (res < 0)
-        return vfs_error("vfs_chmod chmod");
+        return -errno;
 
     return res;
 }
@@ -226,7 +199,7 @@ static int vfs_chown(const char *path, uid_t uid, gid_t gid) {
 
     res = lchown(path, uid, gid);
     if (res < 0)
-        return vfs_error("vfs_chown lchown");
+        return -errno;
 
     return res;
 }
@@ -236,7 +209,7 @@ static int vfs_truncate(const char *path, off_t size) {
 
     res = truncate(path, size);
     if (res < 0)
-        return vfs_error("vfs_truncate truncate");
+        return -errno;
 
     return res;
 }
@@ -343,6 +316,21 @@ static int vfs_fsync(const char *path, int isdatasync,
     (void) fi;
     return 0;
 }
+/*
+static void setup_signal_handling()
+{
+    struct sigaction sa;
+    sa.sa_handler = signal_handler;
+    sigemptyset(&sa.sa_mask);
+    sa.sa_flags = 0;
+
+    sigaction(SIGUSR1, &sa, NULL);
+}
+
+static void signal_handler(int sig)
+{
+    invalidate_user_cache();
+}*/
 
 #ifdef HAVE_POSIX_FALLOCATE
 static int vfs_fallocate(const char *path, int mode,
@@ -466,11 +454,13 @@ int vfs(int argc, char *argv[]) {
 
     fprintf(stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
 
-    vfs_data->logfile = log_open();
     fprintf(stderr, "Calling fuse_main\n");
-    fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
-    fprintf(stderr, "fuse_main returned %d\n", fuse_status);
+
     umask(0);
+
+    fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
+
+    fprintf(stderr, "fuse_main returned %d\n", fuse_status);
     return fuse_status;
 }
 

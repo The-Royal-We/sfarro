@@ -4,7 +4,6 @@ project(sfarro)
 
 set(HEADER_FILES
         constants.h
-        log.h
         remount.h
         timer.h
         vfs.h
@@ -13,7 +12,6 @@ set(HEADER_FILES
         )
 
 set(SOURCE_FILES
-        log.c
         remount.c
         timer.c
         monitor.c

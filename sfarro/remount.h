@@ -12,6 +12,9 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+#include "vfs.h"
+
+
 int remount(char *remount_directory);
 
 #endif //SFARRO_REMOUNT_H
