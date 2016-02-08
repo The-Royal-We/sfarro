@@ -46,7 +46,133 @@ function test_truncate_file {
 function test_mv_file {
 	log "Testing mv file function"
 
+	# if renamed file exists, remove it
+	if [ -e $ALT_TEST_TEXT_FILE ]
+	then
+		rm $ALT_TEST_TEXT_FILE
+	fi
+	if [ -e $ALT_TEST_TEXT_FILE]
+	then
+		echo "Could not delete file ${ALT_TEST_TEXT_FILE}, file still exists"
+		return 1
+	fi
+
+	# Create test file again
+	mk_test_file
+
+	# Rename test file
+	mv $TEST_TEXT_FILE $ALT_TEST_TEXT_FILE
+	if [ ! -e $ALT_TEST_TEXT_FILE ]
+	then
+		echo "Could not move file"
+		return 1
+	fi
+
+	# Check contents of file
+	ALT_TEXT_LENGTH=`echo $TEST_TEXT | wc -c | awk '{print $1}'`
+    ALT_FILE_LENGTH=`wc -c $ALT_TEST_TEXT_FILE | awk '{print $1}'`
+
+	if [ "$ALT_FILE_LENGTH" -ne $ALT_TEXT_LENGTH ] 
+	then
+		echo "moved file length is not as expected length: $ALT_TEXT_LENGTH got: $ALT_FILE_LENGTH"
+		return 1
+	fi
+
+	rm_test_file $ALT_TEST_TEXT_FILE
 }
 
-echo "$0: tests complete."
+function test_mv_directory {
+	log "Testing mv directory function..."
+	if [ -e $TEST_DIR ]; then
+		echo "Unexpected , this file/directory exists: ${TEST_DIR}"
+		return 1
+	fi
+
+	mk_test_dir
+
+	mv ${TEST_DIR} ${TEST_DIR}_rename
+	if [ ! -d "${TEST_DIR}_rename" ]; then
+		echo "Directory ${TEST_DIR} was not renamed"
+		return 1
+	fi
+
+	rmdir ${TEST_DIR}_rename
+	if [ -e "${TEST_DIR}_rename" ]; then
+		echo "Could not remove the test directory, it still exists: ${TEST_DIR}_rename"
+		return 1
+	fi
+}
+
+function test_mkdir_rmdir {
+	log "Testing creation/removal of directory"
+
+	if [ -e $TEST_DIR ]; then
+		echo "Unexpected , this file/directory exists: ${TEST_DIR}"
+		return 1
+	fi
+
+	mk_test_dir
+	rm_test_dir
+}
+
+function test_chmod {
+	log "Testing chmod file function..."
+
+	mk_test_file
+
+	ORIGINAL_PERMISSIONS=$(stat --format=%a $TEST_TEXT_FILE)
+
+	chmod 777 $TEST_TEXT_FILE;
+
+	if [ $(stat --format=%a $TEST_TEXT_FILE) == $ORIGINAL_PERMISSIONS ]
+	then
+		echo "Could not modify $TEST_TEXT_FILE permissions"
+		return 1
+	fi
+
+	# clean up
+	rm_test_file
+
+}
+
+function test_list {
+	describe "Testing list"
+	mk_test_file
+	mk_test_dir
+
+	file_cnt=$(ls -1 | wc -l)
+	if [ $file_cnt != 2 ]; then
+		echo "Expected 2 file but got $file_cnt"
+		return 1
+	fi
+
+	rm_test_file
+	rm_test_dir
+}
+
+function test_remove_nonempty_directory {
+	describe "Testing removing a non-empty directory"
+	mk_test_dir
+	touch "${TEST_DIR}/file"
+	rmdir "${TEST_DIR}" 2>&1 | grep -q "Directory not empty"
+	rm "${TEST_DIR}/file"
+	rm_test_dir
+}
+
+function add_all_tests {
+	add_tests test_append_file 
+	add_tests test_truncate_file 
+	add_tests test_mv_file
+	add_tests test_mv_directory
+	add_tests test_redirects
+	add_tests test_mkdir_rmdir
+	add_tests test_chmod
+	add_tests test_chown
+	add_tests test_list
+	add_tests test_remove_nonempty_directory
+}
+
+init_suite
+add_all_tests
+run_suite
 
