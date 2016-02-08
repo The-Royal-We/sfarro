@@ -19,5 +19,5 @@ AC_SUBST([my_LDFLAGS])
 
 PKG_CHECK_MODULES([fuse], [fuse >= 2.6.0])
 AC_CONFIG_FILES([Makefile \
-                 src/MakeFile])
+                 src/Makefile])
 AC_OUTPUT
