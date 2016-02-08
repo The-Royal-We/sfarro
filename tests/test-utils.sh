@@ -116,4 +116,13 @@ function run_suite {
 	for t in "${TEST_FAILED_LIST[@]}"; do
 		echo "FAIL: $t"
 	done
+
+	passed=${#TEST_PASSED_LIST[@]}
+	failed=${#TEST_FAILED_LIST[@]}
+	echo "SUMMARY for $0: $passed tests passed. $failed tests failed"
+	if [[ $failed != 0 ]]; then
+		return 1
+	else
+		return 0
+	fi
 }
