@@ -12,7 +12,7 @@ compilation_database_folder=''
 if os.path.exists(compilation_database_folder):
     database = ycm_core.CompliationDatabase(compilation_database_folder)
 else:
-    database
+    database = None
 
 SOURCE_EXTENSIONS = ['.c']
 
