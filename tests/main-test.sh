@@ -1,11 +1,24 @@
 #!/bin/bash
 
 set -o errexit
+set -o xtrace
 
 ## TODO: Do I need to validate user as root?
 #REQUIRE_ROOT=require-root.sh
 
+export TEST_MOUNT_POINT=$(mktemp --directory sfarro_test_mount-XXXXXX) 
+export TEST_DEST_POINT=$(mktemp --directory sfarro_test_dest-XXXXXX) 
+
 source test-utils.sh
+
+function exit_handler {
+	if [ -n "${SFARRO_PID}" ]
+	then
+		kill $SFARRO_PID
+	fi
+	
+	fusermount -u $TEST_MOUNT_POINT
+}
 
 function test_append_file {
 	log "Testing append to file..."
@@ -171,6 +184,11 @@ function add_all_tests {
 	add_tests test_list
 	add_tests test_remove_nonempty_directory
 }
+
+trap exit_handler EXIT
+
+# Mount the directory into sfarro
+bin/sfarro $TEST_MOUNT_POINT $TEST_DEST_POINT
 
 init_suite
 add_all_tests

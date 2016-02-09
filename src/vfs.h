@@ -19,6 +19,7 @@
 #include <errno.h>
 #include <sys/time.h>
 #include <signal.h>
+#include <stdlib.h>
 
 #include "constants.h"
 #include "timer.h"
@@ -27,8 +28,6 @@
 #ifdef HAVE_SETXATTR
 #include <sys/xattr.h>
 #endif
-
-
 
 int vfs(int argc, char *argv[]);
 

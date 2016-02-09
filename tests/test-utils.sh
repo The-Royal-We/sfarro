@@ -6,7 +6,7 @@ set -o errexit
 TEST_TEXT="HELLO_WORLD"
 TEST_TEXT_FILE=test-sfarro.txt
 TEST_DIR=testdir
-ALT_TEST_TEXT_FILE=test-s3fs-ALT.txt
+ALT_TEST_TEXT_FILE=test-sfarro-ALT.txt
 TEST_TEXT_FILE_LENGTH=15
 
 export RUN_DIR
