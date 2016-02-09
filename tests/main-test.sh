@@ -9,6 +9,8 @@ set -o xtrace
 export TEST_MOUNT_POINT=$(mktemp --directory sfarro_test_mount-XXXXXX) 
 export TEST_DEST_POINT=$(mktemp --directory sfarro_test_dest-XXXXXX) 
 
+SFARRO=../src/sfarro
+
 source test-utils.sh
 
 function exit_handler {
@@ -31,7 +33,7 @@ function test_append_file {
 
 	#Verify file
 	echo "Verifying length of test file"
-	FILE_LENGTH=`wc -l $TEST_TEXT_FILE | awk '${print $1}'`
+	FILE_LENGTH=`wc -l $TEST_TEXT_FILE | awk '${ print $1 }'`
 	if [ "$FILE_LENGTH" -ne "$TEST_TEXT_FILE_LENGTH" ]
 	then
 		echo "error: expected $TEST_TEXT_FILE_LENGTH, got $FILE_LENGTH"
@@ -48,7 +50,7 @@ function test_truncate_file {
 
 	: > ${TEST_TEXT_FILE}
 
-	if [ -s ${TEST_TEXT_FILE}]
+	if [ -s ${TEST_TEXT_FILE} ]
 	then
 		echo "error: expected ${TEST_TEXT_FILE} to be zero length"
 		return 1
@@ -64,7 +66,7 @@ function test_mv_file {
 	then
 		rm $ALT_TEST_TEXT_FILE
 	fi
-	if [ -e $ALT_TEST_TEXT_FILE]
+	if [ -e $ALT_TEST_TEXT_FILE ]
 	then
 		echo "Could not delete file ${ALT_TEST_TEXT_FILE}, file still exists"
 		return 1
@@ -97,7 +99,7 @@ function test_mv_file {
 function test_mv_directory {
 	log "Testing mv directory function..."
 	if [ -e $TEST_DIR ]; then
-		echo "Unexpected , this file/directory exists: ${TEST_DIR}"
+		echo "Unexpected, this file/directory exists: ${TEST_DIR}"
 		return 1
 	fi
 
@@ -149,7 +151,7 @@ function test_chmod {
 }
 
 function test_list {
-	describe "Testing list"
+	log "Testing list"
 	mk_test_file
 	mk_test_dir
 
@@ -164,7 +166,7 @@ function test_list {
 }
 
 function test_remove_nonempty_directory {
-	describe "Testing removing a non-empty directory"
+	log "Testing removing a non-empty directory"
 	mk_test_dir
 	touch "${TEST_DIR}/file"
 	rmdir "${TEST_DIR}" 2>&1 | grep -q "Directory not empty"
@@ -180,7 +182,7 @@ function add_all_tests {
 	add_tests test_redirects
 	add_tests test_mkdir_rmdir
 	add_tests test_chmod
-	add_tests test_chown
+#	add_tests test_chown
 	add_tests test_list
 	add_tests test_remove_nonempty_directory
 }
@@ -188,9 +190,8 @@ function add_all_tests {
 trap exit_handler EXIT
 
 # Mount the directory into sfarro
-bin/sfarro $TEST_MOUNT_POINT $TEST_DEST_POINT
+$SFARRO $TEST_DEST_POINT $TEST_MOUNT_POINT 
 
 init_suite
 add_all_tests
 run_suite
-
