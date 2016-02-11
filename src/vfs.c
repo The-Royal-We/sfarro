@@ -430,8 +430,6 @@ static struct fuse_operations vfs_oper = {
 int vfs(int argc, char *argv[]) {
 	int fuse_status;
 	struct vfs_state *vfs_data;
-	struct fuse_args = FUSE_ARGS_INIT(argc,argv);
-	
 
 	if ((getuid() == 0) || (geteuid() == 0)) {
 		fprintf(stderr, "Running src as root opens security holes\n");
@@ -445,9 +443,20 @@ int vfs(int argc, char *argv[]) {
 		abort();
 	}
 
+	/*
+	 * Pull the root directory from the argument list and save it in my internal data
+	 */
+
+	vfs_data->rootdir = realpath(argv[2], NULL);
+	argv[argc - 2] = argv[argc - 1];
+	argv[argc - 1] = NULL;
+	argc--;
+
 	fprintf(stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
 
 	fprintf(stderr, "Calling fuse_main\n");
+	fprintf(stderr, "Swag\n");
+
 	umask(0);
 
 	fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
