@@ -20,6 +20,8 @@ function exit_handler {
 	fi
 	
 	fusermount -u $TEST_MOUNT_POINT
+	rm -rf $TEST_MOUNT_POINT $TEST_DEST_POINT
+	rm_test_dir
 }
 
 function test_append_file {
@@ -33,7 +35,7 @@ function test_append_file {
 
 	#Verify file
 	echo "Verifying length of test file"
-	FILE_LENGTH=`wc -l $TEST_TEXT_FILE | awk '${ print $1 }'`
+	FILE_LENGTH=`wc -l $TEST_TEXT_FILE | awk '{print $1}'`
 	if [ "$FILE_LENGTH" -ne "$TEST_TEXT_FILE_LENGTH" ]
 	then
 		echo "error: expected $TEST_TEXT_FILE_LENGTH, got $FILE_LENGTH"
@@ -179,7 +181,7 @@ function add_all_tests {
 	add_tests test_truncate_file 
 	add_tests test_mv_file
 	add_tests test_mv_directory
-	add_tests test_redirects
+#	add_tests test_redirects
 	add_tests test_mkdir_rmdir
 	add_tests test_chmod
 #	add_tests test_chown
@@ -190,7 +192,7 @@ function add_all_tests {
 trap exit_handler EXIT
 
 # Mount the directory into sfarro
-$SFARRO $TEST_DEST_POINT $TEST_MOUNT_POINT 
+$SFARRO $TEST_MOUNT_POINT $TEST_DEST_POINT #$TEST_MOUNT_POINT 
 
 init_suite
 add_all_tests
