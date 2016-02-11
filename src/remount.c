@@ -15,8 +15,7 @@ int remount(char *remount_directory) {
         printf("\n **** Remount occured at %s, with result %d ***** \n", remount_directory, res);
         if (res < 0)
             printf("\n !!! Error number: %d !!! \n", errno);
-    }
-    else {
+    } else {
         res = -1;
     }
     return res;
