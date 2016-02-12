@@ -9,21 +9,75 @@
  * mind
  */
 
+/* Settings */
+
+static struct Settings {
+	char *mntsrc;
+	char *mntdest;
+	char* working_dir;
+	int mntsrc_fd;
+	int mntdest_len;
+} settings;
+
 static void vfs_fullpath(char fpath[PATH_MAX], const char *path) {
 	strcpy(fpath, VFS_DATA->rootdir);
 	strncat(fpath, path, PATH_MAX);
 }
 
+static void *vfs_init()
+{
+	assert(settings.mntsrc_fd > 0);
+
+	if(fchdir(settings.mntsrc_fd) != 0){
+		fprintf(
+				stderr,
+				"Could not change working directory to '%s': %s\n",
+				settings.mntsrc,
+				strerror(errno)
+				);
+		fuse_exit(fuse_get_context()->fuse);
+	}
+	return NULL;
+}
+
+static char *process_path(const char *path)
+{
+	if(path == NULL){
+		errno = EINVAL;
+		return NULL;
+	}
+
+	while(*path == '/')
+		++path;
+
+	if(*path == '\0')
+		path = ".";
+
+	char* result = realpath(path, NULL);
+	if (result == NULL){
+		return strdup(path);
+	} else if (strncmp(result, settings.mntdest, settings.mntdest_len) == 0){
+		/* Recursive call. Cannot handle this without deadlocking */
+		DPRINTF("Denying recursive access to mountpoint `%s'", result);
+		free(result);
+		errno = EPERM;
+		return NULL;
+	}
+		return result;
+
+}
 
 /*
  * Get object attributes
  */
-
 static int vfs_getattr(const char *path, struct stat *stbuf) {
 	int res;
-	char fpath[PATH_MAX];
+	char *real_path;
 
-	vfs_fullpath(fpath, path);
+	real_path = process_path(path);
+	if(real_path == NULL)
+		return -errno;
+
 	res = lstat(path, stbuf);
 
 	if (res != 0) {
@@ -124,9 +178,6 @@ static int vfs_mknod(const char *path, mode_t mode, dev_t rdev) {
 
 static int vfs_mkdir(const char *path, mode_t mode) {
 	int res;
-	char fpath[PATH_MAX];
-
-
 	res = mkdir(path, mode);
 	if (res < 0)
 		return -errno;
@@ -393,7 +444,9 @@ static int vfs_removexattr(const char *path, const char *name)
 #endif /* HAVE_SETXATTR */
 
 static struct fuse_operations vfs_oper = {
+	.init     = vfs_init,
 	.getattr  = vfs_getattr,
+	.fgetattr = vfs_fgetattr,
 	.access   = vfs_access,
 	.readlink = vfs_readlink,
 	.readdir  = vfs_readdir,
@@ -427,14 +480,74 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
+static char *get_working_dir()
+{
+	size_t buf_size = 4096;
+	char* buf = mallow(buf_size);
+	while(!getcwd(buf, buf_size)){
+		buf_size *= 2;
+		buf = realloc(buf, buf_size);
+	}
+	return buf;
+}
+
+static void at_exitfunc()
+{
+	free(settings.mntsrc);
+	free(settings.mntdest);
+	free(settings.working_dir);
+}
+
+static int process_option(void *data, const char *arg,
+		struct fuse_args *outargs)
+{
+	if(!settings.mntsrc) {
+		settings.mntsrc = realpath(arg, NULL);
+		if(settings.mntsrc == NULL){
+			fprintf(stderr, "Failed to resolve source directory %s:", arg);
+			return -1;
+		}
+	}
+	if(!settings.mntdest) {
+		if(settings.mntdest == NULL) {
+			fprintf(stderr, "Failed to resolve mount directory %s:", arg);
+			return -1;
+		}
+	}
+	if(!settings.working_dir) {
+		if(settings.mntdest == NULL) {
+			fprintf(stderr, "Failed to resolve mount directory %s:", arg);
+			return -1;
+		}
+	}
+}
+
 int vfs(int argc, char *argv[]) {
 	int fuse_status;
 	struct vfs_state *vfs_data;
+	struct fuse_args args = FUSE_ARGS_INIT(argc, argv);
 
-	if ((getuid() == 0) || (geteuid() == 0)) {
-		fprintf(stderr, "Running src as root opens security holes\n");
-		fprintf(stderr, "But it's cool brah\n");
-		//        return 1;
+	struct OptionData {
+		char *mount_path;
+		char *mount_dest;
+		int multithreaded;
+	} od;
+
+	/* Initalising settings */
+	memset(&od, 0 , sizeof(od));
+	settings.mntsrc = NULL;
+	settings.mntdest = NULL;
+	settings.working_dir = NULL;
+	atexit(&at_exitfunc());
+
+	if(fuse_opt_parse(&args, &od, NULL, &process_option)){
+		return 1;
+	}
+
+	if ((getuid() == 0) || (geteuid() == 0))
+	{
+		fprintf(stderr, "Running sfarro as root opens security holes\n");
+		      return 1;
 	}
 	vfs_data = malloc(sizeof(struct vfs_state));
 
@@ -443,9 +556,11 @@ int vfs(int argc, char *argv[]) {
 		abort();
 	}
 
+
 	/*
 	 * Pull the root directory from the argument list and save it in my internal data
 	 */
+
 
 	vfs_data->rootdir = realpath(argv[2], NULL);
 	argv[argc - 2] = argv[argc - 1];
@@ -453,16 +568,9 @@ int vfs(int argc, char *argv[]) {
 	argc--;
 
 	fprintf(stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
-
 	fprintf(stderr, "Calling fuse_main\n");
-	fprintf(stderr, "Swag\n");
-
 	umask(0);
-
 	fuse_status = fuse_main(argc, argv, &vfs_oper, vfs_data);
-	fprintf(stdout, "*****");
-
-
 	fprintf(stderr, "fuse_main returned %d\n", fuse_status);
 	return fuse_status;
 }
