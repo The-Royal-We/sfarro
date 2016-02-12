@@ -154,9 +154,9 @@ function test_chmod {
 
 function test_list {
 	log "Testing list"
-	mk_test_file
 	mk_test_dir
-
+	mk_test_file
+	echo `ls -l`
 	file_cnt=$(ls -1 | wc -l)
 	if [ $file_cnt != 2 ]; then
 		echo "Expected 2 file but got $file_cnt"
@@ -192,7 +192,7 @@ function add_all_tests {
 trap exit_handler EXIT
 
 # Mount the directory into sfarro
-$SFARRO $TEST_MOUNT_POINT $TEST_DEST_POINT #$TEST_MOUNT_POINT 
+$SFARRO $TEST_DEST_POINT $TEST_MOUNT_POINT
 
 init_suite
 add_all_tests
