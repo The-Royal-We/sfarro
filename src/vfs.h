@@ -20,6 +20,7 @@
 #include <sys/time.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "constants.h"
 #include "timer.h"
@@ -32,7 +33,4 @@
 int vfs(int argc, char *argv[]);
 
 void sfarro_usage();
-static int vfs_chmod(const char *path, mode_t mode);
-static int vfs_statfs(const char *path, struct statvfs *stbuf);
-
 void set_new_written_time_to_current_time();

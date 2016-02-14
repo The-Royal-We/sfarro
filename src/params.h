@@ -9,8 +9,8 @@
 #include <stdio.h>
 
 struct vfs_state {
-    FILE *logfile;
     char *rootdir;
+    char *mountdir;
 };
 #define VFS_DATA ((struct vfs_state *) fuse_get_context()->private_data)
 
