@@ -1,7 +1,7 @@
 AC_INIT([sfarro], [0.0.1], [brendan.carroll.92@gmail.com])
 #LT_INIT
 
-AM_INIT_AUTOMAKE([foreign])
+AM_INIT_AUTOMAKE([foreign -Wall])
 AC_CONFIG_HEADERS([config.h])
 
 AC_PROG_CC
