@@ -494,7 +494,7 @@ vfs (int argc, char *argv[])
   vfs_data->rootdir = realpath (argv[2], NULL);
   vfs_data->mountdir = realpath (argv[1], NULL);
 
-  char *mountpoints[] = {vfs_data->mountdir, vfs_data->rootdir};
+  char *mountpoints[] = {vfs_data->rootdir, vfs_data->mountdir};
 
   fprintf (stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
   fprintf (stderr, "Calling fuse_main\n");

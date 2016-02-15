@@ -19,9 +19,8 @@ function exit_handler {
 		kill $SFARRO_PID
 	fi
 	
-	fusermount -u $TEST_MOUNT_POINT
+	fusermount -u $TEST_DEST_POINT
 	rm -rf $TEST_MOUNT_POINT $TEST_DEST_POINT
-	rm_test_dir
 }
 
 function test_append_file {
