@@ -488,15 +488,11 @@ vfs (int argc, char *argv[])
    * Pull the root directory from the argument list and save it in my internal data
    */
 
-   /*
-    *   TODO: FIX THIS WANKERY
-    */
   vfs_data->rootdir = realpath (argv[2], NULL);
   vfs_data->mountdir = realpath (argv[1], NULL);
 
   char *mountpoints[] = {vfs_data->rootdir, vfs_data->mountdir};
 
-  fprintf (stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
   fprintf (stderr, "Calling fuse_main\n");
   umask (0);
   fuse_status = fuse_main (2, mountpoints, &vfs_oper, vfs_data);

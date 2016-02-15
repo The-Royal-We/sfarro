@@ -1,7 +1,3 @@
-//
-// Created by brendan on 23/10/15.
-//
-
 #ifndef SFARRO_TIMER_H
 #define SFARRO_TIMER_H
 #include <stdio.h>

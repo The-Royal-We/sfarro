@@ -1,7 +1,3 @@
-//
-// Created by se415011 on 11/11/15.
-//
-
 #ifndef MAIN_MONITOR_H
 #define MAIN_MONITOR_H
 

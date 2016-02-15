@@ -1,7 +1,3 @@
-//
-// Created by brendan on 25/10/15.
-//
-
 #ifndef SFARRO_REMOUNT_H
 #define SFARRO_REMOUNT_H
 
@@ -14,7 +10,6 @@
 #include <stdio.h>
 
 #include "vfs.h"
-
 
 int remount(char *remount_directory);
 
