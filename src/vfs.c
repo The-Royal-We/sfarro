@@ -24,10 +24,8 @@ vfs_getattr (const char *path, struct stat *stbuf)
   int res;
   res = lstat (path, stbuf);
 
-  if (res != 0)
-    {
-      res = -errno;
-    }
+  if (res != -1)
+      res = -ENOENT;
   return res;
 }
 
@@ -39,14 +37,13 @@ vfs_getattr (const char *path, struct stat *stbuf)
 static int
 vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
-
   int res;
   (void) path;
 
   res = fstat (fi->fh, stbuf);
 
   if (res != -1)
-    return -errno;
+    return -ENOENT;
 
   return res;
 }
@@ -324,7 +321,9 @@ vfs_write (const char *path, const char *buf, size_t size,
 void
 set_new_written_time_to_current_time ()
 {
-  set_last_time_written (get_current_time ());
+  time_t current_time;
+  time(&current_time);
+  set_last_time_written (current_time);
 }
 
 static int
@@ -496,7 +495,6 @@ vfs (int argc, char *argv[])
   vfs_data->mountdir = realpath (argv[1], NULL);
 
   char *mountpoints[] = {vfs_data->mountdir, vfs_data->rootdir};
-  
 
   fprintf (stderr, "Allocated rootdir: %s\n", vfs_data->rootdir);
   fprintf (stderr, "Calling fuse_main\n");

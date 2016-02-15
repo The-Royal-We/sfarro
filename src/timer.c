@@ -2,14 +2,6 @@
 
 time_t last_time_written;
 
-time_t *
-get_current_time ()
-{
-  time_t rawtime;
-  time (&rawtime);
-  return &rawtime;
-}
-
 bool
 ready_to_remount ()
 {
@@ -30,7 +22,9 @@ int
 is_last_written_time_over_limit ()
 {
   int res;
-  time_t *current_rawtime = get_current_time ();
+  time_t current_rawtime;
+  time(&current_rawtime);
+
   if (compare_times_to_limit (&last_time_written, current_rawtime) > 0)
     {
       res = 1;
@@ -48,23 +42,10 @@ compare_times_to_limit (time_t * last_read, time_t * current_time)
 {
   time_t last_read_in_seconds = *last_read;
   time_t current_time_in_seconds = *current_time;
-  int res;
   double time_difference;
 
   time_difference = difftime (current_time_in_seconds, last_read_in_seconds);
-
-  if (time_difference > TIME_LIMIT)
-    {
-//        We've exceeded the limit
-      res = -1;
-    }
-  else
-    {
-      res = 0;
-    }
-
-  return res;
-
+  return (time_difference > TIME_LIMIT) ? -1 : 0;
 }
 
 extern time_t

@@ -134,13 +134,9 @@ function test_mkdir_rmdir {
 
 function test_chmod {
 	log "Testing chmod file function..."
-
 	mk_test_file
-
 	ORIGINAL_PERMISSIONS=$(stat --format=%a $TEST_TEXT_FILE)
-
 	chmod 777 $TEST_TEXT_FILE;
-
 	if [ $(stat --format=%a $TEST_TEXT_FILE) == $ORIGINAL_PERMISSIONS ]
 	then
 		echo "Could not modify $TEST_TEXT_FILE permissions"
@@ -177,15 +173,13 @@ function test_remove_nonempty_directory {
 }
 
 function add_all_tests {
+	add_tests test_list
 	add_tests test_append_file 
 	add_tests test_truncate_file 
 	add_tests test_mv_file
 	add_tests test_mv_directory
-#	add_tests test_redirects
 	add_tests test_mkdir_rmdir
 	add_tests test_chmod
-#	add_tests test_chown
-	add_tests test_list
 	add_tests test_remove_nonempty_directory
 }
 

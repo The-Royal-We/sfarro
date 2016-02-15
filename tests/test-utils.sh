@@ -63,6 +63,7 @@ function cd_run_dir {
 		echo "$TEST_MOUNT_POINT variable not set"
 		exit 1
 	fi
+    cd $TEST_MOUNT_POINT
 }
 
 function clean_run_dir {
