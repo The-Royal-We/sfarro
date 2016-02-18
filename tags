@@ -1,0 +1,636 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ACLOCAL	Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL	src/Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL	tests/Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL_M4	Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
+ACLOCAL_M4	src/Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
+ACLOCAL_M4	tests/Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
+AMTAR	Makefile	/^AMTAR = $${TAR-tar}$/;"	m
+AMTAR	src/Makefile	/^AMTAR = $${TAR-tar}$/;"	m
+AMTAR	tests/Makefile	/^AMTAR = $${TAR-tar}$/;"	m
+AM_CFLAGS	src/Makefile	/^AM_CFLAGS = ${my_CFLAGS}$/;"	m
+AM_CPPFLAGS	src/Makefile	/^AM_CPPFLAGS = ${my_CPPFLAGS} ${fuse_CFLAGS}$/;"	m
+AM_DEFAULT_VERBOSITY	Makefile	/^AM_DEFAULT_VERBOSITY = 1$/;"	m
+AM_DEFAULT_VERBOSITY	src/Makefile	/^AM_DEFAULT_VERBOSITY = 1$/;"	m
+AM_DEFAULT_VERBOSITY	tests/Makefile	/^AM_DEFAULT_VERBOSITY = 1$/;"	m
+AM_RECURSIVE_TARGETS	Makefile	/^AM_RECURSIVE_TARGETS = $(am__recursive_targets:-recursive=) TAGS CTAGS \\$/;"	m
+AM_RECURSIVE_TARGETS	tests/Makefile	/^AM_RECURSIVE_TARGETS = check recheck$/;"	m
+AM_V_CC	src/Makefile	/^AM_V_CC = $(am__v_CC_$(V))$/;"	m
+AM_V_CCLD	src/Makefile	/^AM_V_CCLD = $(am__v_CCLD_$(V))$/;"	m
+AM_V_GEN	Makefile	/^AM_V_GEN = $(am__v_GEN_$(V))$/;"	m
+AM_V_GEN	src/Makefile	/^AM_V_GEN = $(am__v_GEN_$(V))$/;"	m
+AM_V_GEN	tests/Makefile	/^AM_V_GEN = $(am__v_GEN_$(V))$/;"	m
+AM_V_P	Makefile	/^AM_V_P = $(am__v_P_$(V))$/;"	m
+AM_V_P	src/Makefile	/^AM_V_P = $(am__v_P_$(V))$/;"	m
+AM_V_P	tests/Makefile	/^AM_V_P = $(am__v_P_$(V))$/;"	m
+AM_V_at	Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
+AM_V_at	src/Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
+AM_V_at	tests/Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
+AUTOCONF	Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
+AUTOCONF	src/Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
+AUTOCONF	tests/Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
+AUTOHEADER	Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
+AUTOHEADER	src/Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
+AUTOHEADER	tests/Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
+AUTOMAKE	Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
+AUTOMAKE	src/Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
+AUTOMAKE	tests/Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
+AWK	Makefile	/^AWK = gawk$/;"	m
+AWK	src/Makefile	/^AWK = gawk$/;"	m
+AWK	tests/Makefile	/^AWK = gawk$/;"	m
+CC	Makefile	/^CC = gcc$/;"	m
+CC	src/Makefile	/^CC = gcc$/;"	m
+CC	tests/Makefile	/^CC = gcc$/;"	m
+CCDEPMODE	Makefile	/^CCDEPMODE = depmode=gcc3$/;"	m
+CCDEPMODE	src/Makefile	/^CCDEPMODE = depmode=gcc3$/;"	m
+CCDEPMODE	tests/Makefile	/^CCDEPMODE = depmode=gcc3$/;"	m
+CCLD	src/Makefile	/^CCLD = $(CC)$/;"	m
+CFLAGS	Makefile	/^CFLAGS = -g -O2$/;"	m
+CFLAGS	src/Makefile	/^CFLAGS = -g -O2$/;"	m
+CFLAGS	tests/Makefile	/^CFLAGS = -g -O2$/;"	m
+COMPILE	src/Makefile	/^COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \\$/;"	m
+CONFIG_CLEAN_FILES	Makefile	/^CONFIG_CLEAN_FILES =$/;"	m
+CONFIG_CLEAN_FILES	src/Makefile	/^CONFIG_CLEAN_FILES =$/;"	m
+CONFIG_CLEAN_FILES	tests/Makefile	/^CONFIG_CLEAN_FILES =$/;"	m
+CONFIG_CLEAN_VPATH_FILES	Makefile	/^CONFIG_CLEAN_VPATH_FILES =$/;"	m
+CONFIG_CLEAN_VPATH_FILES	src/Makefile	/^CONFIG_CLEAN_VPATH_FILES =$/;"	m
+CONFIG_CLEAN_VPATH_FILES	tests/Makefile	/^CONFIG_CLEAN_VPATH_FILES =$/;"	m
+CONFIG_HEADER	Makefile	/^CONFIG_HEADER = config.h$/;"	m
+CONFIG_HEADER	src/Makefile	/^CONFIG_HEADER = $(top_builddir)\/config.h$/;"	m
+CONFIG_HEADER	tests/Makefile	/^CONFIG_HEADER = $(top_builddir)\/config.h$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS = $/;"	m
+CPPFLAGS	src/Makefile	/^CPPFLAGS = $/;"	m
+CPPFLAGS	tests/Makefile	/^CPPFLAGS = $/;"	m
+CSCOPE	Makefile	/^CSCOPE = cscope$/;"	m
+CTAGS	Makefile	/^CTAGS = ctags$/;"	m
+CTAGS	src/Makefile	/^CTAGS = ctags$/;"	m
+CYGPATH_W	Makefile	/^CYGPATH_W = echo$/;"	m
+CYGPATH_W	src/Makefile	/^CYGPATH_W = echo$/;"	m
+CYGPATH_W	tests/Makefile	/^CYGPATH_W = echo$/;"	m
+DEFAULT_INCLUDES	src/Makefile	/^DEFAULT_INCLUDES = -I. -I$(top_builddir)$/;"	m
+DEFS	Makefile	/^DEFS = -DHAVE_CONFIG_H$/;"	m
+DEFS	src/Makefile	/^DEFS = -DHAVE_CONFIG_H$/;"	m
+DEFS	tests/Makefile	/^DEFS = -DHAVE_CONFIG_H$/;"	m
+DEPDIR	Makefile	/^DEPDIR = .deps$/;"	m
+DEPDIR	src/Makefile	/^DEPDIR = .deps$/;"	m
+DEPDIR	tests/Makefile	/^DEPDIR = .deps$/;"	m
+DISTFILES	Makefile	/^DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)$/;"	m
+DISTFILES	src/Makefile	/^DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)$/;"	m
+DISTFILES	tests/Makefile	/^DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)$/;"	m
+DIST_ARCHIVES	Makefile	/^DIST_ARCHIVES = $(distdir).tar.gz$/;"	m
+DIST_COMMON	Makefile	/^DIST_COMMON = $(srcdir)\/Makefile.in $(srcdir)\/Makefile.am \\$/;"	m
+DIST_COMMON	src/Makefile	/^DIST_COMMON = $(srcdir)\/Makefile.in $(srcdir)\/Makefile.am \\$/;"	m
+DIST_COMMON	tests/Makefile	/^DIST_COMMON = $(srcdir)\/Makefile.in $(srcdir)\/Makefile.am \\$/;"	m
+DIST_SOURCES	Makefile	/^DIST_SOURCES =$/;"	m
+DIST_SOURCES	src/Makefile	/^DIST_SOURCES = $(sfarro_SOURCES)$/;"	m
+DIST_SOURCES	tests/Makefile	/^DIST_SOURCES =$/;"	m
+DIST_SUBDIRS	Makefile	/^DIST_SUBDIRS = $(SUBDIRS)$/;"	m
+DIST_TARGETS	Makefile	/^DIST_TARGETS = dist-gzip$/;"	m
+ECHO_C	Makefile	/^ECHO_C = $/;"	m
+ECHO_C	src/Makefile	/^ECHO_C = $/;"	m
+ECHO_C	tests/Makefile	/^ECHO_C = $/;"	m
+ECHO_N	Makefile	/^ECHO_N = -n$/;"	m
+ECHO_N	src/Makefile	/^ECHO_N = -n$/;"	m
+ECHO_N	tests/Makefile	/^ECHO_N = -n$/;"	m
+ECHO_T	Makefile	/^ECHO_T = $/;"	m
+ECHO_T	src/Makefile	/^ECHO_T = $/;"	m
+ECHO_T	tests/Makefile	/^ECHO_T = $/;"	m
+ETAGS	Makefile	/^ETAGS = etags$/;"	m
+ETAGS	src/Makefile	/^ETAGS = etags$/;"	m
+EXEEXT	Makefile	/^EXEEXT = $/;"	m
+EXEEXT	src/Makefile	/^EXEEXT = $/;"	m
+EXEEXT	tests/Makefile	/^EXEEXT = $/;"	m
+EXTRA_DIST	tests/Makefile	/^EXTRA_DIST = test-utils.sh $/;"	m
+FUSE_USE_VERSION	src/vfs.h	1;"	d
+GZIP_ENV	Makefile	/^GZIP_ENV = --best$/;"	m
+HEADERS	src/Makefile	/^HEADERS = $(noinst_HEADERS)$/;"	m
+INSTALL	Makefile	/^INSTALL = \/usr\/bin\/install -c$/;"	m
+INSTALL	src/Makefile	/^INSTALL = \/usr\/bin\/install -c$/;"	m
+INSTALL	tests/Makefile	/^INSTALL = \/usr\/bin\/install -c$/;"	m
+INSTALL_DATA	Makefile	/^INSTALL_DATA = ${INSTALL} -m 644$/;"	m
+INSTALL_DATA	src/Makefile	/^INSTALL_DATA = ${INSTALL} -m 644$/;"	m
+INSTALL_DATA	tests/Makefile	/^INSTALL_DATA = ${INSTALL} -m 644$/;"	m
+INSTALL_HEADER	Makefile	/^INSTALL_HEADER = $(INSTALL_DATA)$/;"	m
+INSTALL_HEADER	src/Makefile	/^INSTALL_HEADER = $(INSTALL_DATA)$/;"	m
+INSTALL_HEADER	tests/Makefile	/^INSTALL_HEADER = $(INSTALL_DATA)$/;"	m
+INSTALL_PROGRAM	Makefile	/^INSTALL_PROGRAM = ${INSTALL}$/;"	m
+INSTALL_PROGRAM	src/Makefile	/^INSTALL_PROGRAM = ${INSTALL}$/;"	m
+INSTALL_PROGRAM	tests/Makefile	/^INSTALL_PROGRAM = ${INSTALL}$/;"	m
+INSTALL_SCRIPT	Makefile	/^INSTALL_SCRIPT = ${INSTALL}$/;"	m
+INSTALL_SCRIPT	src/Makefile	/^INSTALL_SCRIPT = ${INSTALL}$/;"	m
+INSTALL_SCRIPT	tests/Makefile	/^INSTALL_SCRIPT = ${INSTALL}$/;"	m
+INSTALL_STRIP_PROGRAM	Makefile	/^INSTALL_STRIP_PROGRAM = $(install_sh) -c -s$/;"	m
+INSTALL_STRIP_PROGRAM	src/Makefile	/^INSTALL_STRIP_PROGRAM = $(install_sh) -c -s$/;"	m
+INSTALL_STRIP_PROGRAM	tests/Makefile	/^INSTALL_STRIP_PROGRAM = $(install_sh) -c -s$/;"	m
+LDFLAGS	Makefile	/^LDFLAGS = $/;"	m
+LDFLAGS	src/Makefile	/^LDFLAGS = $/;"	m
+LDFLAGS	tests/Makefile	/^LDFLAGS = $/;"	m
+LIBOBJS	Makefile	/^LIBOBJS = $/;"	m
+LIBOBJS	src/Makefile	/^LIBOBJS = $/;"	m
+LIBOBJS	tests/Makefile	/^LIBOBJS = $/;"	m
+LIBS	Makefile	/^LIBS = $/;"	m
+LIBS	src/Makefile	/^LIBS = $/;"	m
+LIBS	tests/Makefile	/^LIBS = $/;"	m
+LINK	src/Makefile	/^LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@$/;"	m
+LOG_COMPILE	tests/Makefile	/^LOG_COMPILE = $(LOG_COMPILER) $(AM_LOG_FLAGS) $(LOG_FLAGS)$/;"	m
+LOG_DRIVER	tests/Makefile	/^LOG_DRIVER = $(SHELL) $(top_srcdir)\/test-driver$/;"	m
+LTLIBOBJS	Makefile	/^LTLIBOBJS = $/;"	m
+LTLIBOBJS	src/Makefile	/^LTLIBOBJS = $/;"	m
+LTLIBOBJS	tests/Makefile	/^LTLIBOBJS = $/;"	m
+MAIN_MONITOR_H	src/monitor.h	2;"	d
+MAKEINFO	Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
+MAKEINFO	src/Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
+MAKEINFO	tests/Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
+MKDIR_P	Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
+MKDIR_P	src/Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
+MKDIR_P	tests/Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
+NORMAL_INSTALL	Makefile	/^NORMAL_INSTALL = :$/;"	m
+NORMAL_INSTALL	src/Makefile	/^NORMAL_INSTALL = :$/;"	m
+NORMAL_INSTALL	tests/Makefile	/^NORMAL_INSTALL = :$/;"	m
+NORMAL_UNINSTALL	Makefile	/^NORMAL_UNINSTALL = :$/;"	m
+NORMAL_UNINSTALL	src/Makefile	/^NORMAL_UNINSTALL = :$/;"	m
+NORMAL_UNINSTALL	tests/Makefile	/^NORMAL_UNINSTALL = :$/;"	m
+OBJEXT	Makefile	/^OBJEXT = o$/;"	m
+OBJEXT	src/Makefile	/^OBJEXT = o$/;"	m
+OBJEXT	tests/Makefile	/^OBJEXT = o$/;"	m
+PACKAGE	Makefile	/^PACKAGE = sfarro$/;"	m
+PACKAGE	config.h	5;"	d
+PACKAGE	src/Makefile	/^PACKAGE = sfarro$/;"	m
+PACKAGE	tests/Makefile	/^PACKAGE = sfarro$/;"	m
+PACKAGE_BUGREPORT	Makefile	/^PACKAGE_BUGREPORT = brendan.carroll.92@gmail.com$/;"	m
+PACKAGE_BUGREPORT	config.h	8;"	d
+PACKAGE_BUGREPORT	src/Makefile	/^PACKAGE_BUGREPORT = brendan.carroll.92@gmail.com$/;"	m
+PACKAGE_BUGREPORT	tests/Makefile	/^PACKAGE_BUGREPORT = brendan.carroll.92@gmail.com$/;"	m
+PACKAGE_NAME	Makefile	/^PACKAGE_NAME = sfarro$/;"	m
+PACKAGE_NAME	config.h	11;"	d
+PACKAGE_NAME	src/Makefile	/^PACKAGE_NAME = sfarro$/;"	m
+PACKAGE_NAME	tests/Makefile	/^PACKAGE_NAME = sfarro$/;"	m
+PACKAGE_STRING	Makefile	/^PACKAGE_STRING = sfarro 0.0.1$/;"	m
+PACKAGE_STRING	config.h	14;"	d
+PACKAGE_STRING	src/Makefile	/^PACKAGE_STRING = sfarro 0.0.1$/;"	m
+PACKAGE_STRING	tests/Makefile	/^PACKAGE_STRING = sfarro 0.0.1$/;"	m
+PACKAGE_TARNAME	Makefile	/^PACKAGE_TARNAME = sfarro$/;"	m
+PACKAGE_TARNAME	config.h	17;"	d
+PACKAGE_TARNAME	src/Makefile	/^PACKAGE_TARNAME = sfarro$/;"	m
+PACKAGE_TARNAME	tests/Makefile	/^PACKAGE_TARNAME = sfarro$/;"	m
+PACKAGE_URL	Makefile	/^PACKAGE_URL = $/;"	m
+PACKAGE_URL	config.h	20;"	d
+PACKAGE_URL	src/Makefile	/^PACKAGE_URL = $/;"	m
+PACKAGE_URL	tests/Makefile	/^PACKAGE_URL = $/;"	m
+PACKAGE_VERSION	Makefile	/^PACKAGE_VERSION = 0.0.1$/;"	m
+PACKAGE_VERSION	config.h	23;"	d
+PACKAGE_VERSION	src/Makefile	/^PACKAGE_VERSION = 0.0.1$/;"	m
+PACKAGE_VERSION	tests/Makefile	/^PACKAGE_VERSION = 0.0.1$/;"	m
+PATH_SEPARATOR	Makefile	/^PATH_SEPARATOR = :$/;"	m
+PATH_SEPARATOR	src/Makefile	/^PATH_SEPARATOR = :$/;"	m
+PATH_SEPARATOR	tests/Makefile	/^PATH_SEPARATOR = :$/;"	m
+PERIODIC_TIME_DELAY	src/constants.h	4;"	d
+PKG_CONFIG	Makefile	/^PKG_CONFIG = \/usr\/bin\/pkg-config$/;"	m
+PKG_CONFIG	src/Makefile	/^PKG_CONFIG = \/usr\/bin\/pkg-config$/;"	m
+PKG_CONFIG	tests/Makefile	/^PKG_CONFIG = \/usr\/bin\/pkg-config$/;"	m
+PKG_CONFIG_LIBDIR	Makefile	/^PKG_CONFIG_LIBDIR = $/;"	m
+PKG_CONFIG_LIBDIR	src/Makefile	/^PKG_CONFIG_LIBDIR = $/;"	m
+PKG_CONFIG_LIBDIR	tests/Makefile	/^PKG_CONFIG_LIBDIR = $/;"	m
+PKG_CONFIG_PATH	Makefile	/^PKG_CONFIG_PATH = $/;"	m
+PKG_CONFIG_PATH	src/Makefile	/^PKG_CONFIG_PATH = $/;"	m
+PKG_CONFIG_PATH	tests/Makefile	/^PKG_CONFIG_PATH = $/;"	m
+POST_INSTALL	Makefile	/^POST_INSTALL = :$/;"	m
+POST_INSTALL	src/Makefile	/^POST_INSTALL = :$/;"	m
+POST_INSTALL	tests/Makefile	/^POST_INSTALL = :$/;"	m
+POST_UNINSTALL	Makefile	/^POST_UNINSTALL = :$/;"	m
+POST_UNINSTALL	src/Makefile	/^POST_UNINSTALL = :$/;"	m
+POST_UNINSTALL	tests/Makefile	/^POST_UNINSTALL = :$/;"	m
+PRE_INSTALL	Makefile	/^PRE_INSTALL = :$/;"	m
+PRE_INSTALL	src/Makefile	/^PRE_INSTALL = :$/;"	m
+PRE_INSTALL	tests/Makefile	/^PRE_INSTALL = :$/;"	m
+PRE_UNINSTALL	Makefile	/^PRE_UNINSTALL = :$/;"	m
+PRE_UNINSTALL	src/Makefile	/^PRE_UNINSTALL = :$/;"	m
+PRE_UNINSTALL	tests/Makefile	/^PRE_UNINSTALL = :$/;"	m
+PROGRAMS	src/Makefile	/^PROGRAMS = $(bin_PROGRAMS)$/;"	m
+RECHECK_LOGS	tests/Makefile	/^RECHECK_LOGS = $(TEST_LOGS)$/;"	m
+RECURSIVE_CLEAN_TARGETS	Makefile	/^RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\\$/;"	m
+RECURSIVE_TARGETS	Makefile	/^RECURSIVE_TARGETS = all-recursive check-recursive cscopelist-recursive \\$/;"	m
+SET_MAKE	Makefile	/^SET_MAKE = $/;"	m
+SET_MAKE	src/Makefile	/^SET_MAKE = $/;"	m
+SET_MAKE	tests/Makefile	/^SET_MAKE = $/;"	m
+SFARRO_CONSTANTS_H	src/constants.h	2;"	d
+SFARRO_PARAMS_H	src/params.h	2;"	d
+SFARRO_REMOUNT_H	src/remount.h	2;"	d
+SFARRO_TIMER_H	src/timer.h	2;"	d
+SHELL	Makefile	/^SHELL = \/bin\/bash$/;"	m
+SHELL	src/Makefile	/^SHELL = \/bin\/bash$/;"	m
+SHELL	tests/Makefile	/^SHELL = \/bin\/bash$/;"	m
+SOURCES	Makefile	/^SOURCES =$/;"	m
+SOURCES	src/Makefile	/^SOURCES = $(sfarro_SOURCES)$/;"	m
+SOURCES	tests/Makefile	/^SOURCES =$/;"	m
+STRIP	Makefile	/^STRIP = $/;"	m
+STRIP	src/Makefile	/^STRIP = $/;"	m
+STRIP	tests/Makefile	/^STRIP = $/;"	m
+SUBDIRS	Makefile	/^SUBDIRS = src tests$/;"	m
+TESTS	tests/Makefile	/^TESTS = main-test.sh$/;"	m
+TEST_EXTENSIONS	tests/Makefile	/^TEST_EXTENSIONS =  .test$/;"	m
+TEST_LOGS	tests/Makefile	/^TEST_LOGS = $(am__test_logs2:.test.log=.log)$/;"	m
+TEST_LOG_COMPILE	tests/Makefile	/^TEST_LOG_COMPILE = $(TEST_LOG_COMPILER) $(AM_TEST_LOG_FLAGS) \\$/;"	m
+TEST_LOG_DRIVER	tests/Makefile	/^TEST_LOG_DRIVER = $(SHELL) $(top_srcdir)\/test-driver$/;"	m
+TEST_SUITE_LOG	tests/Makefile	/^TEST_SUITE_LOG = test-suite.log$/;"	m
+TIME_LIMIT	src/constants.h	3;"	d
+VERSION	Makefile	/^VERSION = 0.0.1$/;"	m
+VERSION	config.h	26;"	d
+VERSION	src/Makefile	/^VERSION = 0.0.1$/;"	m
+VERSION	tests/Makefile	/^VERSION = 0.0.1$/;"	m
+VFS_DATA	src/params.h	11;"	d
+_XOPEN_SOURCE	src/vfs.h	9;"	d
+abs_builddir	Makefile	/^abs_builddir = \/root\/sfarro$/;"	m
+abs_builddir	src/Makefile	/^abs_builddir = \/root\/sfarro\/src$/;"	m
+abs_builddir	tests/Makefile	/^abs_builddir = \/root\/sfarro\/tests$/;"	m
+abs_srcdir	Makefile	/^abs_srcdir = \/root\/sfarro$/;"	m
+abs_srcdir	src/Makefile	/^abs_srcdir = \/root\/sfarro\/src$/;"	m
+abs_srcdir	tests/Makefile	/^abs_srcdir = \/root\/sfarro\/tests$/;"	m
+abs_top_builddir	Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
+abs_top_builddir	src/Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
+abs_top_builddir	tests/Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
+abs_top_srcdir	Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
+abs_top_srcdir	src/Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
+abs_top_srcdir	tests/Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
+ac_ct_CC	Makefile	/^ac_ct_CC = gcc$/;"	m
+ac_ct_CC	src/Makefile	/^ac_ct_CC = gcc$/;"	m
+ac_ct_CC	tests/Makefile	/^ac_ct_CC = gcc$/;"	m
+ac_fn_c_try_compile	configure	/^ac_fn_c_try_compile ()$/;"	f
+add_all_tests	tests/main-test.sh	/^function add_all_tests {$/;"	f
+add_tests	tests/test-utils.sh	/^function add_tests {$/;"	f
+aix_post_process_depfile	depcomp	/^aix_post_process_depfile ()$/;"	f
+am__CONFIG_DISTCLEAN_FILES	Makefile	/^am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \\$/;"	m
+am__DEPENDENCIES_1	src/Makefile	/^am__DEPENDENCIES_1 =$/;"	m
+am__aclocal_m4_deps	Makefile	/^am__aclocal_m4_deps = $(top_srcdir)\/configure.ac$/;"	m
+am__aclocal_m4_deps	src/Makefile	/^am__aclocal_m4_deps = $(top_srcdir)\/configure.ac$/;"	m
+am__aclocal_m4_deps	tests/Makefile	/^am__aclocal_m4_deps = $(top_srcdir)\/configure.ac$/;"	m
+am__base_list	tests/Makefile	/^am__base_list = \\$/;"	m
+am__can_run_installinfo	Makefile	/^am__can_run_installinfo = \\$/;"	m
+am__can_run_installinfo	src/Makefile	/^am__can_run_installinfo = \\$/;"	m
+am__can_run_installinfo	tests/Makefile	/^am__can_run_installinfo = \\$/;"	m
+am__cd	Makefile	/^am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd$/;"	m
+am__cd	src/Makefile	/^am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd$/;"	m
+am__cd	tests/Makefile	/^am__cd = CDPATH="$${ZSH_VERSION+.}$(PATH_SEPARATOR)" && cd$/;"	m
+am__check_pre	tests/Makefile	/^am__check_pre = \\$/;"	m
+am__common_driver_flags	tests/Makefile	/^am__common_driver_flags = \\$/;"	m
+am__configure_deps	Makefile	/^am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \\$/;"	m
+am__configure_deps	src/Makefile	/^am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \\$/;"	m
+am__configure_deps	tests/Makefile	/^am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \\$/;"	m
+am__copy_in_global_log_rx	tests/Makefile	/^am__copy_in_global_log_rx = ^[ 	]*:copy-in-global-log:[ 	]*$/;"	m
+am__create_global_log	tests/Makefile	/^am__create_global_log = $(AWK) ' \\$/;"	m
+am__define_uniq_tagged_files	Makefile	/^am__define_uniq_tagged_files = \\$/;"	m
+am__define_uniq_tagged_files	src/Makefile	/^am__define_uniq_tagged_files = \\$/;"	m
+am__depfiles_maybe	src/Makefile	/^am__depfiles_maybe = depfiles$/;"	m
+am__distuninstallcheck_listfiles	Makefile	/^am__distuninstallcheck_listfiles = $(distuninstallcheck_listfiles) \\$/;"	m
+am__global_test_result_rx	tests/Makefile	/^am__global_test_result_rx = ^[ 	]*:global-test-result:[ 	]*$/;"	m
+am__include	Makefile	/^am__include = include$/;"	m
+am__include	src/Makefile	/^am__include = include$/;"	m
+am__include	tests/Makefile	/^am__include = include$/;"	m
+am__install_max	tests/Makefile	/^am__install_max = 40$/;"	m
+am__installdirs	src/Makefile	/^am__installdirs = "$(DESTDIR)$(bindir)"$/;"	m
+am__is_gnu_make	Makefile	/^am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'$/;"	m
+am__is_gnu_make	src/Makefile	/^am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'$/;"	m
+am__is_gnu_make	tests/Makefile	/^am__is_gnu_make = test -n '$(MAKEFILE_LIST)' && test -n '$(MAKELEVEL)'$/;"	m
+am__leading_dot	Makefile	/^am__leading_dot = .$/;"	m
+am__leading_dot	src/Makefile	/^am__leading_dot = .$/;"	m
+am__leading_dot	tests/Makefile	/^am__leading_dot = .$/;"	m
+am__list_recheck_tests	tests/Makefile	/^am__list_recheck_tests = $(AWK) '{ \\$/;"	m
+am__make_dryrun	Makefile	/^am__make_dryrun = (target_option=n; $(am__make_running_with_option))$/;"	m
+am__make_dryrun	src/Makefile	/^am__make_dryrun = (target_option=n; $(am__make_running_with_option))$/;"	m
+am__make_dryrun	tests/Makefile	/^am__make_dryrun = (target_option=n; $(am__make_running_with_option))$/;"	m
+am__make_keepgoing	Makefile	/^am__make_keepgoing = (target_option=k; $(am__make_running_with_option))$/;"	m
+am__make_keepgoing	src/Makefile	/^am__make_keepgoing = (target_option=k; $(am__make_running_with_option))$/;"	m
+am__make_keepgoing	tests/Makefile	/^am__make_keepgoing = (target_option=k; $(am__make_running_with_option))$/;"	m
+am__make_running_with_option	Makefile	/^am__make_running_with_option = \\$/;"	m
+am__make_running_with_option	src/Makefile	/^am__make_running_with_option = \\$/;"	m
+am__make_running_with_option	tests/Makefile	/^am__make_running_with_option = \\$/;"	m
+am__mv	src/Makefile	/^am__mv = mv -f$/;"	m
+am__nobase_list	tests/Makefile	/^am__nobase_list = $(am__nobase_strip_setup); \\$/;"	m
+am__nobase_strip	tests/Makefile	/^am__nobase_strip = \\$/;"	m
+am__nobase_strip_setup	tests/Makefile	/^am__nobase_strip_setup = \\$/;"	m
+am__post_remove_distdir	Makefile	/^am__post_remove_distdir = $(am__remove_distdir)$/;"	m
+am__quote	Makefile	/^am__quote = $/;"	m
+am__quote	src/Makefile	/^am__quote = $/;"	m
+am__quote	tests/Makefile	/^am__quote = $/;"	m
+am__recheck_rx	tests/Makefile	/^am__recheck_rx = ^[ 	]*:recheck:[ 	]*$/;"	m
+am__recursive_targets	Makefile	/^am__recursive_targets = \\$/;"	m
+am__relativize	Makefile	/^am__relativize = \\$/;"	m
+am__remove_distdir	Makefile	/^am__remove_distdir = \\$/;"	m
+am__rst_title	tests/Makefile	/^am__rst_title = { sed 's\/.*\/   &   \/;h;s\/.\/=\/g;p;x;s\/ *$$\/\/;p;g' && echo; }$/;"	m
+am__set_TESTS_bases	tests/Makefile	/^am__set_TESTS_bases = \\$/;"	m
+am__set_b	tests/Makefile	/^am__set_b = \\$/;"	m
+am__sh_e_setup	tests/Makefile	/^am__sh_e_setup = case $$- in *e*) set +e;; esac$/;"	m
+am__strip_dir	tests/Makefile	/^am__strip_dir = f=`echo $$p | sed -e 's|^.*\/||'`;$/;"	m
+am__tagged_files	Makefile	/^am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) \\$/;"	m
+am__tagged_files	src/Makefile	/^am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)$/;"	m
+am__tagged_files	tests/Makefile	/^am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)$/;"	m
+am__tar	Makefile	/^am__tar = $${TAR-tar} chof - "$$tardir"$/;"	m
+am__tar	src/Makefile	/^am__tar = $${TAR-tar} chof - "$$tardir"$/;"	m
+am__tar	tests/Makefile	/^am__tar = $${TAR-tar} chof - "$$tardir"$/;"	m
+am__test_logs1	tests/Makefile	/^am__test_logs1 = $(TESTS:=.log)$/;"	m
+am__test_logs2	tests/Makefile	/^am__test_logs2 = $(am__test_logs1:.log=.log)$/;"	m
+am__tty_colors	tests/Makefile	/^am__tty_colors = { \\$/;"	m
+am__tty_colors_dummy	tests/Makefile	/^am__tty_colors_dummy = \\$/;"	m
+am__uninstall_files_from_dir	tests/Makefile	/^am__uninstall_files_from_dir = { \\$/;"	m
+am__uniquify_input	Makefile	/^am__uniquify_input = $(AWK) '\\$/;"	m
+am__uniquify_input	src/Makefile	/^am__uniquify_input = $(AWK) '\\$/;"	m
+am__untar	Makefile	/^am__untar = $${TAR-tar} xf -$/;"	m
+am__untar	src/Makefile	/^am__untar = $${TAR-tar} xf -$/;"	m
+am__untar	tests/Makefile	/^am__untar = $${TAR-tar} xf -$/;"	m
+am__v_CCLD_	src/Makefile	/^am__v_CCLD_ = $(am__v_CCLD_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_CCLD_0	src/Makefile	/^am__v_CCLD_0 = @echo "  CCLD    " $@;$/;"	m
+am__v_CCLD_1	src/Makefile	/^am__v_CCLD_1 = $/;"	m
+am__v_CC_	src/Makefile	/^am__v_CC_ = $(am__v_CC_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_CC_0	src/Makefile	/^am__v_CC_0 = @echo "  CC      " $@;$/;"	m
+am__v_CC_1	src/Makefile	/^am__v_CC_1 = $/;"	m
+am__v_GEN_	Makefile	/^am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_GEN_	src/Makefile	/^am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_GEN_	tests/Makefile	/^am__v_GEN_ = $(am__v_GEN_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_GEN_0	Makefile	/^am__v_GEN_0 = @echo "  GEN     " $@;$/;"	m
+am__v_GEN_0	src/Makefile	/^am__v_GEN_0 = @echo "  GEN     " $@;$/;"	m
+am__v_GEN_0	tests/Makefile	/^am__v_GEN_0 = @echo "  GEN     " $@;$/;"	m
+am__v_GEN_1	Makefile	/^am__v_GEN_1 = $/;"	m
+am__v_GEN_1	src/Makefile	/^am__v_GEN_1 = $/;"	m
+am__v_GEN_1	tests/Makefile	/^am__v_GEN_1 = $/;"	m
+am__v_P_	Makefile	/^am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_P_	src/Makefile	/^am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_P_	tests/Makefile	/^am__v_P_ = $(am__v_P_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_P_0	Makefile	/^am__v_P_0 = false$/;"	m
+am__v_P_0	src/Makefile	/^am__v_P_0 = false$/;"	m
+am__v_P_0	tests/Makefile	/^am__v_P_0 = false$/;"	m
+am__v_P_1	Makefile	/^am__v_P_1 = :$/;"	m
+am__v_P_1	src/Makefile	/^am__v_P_1 = :$/;"	m
+am__v_P_1	tests/Makefile	/^am__v_P_1 = :$/;"	m
+am__v_at_	Makefile	/^am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_at_	src/Makefile	/^am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_at_	tests/Makefile	/^am__v_at_ = $(am__v_at_$(AM_DEFAULT_VERBOSITY))$/;"	m
+am__v_at_0	Makefile	/^am__v_at_0 = @$/;"	m
+am__v_at_0	src/Makefile	/^am__v_at_0 = @$/;"	m
+am__v_at_0	tests/Makefile	/^am__v_at_0 = @$/;"	m
+am__v_at_1	Makefile	/^am__v_at_1 = $/;"	m
+am__v_at_1	src/Makefile	/^am__v_at_1 = $/;"	m
+am__v_at_1	tests/Makefile	/^am__v_at_1 = $/;"	m
+am__vpath_adj	tests/Makefile	/^am__vpath_adj = case $$p in \\$/;"	m
+am__vpath_adj_setup	tests/Makefile	/^am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;$/;"	m
+am_sfarro_OBJECTS	src/Makefile	/^am_sfarro_OBJECTS = sfarro.$(OBJEXT) remount.$(OBJEXT) timer.$(OBJEXT) \\$/;"	m
+as_fn_append	config.status	/^  as_fn_append ()$/;"	f
+as_fn_append	configure	/^  as_fn_append ()$/;"	f
+as_fn_arith	config.status	/^  as_fn_arith ()$/;"	f
+as_fn_arith	configure	/^  as_fn_arith ()$/;"	f
+as_fn_error	config.status	/^as_fn_error ()$/;"	f
+as_fn_error	configure	/^as_fn_error ()$/;"	f
+as_fn_executable_p	config.status	/^as_fn_executable_p ()$/;"	f
+as_fn_executable_p	configure	/^as_fn_executable_p ()$/;"	f
+as_fn_exit	config.status	/^as_fn_exit ()$/;"	f
+as_fn_exit	configure	/^as_fn_exit ()$/;"	f
+as_fn_failure	configure	/^as_fn_failure () { as_fn_return 1; }$/;"	f
+as_fn_mkdir_p	config.status	/^as_fn_mkdir_p ()$/;"	f
+as_fn_mkdir_p	configure	/^as_fn_mkdir_p ()$/;"	f
+as_fn_ret_failure	configure	/^as_fn_ret_failure () { return 1; }$/;"	f
+as_fn_ret_success	configure	/^as_fn_ret_success () { return 0; }$/;"	f
+as_fn_set_status	config.status	/^as_fn_set_status ()$/;"	f
+as_fn_set_status	configure	/^as_fn_set_status ()$/;"	f
+as_fn_success	configure	/^as_fn_success () { as_fn_return 0; }$/;"	f
+as_fn_unset	config.status	/^as_fn_unset ()$/;"	f
+as_fn_unset	configure	/^as_fn_unset ()$/;"	f
+bin_PROGRAMS	src/Makefile	/^bin_PROGRAMS = sfarro$(EXEEXT)$/;"	m
+bindir	Makefile	/^bindir = ${exec_prefix}\/bin$/;"	m
+bindir	src/Makefile	/^bindir = ${exec_prefix}\/bin$/;"	m
+bindir	tests/Makefile	/^bindir = ${exec_prefix}\/bin$/;"	m
+build_alias	Makefile	/^build_alias = $/;"	m
+build_alias	src/Makefile	/^build_alias = $/;"	m
+build_alias	tests/Makefile	/^build_alias = $/;"	m
+builddir	Makefile	/^builddir = .$/;"	m
+builddir	src/Makefile	/^builddir = .$/;"	m
+builddir	tests/Makefile	/^builddir = .$/;"	m
+cd_run_dir	tests/test-utils.sh	/^function cd_run_dir {$/;"	f
+clean_run_dir	tests/test-utils.sh	/^function clean_run_dir {$/;"	f
+compare_times_to_limit	src/timer.c	/^compare_times_to_limit (time_t * last_read, time_t * current_time)$/;"	f
+datadir	Makefile	/^datadir = ${datarootdir}$/;"	m
+datadir	src/Makefile	/^datadir = ${datarootdir}$/;"	m
+datadir	tests/Makefile	/^datadir = ${datarootdir}$/;"	m
+datarootdir	Makefile	/^datarootdir = ${prefix}\/share$/;"	m
+datarootdir	src/Makefile	/^datarootdir = ${prefix}\/share$/;"	m
+datarootdir	tests/Makefile	/^datarootdir = ${prefix}\/share$/;"	m
+depcomp	src/Makefile	/^depcomp = $(SHELL) $(top_srcdir)\/depcomp$/;"	m
+distcleancheck_listfiles	Makefile	/^distcleancheck_listfiles = find . -type f -print$/;"	m
+distdir	Makefile	/^distdir = $(PACKAGE)-$(VERSION)$/;"	m
+distuninstallcheck_listfiles	Makefile	/^distuninstallcheck_listfiles = find . -type f -print$/;"	m
+docdir	Makefile	/^docdir = ${datarootdir}\/doc\/${PACKAGE_TARNAME}$/;"	m
+docdir	src/Makefile	/^docdir = ${datarootdir}\/doc\/${PACKAGE_TARNAME}$/;"	m
+docdir	tests/Makefile	/^docdir = ${datarootdir}\/doc\/${PACKAGE_TARNAME}$/;"	m
+dvidir	Makefile	/^dvidir = ${docdir}$/;"	m
+dvidir	src/Makefile	/^dvidir = ${docdir}$/;"	m
+dvidir	tests/Makefile	/^dvidir = ${docdir}$/;"	m
+exec_prefix	Makefile	/^exec_prefix = ${prefix}$/;"	m
+exec_prefix	src/Makefile	/^exec_prefix = ${prefix}$/;"	m
+exec_prefix	tests/Makefile	/^exec_prefix = ${prefix}$/;"	m
+exit_handler	tests/main-test.sh	/^function exit_handler {$/;"	f
+func_cl_dashL	compile	/^func_cl_dashL ()$/;"	f
+func_cl_dashl	compile	/^func_cl_dashl ()$/;"	f
+func_cl_wrapper	compile	/^func_cl_wrapper ()$/;"	f
+func_file_conv	compile	/^func_file_conv ()$/;"	f
+fuse_CFLAGS	Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
+fuse_CFLAGS	src/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
+fuse_CFLAGS	tests/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
+fuse_LIBS	Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
+fuse_LIBS	src/Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
+fuse_LIBS	tests/Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
+get_last_time_written	src/timer.c	/^get_last_time_written ()$/;"	f
+give_advice	missing	/^give_advice ()$/;"	f
+host_alias	Makefile	/^host_alias = $/;"	m
+host_alias	src/Makefile	/^host_alias = $/;"	m
+host_alias	tests/Makefile	/^host_alias = $/;"	m
+htmldir	Makefile	/^htmldir = ${docdir}$/;"	m
+htmldir	src/Makefile	/^htmldir = ${docdir}$/;"	m
+htmldir	tests/Makefile	/^htmldir = ${docdir}$/;"	m
+includedir	Makefile	/^includedir = ${prefix}\/include$/;"	m
+includedir	src/Makefile	/^includedir = ${prefix}\/include$/;"	m
+includedir	tests/Makefile	/^includedir = ${prefix}\/include$/;"	m
+infodir	Makefile	/^infodir = ${datarootdir}\/info$/;"	m
+infodir	src/Makefile	/^infodir = ${datarootdir}\/info$/;"	m
+infodir	tests/Makefile	/^infodir = ${datarootdir}\/info$/;"	m
+init_sfarro_monitor	src/monitor.c	/^init_sfarro_monitor ()$/;"	f
+init_suite	tests/test-utils.sh	/^function init_suite {$/;"	f
+install_sh	Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
+install_sh	src/Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
+install_sh	tests/Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
+install_sh_DATA	Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
+install_sh_DATA	src/Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
+install_sh_DATA	tests/Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
+install_sh_PROGRAM	Makefile	/^install_sh_PROGRAM = $(install_sh) -c$/;"	m
+install_sh_PROGRAM	src/Makefile	/^install_sh_PROGRAM = $(install_sh) -c$/;"	m
+install_sh_PROGRAM	tests/Makefile	/^install_sh_PROGRAM = $(install_sh) -c$/;"	m
+install_sh_SCRIPT	Makefile	/^install_sh_SCRIPT = $(install_sh) -c$/;"	m
+install_sh_SCRIPT	src/Makefile	/^install_sh_SCRIPT = $(install_sh) -c$/;"	m
+install_sh_SCRIPT	tests/Makefile	/^install_sh_SCRIPT = $(install_sh) -c$/;"	m
+is_last_written_time_over_limit	src/timer.c	/^is_last_written_time_over_limit ()$/;"	f
+last_time_written	src/timer.c	/^time_t last_time_written;$/;"	v
+libdir	Makefile	/^libdir = ${exec_prefix}\/lib$/;"	m
+libdir	src/Makefile	/^libdir = ${exec_prefix}\/lib$/;"	m
+libdir	tests/Makefile	/^libdir = ${exec_prefix}\/lib$/;"	m
+libexecdir	Makefile	/^libexecdir = ${exec_prefix}\/libexec$/;"	m
+libexecdir	src/Makefile	/^libexecdir = ${exec_prefix}\/libexec$/;"	m
+libexecdir	tests/Makefile	/^libexecdir = ${exec_prefix}\/libexec$/;"	m
+localedir	Makefile	/^localedir = ${datarootdir}\/locale$/;"	m
+localedir	src/Makefile	/^localedir = ${datarootdir}\/locale$/;"	m
+localedir	tests/Makefile	/^localedir = ${datarootdir}\/locale$/;"	m
+localstatedir	Makefile	/^localstatedir = ${prefix}\/var$/;"	m
+localstatedir	src/Makefile	/^localstatedir = ${prefix}\/var$/;"	m
+localstatedir	tests/Makefile	/^localstatedir = ${prefix}\/var$/;"	m
+log	tests/test-utils.sh	/^function log {$/;"	f
+main	src/sfarro.c	/^main (int argc, char *argv[])$/;"	f
+make_dummy_depfile	depcomp	/^make_dummy_depfile ()$/;"	f
+mandir	Makefile	/^mandir = ${datarootdir}\/man$/;"	m
+mandir	src/Makefile	/^mandir = ${datarootdir}\/man$/;"	m
+mandir	tests/Makefile	/^mandir = ${datarootdir}\/man$/;"	m
+mk_test_dir	tests/test-utils.sh	/^function mk_test_dir {$/;"	f
+mk_test_file	tests/test-utils.sh	/^function mk_test_file {$/;"	f
+mkdir_p	Makefile	/^mkdir_p = $(MKDIR_P)$/;"	m
+mkdir_p	src/Makefile	/^mkdir_p = $(MKDIR_P)$/;"	m
+mkdir_p	tests/Makefile	/^mkdir_p = $(MKDIR_P)$/;"	m
+mkinstalldirs	Makefile	/^mkinstalldirs = $(install_sh) -d$/;"	m
+mkinstalldirs	src/Makefile	/^mkinstalldirs = $(install_sh) -d$/;"	m
+mkinstalldirs	tests/Makefile	/^mkinstalldirs = $(install_sh) -d$/;"	m
+mountdir	src/params.h	/^    char *mountdir;$/;"	m	struct:vfs_state
+my_CFLAGS	Makefile	/^my_CFLAGS =  -Wall$/;"	m
+my_CFLAGS	src/Makefile	/^my_CFLAGS =  -Wall$/;"	m
+my_CFLAGS	tests/Makefile	/^my_CFLAGS =  -Wall$/;"	m
+my_CPPFLAGS	Makefile	/^my_CPPFLAGS = -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26$/;"	m
+my_CPPFLAGS	src/Makefile	/^my_CPPFLAGS = -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26$/;"	m
+my_CPPFLAGS	tests/Makefile	/^my_CPPFLAGS = -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26$/;"	m
+my_LDFLAGS	Makefile	/^my_LDFLAGS = -pthread$/;"	m
+my_LDFLAGS	src/Makefile	/^my_LDFLAGS = -pthread$/;"	m
+my_LDFLAGS	tests/Makefile	/^my_LDFLAGS = -pthread$/;"	m
+noinst_HEADERS	src/Makefile	/^noinst_HEADERS = constants.h monitor.h params.h remount.h timer.h vfs.h$/;"	m
+oldincludedir	Makefile	/^oldincludedir = \/usr\/include$/;"	m
+oldincludedir	src/Makefile	/^oldincludedir = \/usr\/include$/;"	m
+oldincludedir	tests/Makefile	/^oldincludedir = \/usr\/include$/;"	m
+pdfdir	Makefile	/^pdfdir = ${docdir}$/;"	m
+pdfdir	src/Makefile	/^pdfdir = ${docdir}$/;"	m
+pdfdir	tests/Makefile	/^pdfdir = ${docdir}$/;"	m
+periodic_remount_check	src/monitor.c	/^periodic_remount_check ()$/;"	f
+pkgdatadir	Makefile	/^pkgdatadir = $(datadir)\/sfarro$/;"	m
+pkgdatadir	src/Makefile	/^pkgdatadir = $(datadir)\/sfarro$/;"	m
+pkgdatadir	tests/Makefile	/^pkgdatadir = $(datadir)\/sfarro$/;"	m
+pkgincludedir	Makefile	/^pkgincludedir = $(includedir)\/sfarro$/;"	m
+pkgincludedir	src/Makefile	/^pkgincludedir = $(includedir)\/sfarro$/;"	m
+pkgincludedir	tests/Makefile	/^pkgincludedir = $(includedir)\/sfarro$/;"	m
+pkglibdir	Makefile	/^pkglibdir = $(libdir)\/sfarro$/;"	m
+pkglibdir	src/Makefile	/^pkglibdir = $(libdir)\/sfarro$/;"	m
+pkglibdir	tests/Makefile	/^pkglibdir = $(libdir)\/sfarro$/;"	m
+pkglibexecdir	Makefile	/^pkglibexecdir = $(libexecdir)\/sfarro$/;"	m
+pkglibexecdir	src/Makefile	/^pkglibexecdir = $(libexecdir)\/sfarro$/;"	m
+pkglibexecdir	tests/Makefile	/^pkglibexecdir = $(libexecdir)\/sfarro$/;"	m
+prefix	Makefile	/^prefix = \/usr\/local$/;"	m
+prefix	src/Makefile	/^prefix = \/usr\/local$/;"	m
+prefix	tests/Makefile	/^prefix = \/usr\/local$/;"	m
+print_usage	test-driver	/^print_usage ()$/;"	f
+program_details	missing	/^program_details ()$/;"	f
+program_transform_name	Makefile	/^program_transform_name = s,x,x,$/;"	m
+program_transform_name	src/Makefile	/^program_transform_name = s,x,x,$/;"	m
+program_transform_name	tests/Makefile	/^program_transform_name = s,x,x,$/;"	m
+prototypes	configure	/^   function prototypes and stuff, but not '\\xHH' hex character constants.$/;"	f
+psdir	Makefile	/^psdir = ${docdir}$/;"	m
+psdir	src/Makefile	/^psdir = ${docdir}$/;"	m
+psdir	tests/Makefile	/^psdir = ${docdir}$/;"	m
+ready_to_remount	src/timer.c	/^ready_to_remount ()$/;"	f
+remount	src/remount.c	/^remount (char *remount_directory)$/;"	f
+report_fail	tests/test-utils.sh	/^function report_fail {$/;"	f
+report_pass	tests/test-utils.sh	/^function report_pass {$/;"	f
+rm_test_dir	tests/test-utils.sh	/^function rm_test_dir {$/;"	f
+rm_test_file	tests/test-utils.sh	/^function rm_test_file {$/;"	f
+rootdir	src/params.h	/^    char *rootdir;$/;"	m	struct:vfs_state
+run_suite	tests/test-utils.sh	/^function run_suite {$/;"	f
+sbindir	Makefile	/^sbindir = ${exec_prefix}\/sbin$/;"	m
+sbindir	src/Makefile	/^sbindir = ${exec_prefix}\/sbin$/;"	m
+sbindir	tests/Makefile	/^sbindir = ${exec_prefix}\/sbin$/;"	m
+set_base_from	depcomp	/^set_base_from ()$/;"	f
+set_dir_from	depcomp	/^set_dir_from ()$/;"	f
+set_last_time_written	src/timer.c	/^set_last_time_written (time_t * new_time)$/;"	f
+set_new_written_time_to_current_time	src/vfs.c	/^set_new_written_time_to_current_time ()$/;"	f
+sfarro_DEPENDENCIES	src/Makefile	/^sfarro_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)$/;"	m
+sfarro_LDADD	src/Makefile	/^sfarro_LDADD = $(fuse_LIBS) ${my_LDFLAGS}$/;"	m
+sfarro_OBJECTS	src/Makefile	/^sfarro_OBJECTS = $(am_sfarro_OBJECTS)$/;"	m
+sfarro_SOURCES	src/Makefile	/^sfarro_SOURCES = sfarro.c remount.c timer.c monitor.c vfs.c$/;"	m
+sfarro_usage	src/sfarro.c	/^sfarro_usage ()$/;"	f
+sharedstatedir	Makefile	/^sharedstatedir = ${prefix}\/com$/;"	m
+sharedstatedir	src/Makefile	/^sharedstatedir = ${prefix}\/com$/;"	m
+sharedstatedir	tests/Makefile	/^sharedstatedir = ${prefix}\/com$/;"	m
+srcdir	Makefile	/^srcdir = .$/;"	m
+srcdir	src/Makefile	/^srcdir = .$/;"	m
+srcdir	tests/Makefile	/^srcdir = .$/;"	m
+subdir	Makefile	/^subdir = .$/;"	m
+subdir	src/Makefile	/^subdir = src$/;"	m
+subdir	tests/Makefile	/^subdir = tests$/;"	m
+sysconfdir	Makefile	/^sysconfdir = ${prefix}\/etc$/;"	m
+sysconfdir	src/Makefile	/^sysconfdir = ${prefix}\/etc$/;"	m
+sysconfdir	tests/Makefile	/^sysconfdir = ${prefix}\/etc$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | BZIP2=$${BZIP2--9} bzip2 -c >$(distdir).tar.bz2$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | GZIP=$(GZIP_ENV) gzip -c >$(distdir).tar.gz$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | XZ_OPT=$${XZ_OPT--e} xz -c >$(distdir).tar.xz$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | compress -c >$(distdir).tar.Z$/;"	m
+tardir	Makefile	/^	tardir=$(distdir) && $(am__tar) | lzip -c $${LZIP_OPT--9} >$(distdir).tar.lz$/;"	m
+target_alias	Makefile	/^target_alias = $/;"	m
+target_alias	src/Makefile	/^target_alias = $/;"	m
+target_alias	tests/Makefile	/^target_alias = $/;"	m
+test_append_file	tests/main-test.sh	/^function test_append_file {$/;"	f
+test_chmod	tests/main-test.sh	/^function test_chmod {$/;"	f
+test_list	tests/main-test.sh	/^function test_list {$/;"	f
+test_mkdir_rmdir	tests/main-test.sh	/^function test_mkdir_rmdir {$/;"	f
+test_mv_directory	tests/main-test.sh	/^function test_mv_directory {$/;"	f
+test_mv_file	tests/main-test.sh	/^function test_mv_file {$/;"	f
+test_remove_nonempty_directory	tests/main-test.sh	/^function test_remove_nonempty_directory {$/;"	f
+test_truncate_file	tests/main-test.sh	/^function test_truncate_file {$/;"	f
+testdir	tests/Makefile	/^testdir = test$/;"	m
+threadproc	src/monitor.c	/^threadproc (const char *vfs_root_directory)$/;"	f
+top_build_prefix	Makefile	/^top_build_prefix = $/;"	m
+top_build_prefix	src/Makefile	/^top_build_prefix = ..\/$/;"	m
+top_build_prefix	tests/Makefile	/^top_build_prefix = ..\/$/;"	m
+top_builddir	Makefile	/^top_builddir = .$/;"	m
+top_builddir	src/Makefile	/^top_builddir = ..$/;"	m
+top_builddir	tests/Makefile	/^top_builddir = ..$/;"	m
+top_distdir	Makefile	/^top_distdir = $(distdir)$/;"	m
+top_srcdir	Makefile	/^top_srcdir = .$/;"	m
+top_srcdir	src/Makefile	/^top_srcdir = ..$/;"	m
+top_srcdir	tests/Makefile	/^top_srcdir = ..$/;"	m
+transform	Makefile	/^transform = $(program_transform_name)$/;"	m
+transform	src/Makefile	/^transform = $(program_transform_name)$/;"	m
+transform	tests/Makefile	/^transform = $(program_transform_name)$/;"	m
+usage_error	test-driver	/^usage_error ()$/;"	f
+vfs	src/vfs.c	/^vfs (int argc, char *argv[])$/;"	f
+vfs_access	src/vfs.c	/^vfs_access (const char *path, char *buf, int mask)$/;"	f	file:
+vfs_chmod	src/vfs.c	/^vfs_chmod (const char *path, mode_t mode)$/;"	f	file:
+vfs_chown	src/vfs.c	/^vfs_chown (const char *path, uid_t uid, gid_t gid)$/;"	f	file:
+vfs_fallocate	src/vfs.c	/^vfs_fallocate (const char *path, int mode,$/;"	f	file:
+vfs_fgetattr	src/vfs.c	/^vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)$/;"	f	file:
+vfs_fsync	src/vfs.c	/^vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)$/;"	f	file:
+vfs_fullpath	src/vfs.c	/^static void vfs_fullpath(char fpath[PATH_MAX], const char *path)$/;"	f	file:
+vfs_getattr	src/vfs.c	/^vfs_getattr (const char *path, struct stat *stbuf)$/;"	f	file:
+vfs_getxattr	src/vfs.c	/^vfs_getxattr (const char *path, const char *name, char *value, size_t size)$/;"	f	file:
+vfs_link	src/vfs.c	/^vfs_link (const char *from, const char *to)$/;"	f	file:
+vfs_listxattr	src/vfs.c	/^vfs_listxattr (const char *path, char *list, size_t size)$/;"	f	file:
+vfs_mkdir	src/vfs.c	/^vfs_mkdir (const char *path, mode_t mode)$/;"	f	file:
+vfs_mknod	src/vfs.c	/^vfs_mknod (const char *path, mode_t mode, dev_t rdev)$/;"	f	file:
+vfs_open	src/vfs.c	/^vfs_open (const char *path, struct fuse_file_info *fi)$/;"	f	file:
+vfs_oper	src/vfs.c	/^static struct fuse_operations vfs_oper = {$/;"	v	typeref:struct:fuse_operations	file:
+vfs_read	src/vfs.c	/^vfs_read (const char *path, char *buf, size_t size, off_t offset,$/;"	f	file:
+vfs_readdir	src/vfs.c	/^vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,$/;"	f	file:
+vfs_readlink	src/vfs.c	/^vfs_readlink (const char *path, char *buf, size_t size)$/;"	f	file:
+vfs_release	src/vfs.c	/^vfs_release (const char *path, struct fuse_file_info *fi)$/;"	f	file:
+vfs_removexattr	src/vfs.c	/^vfs_removexattr (const char *path, const char *name)$/;"	f	file:
+vfs_rename	src/vfs.c	/^vfs_rename (const char *from, const char *to)$/;"	f	file:
+vfs_rmdir	src/vfs.c	/^vfs_rmdir (const char *path)$/;"	f	file:
+vfs_setxattr	src/vfs.c	/^vfs_setxattr (const char *path, const char *name, const char *value,$/;"	f	file:
+vfs_state	src/params.h	/^struct vfs_state {$/;"	s
+vfs_statfs	src/vfs.c	/^vfs_statfs (const char *path, struct statvfs *stbuf)$/;"	f	file:
+vfs_symlink	src/vfs.c	/^vfs_symlink (const char *from, const char *to)$/;"	f	file:
+vfs_truncate	src/vfs.c	/^vfs_truncate (const char *path, off_t size)$/;"	f	file:
+vfs_unlink	src/vfs.c	/^vfs_unlink (const char *path)$/;"	f	file:
+vfs_utimens	src/vfs.c	/^vfs_utimens (const char *path, const struct timespec ts[2])$/;"	f	file:
+vfs_write	src/vfs.c	/^vfs_write (const char *path, const char *buf, size_t size,$/;"	f	file:
