@@ -21,7 +21,7 @@ threadproc ()
 	{
 	  if (remount (vfs_root_directory) != 0)
 	    {
-//                Something fkd up
+
 	      return 0;
 	    }
 	}

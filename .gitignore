@@ -1,6 +1,3 @@
-*.sublime*
-.idea
-build/
 ### C template
 # Object files
 *.o
@@ -18,12 +15,6 @@ build/
 *.la
 *.lo
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
 # Executables
 *.exe
 *.out
@@ -34,16 +25,38 @@ build/
 
 # Debug files
 *.dSYM/
-### CMake template
-CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Makefile
-cmake_install.cmake
-install_manifest.txt
 
-### Makefile stuff
-m4/
-*.cache
-*/.deps
+### Autotools
+## Shared Library (libtools)
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/config.*
+/configure
+/depcomp
+/install-sh
+/libtool
+/ltmain.sh
+/m4/
+/missing
+/stamp-h?
+.deps/
+.dirstamp
+.libs/
+*.l[ao]
+*~
 
+## Executable
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache/
+/config.*
+/configure
+/m4/
+/stamp-h?
+.deps/
+.dirstamp
+*.o
+*~

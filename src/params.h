@@ -1,7 +1,3 @@
-//
-// Created by se415011 on 10/13/15.
-//
-
 #ifndef SFARRO_PARAMS_H
 #define SFARRO_PARAMS_H
 
