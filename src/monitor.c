@@ -1,7 +1,6 @@
-//
-// Created by se415011 on 11/11/15.
-//
 #include "monitor.h"
+
+void init_sfarro_monitor();
 
 bool
 periodic_remount_check ()
@@ -13,15 +12,13 @@ periodic_remount_check ()
 void *
 threadproc ()
 {
-  char *vfs_root_directory = VFS_DATA->rootdir;
   while (1)
     {
       sleep (PERIODIC_TIME_DELAY);
       if (periodic_remount_check () == 1)
 	{
-	  if (remount (vfs_root_directory) != 0)
+	  if (remount (VFS_DATA->rootdir) != 0)
 	    {
-
 	      return 0;
 	    }
 	}

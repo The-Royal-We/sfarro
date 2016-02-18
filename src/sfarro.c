@@ -8,7 +8,6 @@ main (int argc, char *argv[])
       sfarro_usage ();
       return -1;
     }
-    init_sfarro_monitor();
   return vfs (argc, argv);
 }
 
