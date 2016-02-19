@@ -14,15 +14,14 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <sys/stat.h>
 #include <dirent.h>
 #include <errno.h>
 #include <sys/time.h>
-#include <signal.h>
 #include <stdlib.h>
-#include <assert.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <ctype.h>
 
-#include "constants.h"
 #include "timer.h"
 #include "params.h"
 

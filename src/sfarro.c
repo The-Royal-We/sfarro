@@ -15,5 +15,5 @@ void
 sfarro_usage ()
 {
   fprintf (stderr,
-	   "usage:  src [FUSE and mount options] rootDir mountPoint\n");
+	   "usage:  ./sfarro [FUSE and mount options] rootDir mountPoint\n");
 }

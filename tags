@@ -4,9 +4,9 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-ACLOCAL	Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
-ACLOCAL	src/Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
-ACLOCAL	tests/Makefile	/^ACLOCAL = ${SHELL} \/root\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL	Makefile	/^ACLOCAL = ${SHELL} \/home\/brendan\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL	src/Makefile	/^ACLOCAL = ${SHELL} \/home\/brendan\/sfarro\/missing aclocal-1.14$/;"	m
+ACLOCAL	tests/Makefile	/^ACLOCAL = ${SHELL} \/home\/brendan\/sfarro\/missing aclocal-1.14$/;"	m
 ACLOCAL_M4	Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
 ACLOCAL_M4	src/Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
 ACLOCAL_M4	tests/Makefile	/^ACLOCAL_M4 = $(top_srcdir)\/aclocal.m4$/;"	m
@@ -31,18 +31,18 @@ AM_V_P	tests/Makefile	/^AM_V_P = $(am__v_P_$(V))$/;"	m
 AM_V_at	Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
 AM_V_at	src/Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
 AM_V_at	tests/Makefile	/^AM_V_at = $(am__v_at_$(V))$/;"	m
-AUTOCONF	Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
-AUTOCONF	src/Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
-AUTOCONF	tests/Makefile	/^AUTOCONF = ${SHELL} \/root\/sfarro\/missing autoconf$/;"	m
-AUTOHEADER	Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
-AUTOHEADER	src/Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
-AUTOHEADER	tests/Makefile	/^AUTOHEADER = ${SHELL} \/root\/sfarro\/missing autoheader$/;"	m
-AUTOMAKE	Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
-AUTOMAKE	src/Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
-AUTOMAKE	tests/Makefile	/^AUTOMAKE = ${SHELL} \/root\/sfarro\/missing automake-1.14$/;"	m
-AWK	Makefile	/^AWK = gawk$/;"	m
-AWK	src/Makefile	/^AWK = gawk$/;"	m
-AWK	tests/Makefile	/^AWK = gawk$/;"	m
+AUTOCONF	Makefile	/^AUTOCONF = ${SHELL} \/home\/brendan\/sfarro\/missing autoconf$/;"	m
+AUTOCONF	src/Makefile	/^AUTOCONF = ${SHELL} \/home\/brendan\/sfarro\/missing autoconf$/;"	m
+AUTOCONF	tests/Makefile	/^AUTOCONF = ${SHELL} \/home\/brendan\/sfarro\/missing autoconf$/;"	m
+AUTOHEADER	Makefile	/^AUTOHEADER = ${SHELL} \/home\/brendan\/sfarro\/missing autoheader$/;"	m
+AUTOHEADER	src/Makefile	/^AUTOHEADER = ${SHELL} \/home\/brendan\/sfarro\/missing autoheader$/;"	m
+AUTOHEADER	tests/Makefile	/^AUTOHEADER = ${SHELL} \/home\/brendan\/sfarro\/missing autoheader$/;"	m
+AUTOMAKE	Makefile	/^AUTOMAKE = ${SHELL} \/home\/brendan\/sfarro\/missing automake-1.14$/;"	m
+AUTOMAKE	src/Makefile	/^AUTOMAKE = ${SHELL} \/home\/brendan\/sfarro\/missing automake-1.14$/;"	m
+AUTOMAKE	tests/Makefile	/^AUTOMAKE = ${SHELL} \/home\/brendan\/sfarro\/missing automake-1.14$/;"	m
+AWK	Makefile	/^AWK = mawk$/;"	m
+AWK	src/Makefile	/^AWK = mawk$/;"	m
+AWK	tests/Makefile	/^AWK = mawk$/;"	m
 CC	Makefile	/^CC = gcc$/;"	m
 CC	src/Makefile	/^CC = gcc$/;"	m
 CC	tests/Makefile	/^CC = gcc$/;"	m
@@ -143,9 +143,9 @@ LTLIBOBJS	Makefile	/^LTLIBOBJS = $/;"	m
 LTLIBOBJS	src/Makefile	/^LTLIBOBJS = $/;"	m
 LTLIBOBJS	tests/Makefile	/^LTLIBOBJS = $/;"	m
 MAIN_MONITOR_H	src/monitor.h	2;"	d
-MAKEINFO	Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
-MAKEINFO	src/Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
-MAKEINFO	tests/Makefile	/^MAKEINFO = ${SHELL} \/root\/sfarro\/missing makeinfo$/;"	m
+MAKEINFO	Makefile	/^MAKEINFO = ${SHELL} \/home\/brendan\/sfarro\/missing makeinfo$/;"	m
+MAKEINFO	src/Makefile	/^MAKEINFO = ${SHELL} \/home\/brendan\/sfarro\/missing makeinfo$/;"	m
+MAKEINFO	tests/Makefile	/^MAKEINFO = ${SHELL} \/home\/brendan\/sfarro\/missing makeinfo$/;"	m
 MKDIR_P	Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
 MKDIR_P	src/Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
 MKDIR_P	tests/Makefile	/^MKDIR_P = \/bin\/mkdir -p$/;"	m
@@ -245,18 +245,18 @@ VERSION	src/Makefile	/^VERSION = 0.0.1$/;"	m
 VERSION	tests/Makefile	/^VERSION = 0.0.1$/;"	m
 VFS_DATA	src/params.h	11;"	d
 _XOPEN_SOURCE	src/vfs.h	9;"	d
-abs_builddir	Makefile	/^abs_builddir = \/root\/sfarro$/;"	m
-abs_builddir	src/Makefile	/^abs_builddir = \/root\/sfarro\/src$/;"	m
-abs_builddir	tests/Makefile	/^abs_builddir = \/root\/sfarro\/tests$/;"	m
-abs_srcdir	Makefile	/^abs_srcdir = \/root\/sfarro$/;"	m
-abs_srcdir	src/Makefile	/^abs_srcdir = \/root\/sfarro\/src$/;"	m
-abs_srcdir	tests/Makefile	/^abs_srcdir = \/root\/sfarro\/tests$/;"	m
-abs_top_builddir	Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
-abs_top_builddir	src/Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
-abs_top_builddir	tests/Makefile	/^abs_top_builddir = \/root\/sfarro$/;"	m
-abs_top_srcdir	Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
-abs_top_srcdir	src/Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
-abs_top_srcdir	tests/Makefile	/^abs_top_srcdir = \/root\/sfarro$/;"	m
+abs_builddir	Makefile	/^abs_builddir = \/home\/brendan\/sfarro$/;"	m
+abs_builddir	src/Makefile	/^abs_builddir = \/home\/brendan\/sfarro\/src$/;"	m
+abs_builddir	tests/Makefile	/^abs_builddir = \/home\/brendan\/sfarro\/tests$/;"	m
+abs_srcdir	Makefile	/^abs_srcdir = \/home\/brendan\/sfarro$/;"	m
+abs_srcdir	src/Makefile	/^abs_srcdir = \/home\/brendan\/sfarro\/src$/;"	m
+abs_srcdir	tests/Makefile	/^abs_srcdir = \/home\/brendan\/sfarro\/tests$/;"	m
+abs_top_builddir	Makefile	/^abs_top_builddir = \/home\/brendan\/sfarro$/;"	m
+abs_top_builddir	src/Makefile	/^abs_top_builddir = \/home\/brendan\/sfarro$/;"	m
+abs_top_builddir	tests/Makefile	/^abs_top_builddir = \/home\/brendan\/sfarro$/;"	m
+abs_top_srcdir	Makefile	/^abs_top_srcdir = \/home\/brendan\/sfarro$/;"	m
+abs_top_srcdir	src/Makefile	/^abs_top_srcdir = \/home\/brendan\/sfarro$/;"	m
+abs_top_srcdir	tests/Makefile	/^abs_top_srcdir = \/home\/brendan\/sfarro$/;"	m
 ac_ct_CC	Makefile	/^ac_ct_CC = gcc$/;"	m
 ac_ct_CC	src/Makefile	/^ac_ct_CC = gcc$/;"	m
 ac_ct_CC	tests/Makefile	/^ac_ct_CC = gcc$/;"	m
@@ -435,12 +435,12 @@ func_cl_dashL	compile	/^func_cl_dashL ()$/;"	f
 func_cl_dashl	compile	/^func_cl_dashl ()$/;"	f
 func_cl_wrapper	compile	/^func_cl_wrapper ()$/;"	f
 func_file_conv	compile	/^func_file_conv ()$/;"	f
-fuse_CFLAGS	Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
-fuse_CFLAGS	src/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
-fuse_CFLAGS	tests/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/include\/fuse  $/;"	m
-fuse_LIBS	Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
-fuse_LIBS	src/Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
-fuse_LIBS	tests/Makefile	/^fuse_LIBS = -pthread -lfuse  $/;"	m
+fuse_CFLAGS	Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/local\/include\/fuse  $/;"	m
+fuse_CFLAGS	src/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/local\/include\/fuse  $/;"	m
+fuse_CFLAGS	tests/Makefile	/^fuse_CFLAGS = -D_FILE_OFFSET_BITS=64 -I\/usr\/local\/include\/fuse  $/;"	m
+fuse_LIBS	Makefile	/^fuse_LIBS = -pthread -L\/usr\/local\/lib -lfuse  $/;"	m
+fuse_LIBS	src/Makefile	/^fuse_LIBS = -pthread -L\/usr\/local\/lib -lfuse  $/;"	m
+fuse_LIBS	tests/Makefile	/^fuse_LIBS = -pthread -L\/usr\/local\/lib -lfuse  $/;"	m
 get_last_time_written	src/timer.c	/^get_last_time_written ()$/;"	f
 give_advice	missing	/^give_advice ()$/;"	f
 host_alias	Makefile	/^host_alias = $/;"	m
@@ -457,9 +457,9 @@ infodir	src/Makefile	/^infodir = ${datarootdir}\/info$/;"	m
 infodir	tests/Makefile	/^infodir = ${datarootdir}\/info$/;"	m
 init_sfarro_monitor	src/monitor.c	/^init_sfarro_monitor ()$/;"	f
 init_suite	tests/test-utils.sh	/^function init_suite {$/;"	f
-install_sh	Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
-install_sh	src/Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
-install_sh	tests/Makefile	/^install_sh = ${SHELL} \/root\/sfarro\/install-sh$/;"	m
+install_sh	Makefile	/^install_sh = ${SHELL} \/home\/brendan\/sfarro\/install-sh$/;"	m
+install_sh	src/Makefile	/^install_sh = ${SHELL} \/home\/brendan\/sfarro\/install-sh$/;"	m
+install_sh	tests/Makefile	/^install_sh = ${SHELL} \/home\/brendan\/sfarro\/install-sh$/;"	m
 install_sh_DATA	Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
 install_sh_DATA	src/Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
 install_sh_DATA	tests/Makefile	/^install_sh_DATA = $(install_sh) -c -m 644$/;"	m
@@ -540,7 +540,7 @@ psdir	Makefile	/^psdir = ${docdir}$/;"	m
 psdir	src/Makefile	/^psdir = ${docdir}$/;"	m
 psdir	tests/Makefile	/^psdir = ${docdir}$/;"	m
 ready_to_remount	src/timer.c	/^ready_to_remount ()$/;"	f
-remount	src/remount.c	/^remount (char *remount_directory)$/;"	f
+remount	src/remount.c	/^remount (const char *remount_directory)$/;"	f
 report_fail	tests/test-utils.sh	/^function report_fail {$/;"	f
 report_pass	tests/test-utils.sh	/^function report_pass {$/;"	f
 rm_test_dir	tests/test-utils.sh	/^function rm_test_dir {$/;"	f
@@ -588,7 +588,7 @@ test_mv_file	tests/main-test.sh	/^function test_mv_file {$/;"	f
 test_remove_nonempty_directory	tests/main-test.sh	/^function test_remove_nonempty_directory {$/;"	f
 test_truncate_file	tests/main-test.sh	/^function test_truncate_file {$/;"	f
 testdir	tests/Makefile	/^testdir = test$/;"	m
-threadproc	src/monitor.c	/^threadproc (const char *vfs_root_directory)$/;"	f
+threadproc	src/monitor.c	/^threadproc ()$/;"	f
 top_build_prefix	Makefile	/^top_build_prefix = $/;"	m
 top_build_prefix	src/Makefile	/^top_build_prefix = ..\/$/;"	m
 top_build_prefix	tests/Makefile	/^top_build_prefix = ..\/$/;"	m
@@ -607,29 +607,33 @@ vfs	src/vfs.c	/^vfs (int argc, char *argv[])$/;"	f
 vfs_access	src/vfs.c	/^vfs_access (const char *path, char *buf, int mask)$/;"	f	file:
 vfs_chmod	src/vfs.c	/^vfs_chmod (const char *path, mode_t mode)$/;"	f	file:
 vfs_chown	src/vfs.c	/^vfs_chown (const char *path, uid_t uid, gid_t gid)$/;"	f	file:
+vfs_destroy	src/vfs.c	/^void vfs_destroy(void *userdata){}$/;"	f
 vfs_fallocate	src/vfs.c	/^vfs_fallocate (const char *path, int mode,$/;"	f	file:
 vfs_fgetattr	src/vfs.c	/^vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)$/;"	f	file:
 vfs_fsync	src/vfs.c	/^vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)$/;"	f	file:
 vfs_fullpath	src/vfs.c	/^static void vfs_fullpath(char fpath[PATH_MAX], const char *path)$/;"	f	file:
 vfs_getattr	src/vfs.c	/^vfs_getattr (const char *path, struct stat *stbuf)$/;"	f	file:
 vfs_getxattr	src/vfs.c	/^vfs_getxattr (const char *path, const char *name, char *value, size_t size)$/;"	f	file:
-vfs_link	src/vfs.c	/^vfs_link (const char *from, const char *to)$/;"	f	file:
+vfs_init	src/vfs.c	/^void *vfs_init()$/;"	f
+vfs_link	src/vfs.c	/^vfs_link (const char *path, const char *newpath)$/;"	f	file:
 vfs_listxattr	src/vfs.c	/^vfs_listxattr (const char *path, char *list, size_t size)$/;"	f	file:
 vfs_mkdir	src/vfs.c	/^vfs_mkdir (const char *path, mode_t mode)$/;"	f	file:
 vfs_mknod	src/vfs.c	/^vfs_mknod (const char *path, mode_t mode, dev_t rdev)$/;"	f	file:
 vfs_open	src/vfs.c	/^vfs_open (const char *path, struct fuse_file_info *fi)$/;"	f	file:
+vfs_opendir	src/vfs.c	/^vfs_opendir(const char *path, struct fuse_file_info *fi)$/;"	f	file:
 vfs_oper	src/vfs.c	/^static struct fuse_operations vfs_oper = {$/;"	v	typeref:struct:fuse_operations	file:
 vfs_read	src/vfs.c	/^vfs_read (const char *path, char *buf, size_t size, off_t offset,$/;"	f	file:
 vfs_readdir	src/vfs.c	/^vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,$/;"	f	file:
 vfs_readlink	src/vfs.c	/^vfs_readlink (const char *path, char *buf, size_t size)$/;"	f	file:
 vfs_release	src/vfs.c	/^vfs_release (const char *path, struct fuse_file_info *fi)$/;"	f	file:
+vfs_releasedir	src/vfs.c	/^int vfs_releasedir(const char *path, struct fuse_file_info *fi)$/;"	f
 vfs_removexattr	src/vfs.c	/^vfs_removexattr (const char *path, const char *name)$/;"	f	file:
-vfs_rename	src/vfs.c	/^vfs_rename (const char *from, const char *to)$/;"	f	file:
+vfs_rename	src/vfs.c	/^vfs_rename (const char *path, const char *newpath)$/;"	f	file:
 vfs_rmdir	src/vfs.c	/^vfs_rmdir (const char *path)$/;"	f	file:
 vfs_setxattr	src/vfs.c	/^vfs_setxattr (const char *path, const char *name, const char *value,$/;"	f	file:
 vfs_state	src/params.h	/^struct vfs_state {$/;"	s
 vfs_statfs	src/vfs.c	/^vfs_statfs (const char *path, struct statvfs *stbuf)$/;"	f	file:
-vfs_symlink	src/vfs.c	/^vfs_symlink (const char *from, const char *to)$/;"	f	file:
+vfs_symlink	src/vfs.c	/^vfs_symlink (const char *path, const char *link)$/;"	f	file:
 vfs_truncate	src/vfs.c	/^vfs_truncate (const char *path, off_t size)$/;"	f	file:
 vfs_unlink	src/vfs.c	/^vfs_unlink (const char *path)$/;"	f	file:
 vfs_utimens	src/vfs.c	/^vfs_utimens (const char *path, const struct timespec ts[2])$/;"	f	file:

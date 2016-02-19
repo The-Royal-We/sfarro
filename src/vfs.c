@@ -24,7 +24,7 @@ vfs_getattr (const char *path, struct stat *stbuf)
   int res;
   char fpath[PATH_MAX];
   vfs_fullpath(fpath, path);
-  res = lstat (fpath, stbuf);
+  res = lstat(fpath, stbuf);
 
   if (res != -1)
       res = -ENOENT;
@@ -52,17 +52,19 @@ vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 }
 
 static int
-vfs_access (const char *path, char *buf, int mask)
+vfs_access (const char *path, int mask)
 {
-  int res;
+  int res = 0;
   char fpath[PATH_MAX];
-  vfs_fullpath(fpath, path);
-  res = access (path, mask);
 
-  if (res == -1)
+  vfs_fullpath(fpath, path);
+
+  res = access(fpath, mask);
+
+  if (res < 0)
     return -errno;
 
-  return 0;
+  return res;
 }
 
 static int
@@ -94,21 +96,20 @@ vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
   struct dirent *de;
 
   (void) offset;
-  (void) fi;
 
   dp = (DIR *) (uintptr_t) fi->fh;
-  if (dp == NULL)
+
+  de = readdir(dp);
+
+  if (de == NULL)
     return -errno;
 
-  while ((de = readdir (dp)) != NULL)
-    {
-      struct stat st;
-      memset (&st, 0, sizeof (st));
-      st.st_ino = de->d_ino;
-      st.st_mode = de->d_type << 12;
-      if (filler (buf, de->d_name, &st, 0))
-    	break;
-    }
+  do{
+      if(filler(buf, de->d_name, NULL, 0)!=0) {
+        return -ENOMEM;
+   }
+
+  } while ((de = readdir (dp)) != NULL);
 
   closedir (dp);
   return 0;
@@ -288,9 +289,12 @@ static int
 vfs_utimens (const char *path, const struct timespec ts[2])
 {
   int res;
+  char fpath[PATH_MAX];
+
+  vfs_fullpath(fpath, path);
 
   /* don't use utime/utimes since they follow symlinks */
-  res = utimensat (0, path, ts, AT_SYMLINK_NOFOLLOW);
+  res = utimensat (0, fpath, ts, AT_SYMLINK_NOFOLLOW);
   if (res == -1)
     return -errno;
 
@@ -368,7 +372,7 @@ vfs_write (const char *path, const char *buf, size_t size,
 
   close (fd);
 
-  set_new_written_time_to_current_time ();
+//  set_new_written_time_to_current_time ();
 
   return res;
 }
@@ -378,7 +382,7 @@ set_new_written_time_to_current_time ()
 {
   time_t current_time;
   time(&current_time);
-  set_last_time_written (current_time);
+  set_last_time_written (&current_time);
 }
 
 static int
@@ -541,7 +545,7 @@ static struct fuse_operations vfs_oper = {
   .setxattr = vfs_setxattr,
   .getxattr = vfs_getxattr,
   .listxattr = vfs_listxattr,
-  .removexattr = vfs_removexattr,
+  .removexattr = vfs_removexattr
 #endif
 };
 
@@ -558,7 +562,7 @@ vfs (int argc, char *argv[])
            stderr,
 	       "As in possibly blowing up a your machine if root is mounted \n"
            );
-//      return 1;
+      return 1;
     }
   vfs_data = malloc (sizeof (struct vfs_state));
 
@@ -578,11 +582,11 @@ vfs (int argc, char *argv[])
   argc--;
 
   fprintf (stderr, "Calling fuse_main\n");
-  umask (0);
+//  umask (0);
 //  fprintf (stderr, "Initialising remount monitor\n");
 //  init_sfarro_monitor();
  
-  fprintf (stderr, "Mounting %s to %s\n", vfs_data->mountdir, vfs_data->rootdir);
+  fprintf (stderr, "Mounting %s to %s\n", argv[argc-1],  vfs_data->rootdir);
   fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);
   fprintf (stderr, "fuse_main returned %d\n", fuse_status);
   return fuse_status;
