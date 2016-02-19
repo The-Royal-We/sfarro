@@ -185,7 +185,7 @@ function add_all_tests {
 trap exit_handler EXIT
 
 # Mount the directory into sfarro
-$SFARRO $TEST_DEST_POINT $TEST_MOUNT_POINT
+$SFARRO $TEST_MOUNT_POINT $TEST_DEST_POINT 
 
 init_suite
 add_all_tests

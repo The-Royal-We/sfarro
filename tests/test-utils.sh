@@ -59,11 +59,11 @@ function rm_test_dir {
 }
 
 function cd_run_dir {
-	if [ "$TEST_MOUNT_POINT" == "" ]; then
-		echo "$TEST_MOUNT_POINT variable not set"
+	if [ "$TEST_DEST_POINT" == "" ]; then
+		echo "$TEST_DEST_POINT variable not set"
 		exit 1
 	fi
-    cd $TEST_MOUNT_POINT
+    cd $TEST_DEST_POINT 
 }
 
 function clean_run_dir {

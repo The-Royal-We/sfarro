@@ -25,7 +25,7 @@ is_last_written_time_over_limit ()
   time_t current_rawtime;
   time(&current_rawtime);
 
-  if (compare_times_to_limit (&last_time_written, current_rawtime) > 0)
+  if (compare_times_to_limit (&last_time_written, &current_rawtime) > 0)
     {
       res = 1;
     }

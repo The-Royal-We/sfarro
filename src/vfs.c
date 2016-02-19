@@ -26,7 +26,7 @@ vfs_getattr (const char *path, struct stat *stbuf)
   vfs_fullpath(fpath, path);
   res = lstat(fpath, stbuf);
 
-  if (res != -1)
+  if (res != 0)
       res = -ENOENT;
   return res;
 }
@@ -284,6 +284,20 @@ vfs_truncate (const char *path, off_t size)
   return res;
 }
 
+static int
+vfs_utime(const char *path, struct utimbuf *ubuf)
+{
+  int res = 0;
+  char fpath[PATH_MAX];
+
+  vfs_fullpath(fpath, path);
+  res = utime(fpath, ubuf);
+  if(res < 0)
+      return -errno;
+  return res;
+
+}
+
 #ifdef HAVE_UTIMENSAT
 static int
 vfs_utimens (const char *path, const struct timespec ts[2])
@@ -318,30 +332,14 @@ vfs_open (const char *path, struct fuse_file_info *fi)
   return 0;
 }
 
-// TODO: This worries me
 static int
 vfs_read (const char *path, char *buf, size_t size, off_t offset,
 	  struct fuse_file_info *fi)
 {
-  int fd;
   int res;
-
-  (void) fi;
-  char fpath[PATH_MAX];
-
-  vfs_fullpath(fpath, path);
-
-  fd = open (fpath, O_RDONLY);
-  if (fd == -1)
-    return -errno;
-
-  res = pread (fd, buf, size, offset);
-
-
-  if (res == -1)
+  res = pread (fi->fh, buf, size, offset);
+  if (res < 0)
     res = -errno;
-
-  close (fd);
   return res;
 }
 
@@ -354,24 +352,11 @@ static int
 vfs_write (const char *path, const char *buf, size_t size,
 	   off_t offset, struct fuse_file_info *fi)
 {
-  int fd;
   int res;
 
-  (void) fi;
-  char fpath[PATH_MAX];
-
-  vfs_fullpath(fpath, path);
-
-  fd = open (fpath, O_RDONLY);
-  if (fd == -1)
-    return -errno;
-
-  res = pwrite (fd, buf, size, offset);
-  if (res == -1)
+  res = pwrite (fi->fh, buf, size, offset);
+  if (res < 0)
     res = -errno;
-
-  close (fd);
-
 //  set_new_written_time_to_current_time ();
 
   return res;
@@ -427,10 +412,12 @@ vfs_release (const char *path, struct fuse_file_info *fi)
 {
   /* Just a stub.  This method is optional and can safely be left
      unimplemented */
-
+  int res;
   (void) path;
-  (void) fi;
-  return 0;
+  
+  res = close(fi->fh);
+
+  return res;
 }
 
 static int
@@ -438,11 +425,16 @@ vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
 {
   /* Just a stub.  This method is optional and can safely be left
      unimplemented */
+  int res = 0;
 
   (void) path;
-  (void) isdatasync;
-  (void) fi;
-  return 0;
+#ifdef HAVE_FDATASYNC
+  if(isdatasync)
+      res = fdatasync(fi->fh);
+   else
+#endif
+    res = fsync(fi->fh);
+  return res;
 }
 
 void vfs_destroy(void *userdata){}
@@ -477,17 +469,24 @@ static int
 vfs_setxattr (const char *path, const char *name, const char *value,
 	      size_t size, int flags)
 {
-  int res = lsetxattr (path, name, value, size, flags);
-  if (res == -1)
+  int res = 0;
+  char fpath[PATH_MAX];
+  vfs_fullpath(fpath, path);
+  lsetxattr (fpath, name, value, size, flags);
+  if (res < 0)
     return -errno;
-  return 0;
+  return res;
 }
 
 static int
 vfs_getxattr (const char *path, const char *name, char *value, size_t size)
 {
-  int res = lgetxattr (path, name, value, size);
-  if (res == -1)
+  
+  int res = 0;
+  char fpath[PATH_MAX];
+  vfs_fullpath(fpath, path);
+  lgetxattr (fpath, name, value, size);
+  if (res < 0)
     return -errno;
   return res;
 }
@@ -495,8 +494,11 @@ vfs_getxattr (const char *path, const char *name, char *value, size_t size)
 static int
 vfs_listxattr (const char *path, char *list, size_t size)
 {
-  int res = llistxattr (path, list, size);
-  if (res == -1)
+  int res = 0;
+  char fpath[PATH_MAX];
+  vfs_fullpath(fpath, path);
+  llistxattr (fpath, list, size);
+  if (res < 0)
     return -errno;
   return res;
 }
@@ -529,6 +531,7 @@ static struct fuse_operations vfs_oper = {
   .chmod = vfs_chmod,
   .chown = vfs_chown,
   .truncate = vfs_truncate,
+  .utime = vfs_utime,
 #ifdef HAVE_UTIMENSAT
   .utimens = vfs_utimens,
 #endif
@@ -562,7 +565,7 @@ vfs (int argc, char *argv[])
            stderr,
 	       "As in possibly blowing up a your machine if root is mounted \n"
            );
-      return 1;
+      //return 1;
     }
   vfs_data = malloc (sizeof (struct vfs_state));
 
@@ -582,7 +585,7 @@ vfs (int argc, char *argv[])
   argc--;
 
   fprintf (stderr, "Calling fuse_main\n");
-//  umask (0);
+  umask (0);
 //  fprintf (stderr, "Initialising remount monitor\n");
 //  init_sfarro_monitor();
  
