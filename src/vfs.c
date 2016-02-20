@@ -309,7 +309,7 @@ vfs_utimens (const char *path, const struct timespec ts[2])
 
   /* don't use utime/utimes since they follow symlinks */
   res = utimensat (0, fpath, ts, AT_SYMLINK_NOFOLLOW);
-  if (res == -1)
+  if (res < 0)
     return -errno;
 
   return 0;
@@ -325,7 +325,7 @@ vfs_open (const char *path, struct fuse_file_info *fi)
   vfs_fullpath(fpath, path);
 
   res = open (fpath, fi->flags);
-  if (res == -1)
+  if (res < 0)
     return -errno;
 
   close (res);
@@ -355,10 +355,10 @@ vfs_write (const char *path, const char *buf, size_t size,
   int res;
 
   res = pwrite (fi->fh, buf, size, offset);
-  if (res < 0)
+  if (res < 0) {
     res = -errno;
+    }
 //  set_new_written_time_to_current_time ();
-
   return res;
 }
 
@@ -402,6 +402,12 @@ vfs_opendir(const char *path, struct fuse_file_info *fi)
 
 }
 
+static int
+vfs_flush(const char *path, struct fuse_file_info *fi)
+{
+  return 0;
+}
+
 void *vfs_init()
 {
   return VFS_DATA;
@@ -412,9 +418,9 @@ vfs_release (const char *path, struct fuse_file_info *fi)
 {
   /* Just a stub.  This method is optional and can safely be left
      unimplemented */
-  int res;
   (void) path;
-  
+  int res;
+
   res = close(fi->fh);
 
   return res;
@@ -532,6 +538,7 @@ static struct fuse_operations vfs_oper = {
   .chown = vfs_chown,
   .truncate = vfs_truncate,
   .utime = vfs_utime,
+  .flush = vfs_flush,
 #ifdef HAVE_UTIMENSAT
   .utimens = vfs_utimens,
 #endif

@@ -190,3 +190,5 @@ $SFARRO $TEST_MOUNT_POINT $TEST_DEST_POINT
 init_suite
 add_all_tests
 run_suite
+
+pkill sfarro
