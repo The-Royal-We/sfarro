@@ -26,7 +26,7 @@ vfs_getattr (const char *path, struct stat *stbuf)
   vfs_fullpath(fpath, path);
   res = lstat(fpath, stbuf);
 
-  if (res != 0)
+  if (res < 0)
       res = -ENOENT;
   return res;
 }
@@ -45,7 +45,7 @@ vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)
       return vfs_getattr(path, stbuf);
   res = fstat (fi->fh, stbuf);
 
-  if (res != -1)
+  if (res < 0)
     return -ENOENT;
 
   return res;
@@ -319,17 +319,20 @@ vfs_utimens (const char *path, const struct timespec ts[2])
 static int
 vfs_open (const char *path, struct fuse_file_info *fi)
 {
-  int res;
+  int res = 0;
+  int fd;
   char fpath[PATH_MAX];
 
   vfs_fullpath(fpath, path);
 
-  res = open (fpath, fi->flags);
-  if (res < 0)
-    return -errno;
+  fd = open (fpath, fi->flags);
 
-  close (res);
-  return 0;
+  if (fd < 0)
+    res = -errno;
+
+  fi->fh = fd;
+  
+  return res;
 }
 
 static int
