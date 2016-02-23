@@ -574,7 +574,7 @@ vfs (int argc, char *argv[])
            stderr,
 	       "As in possibly blowing up a your machine if root is mounted \n"
            );
-      //return 1;
+      return 1;
     }
   vfs_data = malloc (sizeof (struct vfs_state));
 
