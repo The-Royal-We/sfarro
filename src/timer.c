@@ -10,7 +10,7 @@ ready_to_remount ()
 
 /**
  * We check the difference between the last time we wrote to the fs.
- * If the difference exceeds the allocated limit (default_time=5000ms)
+ * If the difference exceeds the allocated limit (default_time=5s)
  * then we return 1. Else return 0
  *
  * Ready to remount:        1
@@ -24,7 +24,6 @@ is_last_written_time_over_limit ()
   int res;
   time_t current_rawtime;
   time(&current_rawtime);
-
   if (compare_times_to_limit (&last_time_written, &current_rawtime) > 0)
     {
       res = 1;
@@ -40,12 +39,18 @@ is_last_written_time_over_limit ()
 int
 compare_times_to_limit (time_t * last_read, time_t * current_time)
 {
+  int res;
   time_t last_read_in_seconds = *last_read;
   time_t current_time_in_seconds = *current_time;
   double time_difference;
 
   time_difference = difftime (current_time_in_seconds, last_read_in_seconds);
-  return (time_difference > TIME_LIMIT) ? -1 : 0;
+  fprintf(stderr, "Time Difference:%g\n ", time_difference); 
+  fprintf(stderr, "TIME_LIMIT: %d\n", TIME_LIMIT);
+  res = (time_difference > TIME_LIMIT) ? 1 : 0;
+
+  fprintf(stderr, "Ready to remount: %d\n", res);
+  return res;
 }
 
 extern time_t

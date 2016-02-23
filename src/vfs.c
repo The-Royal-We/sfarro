@@ -350,7 +350,6 @@ vfs_read (const char *path, char *buf, size_t size, off_t offset,
  * Set LAST_TIME_WRITTEN every time a successful write has taken place
  */
 
-// TODO: This worries me
 static int
 vfs_write (const char *path, const char *buf, size_t size,
 	   off_t offset, struct fuse_file_info *fi)
@@ -361,7 +360,7 @@ vfs_write (const char *path, const char *buf, size_t size,
   if (res < 0) {
     res = -errno;
     }
-//  set_new_written_time_to_current_time ();
+  set_new_written_time_to_current_time ();
   return res;
 }
 
@@ -596,8 +595,8 @@ vfs (int argc, char *argv[])
 
   fprintf (stderr, "Calling fuse_main\n");
   umask (0);
-//  fprintf (stderr, "Initialising remount monitor\n");
-//  init_sfarro_monitor();
+  fprintf (stderr, "Initialising remount monitor\n");
+  init_sfarro_monitor(realpath(argv[argc-1], NULL));
  
   fprintf (stderr, "Mounting %s to %s\n", argv[argc-1],  vfs_data->rootdir);
   fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);

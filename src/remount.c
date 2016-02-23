@@ -11,8 +11,8 @@ remount (const char *remount_directory)
   int res;
   if (access (remount_directory, W_OK | R_OK) == 0)
     {
-      res = mount(remount_directory, NULL, NULL, MS_REMOUNT | O_RDONLY, "");
-      printf ("**** Remount occured at %s, with result %d ***** \n",
+      res = mount(remount_directory, remount_directory, NULL, MS_REMOUNT | O_RDONLY, NULL);
+      fprintf (stderr, "**** Remount occured at %s, with result %d ***** \n",
 	      remount_directory, res);
       if (res < 0)
       {
