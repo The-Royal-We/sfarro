@@ -22,15 +22,14 @@
 #include <dirent.h>
 #include <ctype.h>
 
-#include "timer.h"
-#include "monitor.h"
 #include "params.h"
+#include "timer.h"
 
 #ifdef HAVE_SETXATTR
 #include <sys/xattr.h>
 #endif
 
-int vfs(int argc, char *argv[]);
+int vfs(int argc, char *argv[], struct vfs_state *vfs_data);
 
 void sfarro_usage();
 void set_new_written_time_to_current_time();

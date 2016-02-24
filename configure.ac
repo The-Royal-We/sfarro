@@ -1,7 +1,7 @@
 AC_INIT([sfarro], [0.0.1], [brendan.carroll.92@gmail.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall])
-AC_CONFIG_SRCDIR([src/vfs.c])
+AC_CONFIG_SRCDIR([src/])
 AC_CONFIG_HEADERS([src/config.h])
 
 AC_PROG_CC

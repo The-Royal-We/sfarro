@@ -8,17 +8,17 @@ static void vfs_ro_fullpath(char fpath[PATH_MAX], const char *path)
 }
 
     static int
-vfs_ro_getattr(const char *path, struct stat *st_data)
+vfs_ro_getattr(const char *path, struct stat *stbuf)
 {
     int res;
     char fpath[PATH_MAX] ;
     vfs_ro_fullpath(fpath, path);
 
-    res=lstat(fpath);
-    free(fpath);
-    if (res < 0)
-        return -errno
-            return res;
+    res=lstat(fpath, stbuf);
+    if (res < 0) {
+        return -errno;
+    }
+    return res;
 }
 
     static int
@@ -46,8 +46,7 @@ vfs_ro_access(const char *path, int mask)
     // Make sure we block writing
     if (mask & W_OK)
         return -EROFS;
-    res = access(fpath);
-    free(fpath);
+    res = access(fpath, mask);
     if (res == -1)
         return -errno;
 
@@ -62,10 +61,9 @@ vfs_ro_readlink(const char *path, char *buf, size_t size)
     vfs_ro_fullpath(fpath, path);
 
     res = readlink(fpath, buf, size - 1);
-    free(fpath);
     if(res < 0)
         return -errno;
-    buf[res] == '\0';
+    buf[res] = '\0';
     return res;
 
 }
@@ -91,14 +89,32 @@ vfs_ro_readdir (const char *path, void *buf, fuse_fill_dir_t filler, off_t offse
         }
     } while ((de = readdir (dp)) != NULL);
     closedir(dp);
-    return res;
+    return 0;
 }
 
     static int
 vfs_ro_mknod(const char *path, mode_t mode, dev_t rdev)
 {
     (void) path;
-    (void) node;
+    (void) mode;
+    (void) rdev;
+
+    return -EROFS;
+}
+
+static int
+vfs_ro_link (const char *path, const char *newpath)
+{
+    (void)path;
+    (void)newpath;
+    return -EROFS;
+}
+
+static int
+vfs_ro_rename (const char *path, const char *newpath)
+{
+    (void) path;
+    (void) newpath;
 
     return -EROFS;
 }
@@ -132,7 +148,7 @@ vfs_ro_symlink (const char * from, const char * to)
     (void) from;
     (void) to;
 
-    return -EROFS
+    return -EROFS;
 }
 
     static int
@@ -164,6 +180,28 @@ vfs_ro_truncate (const char * path, off_t size)
     return -EROFS;
 }
 
+static int
+vfs_ro_write (const char *path, const char *buf, size_t size,
+	   off_t offset, struct fuse_file_info *fi)
+{
+    (void)path;
+    (void)buf;
+    (void)size;
+    (void)offset;
+    (void)fi;
+
+    return -EROFS;
+}
+
+static int
+vfs_ro_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
+{
+    (void)path;
+    (void)isdatasync;
+    (void)fi;
+    return -EROFS;
+}
+
     static int
 vfs_ro_utime (const char *path, struct utimbuf *buf)
 {
@@ -171,6 +209,20 @@ vfs_ro_utime (const char *path, struct utimbuf *buf)
     (void) buf;
 
     return -EROFS;
+}
+
+static int 
+vfs_ro_opendir(const char *path, struct fuse_file_info *fi)
+{
+    DIR *dp;
+    char fpath[PATH_MAX];
+    vfs_ro_fullpath(fpath, path);
+    dp = opendir(fpath);
+    if (dp == NULL)
+        return -errno;
+    fi->fh = (intptr_t) dp;
+
+    return 0;
 }
 
     static int
@@ -185,14 +237,13 @@ vfs_ro_open (const char *path, struct fuse_file_info *finfo)
     if((flags & O_WRONLY) || (flags & O_RDWR) || (flags & O_CREAT) || (flags & O_EXCL) || (flags & O_TRUNC) || (flags &
                 O_APPEND))
     {
-        return -EROFS
+        return -EROFS;
     }
 
     char fpath[PATH_MAX];
     vfs_ro_fullpath(fpath, path);
     res = open(fpath, flags);
 
-    free(fpath);
     if (res < 0)
         return -errno;
     close(res);
@@ -208,7 +259,6 @@ vfs_ro_read(const char *path, char *buf, size_t size, off_t offset, struct fuse_
     char fpath[PATH_MAX];
     vfs_ro_fullpath(fpath, path);
     fd = open(fpath, O_RDONLY);
-    free(fpath);
     if (fd < 0)
     {
         res = -errno;
@@ -235,7 +285,7 @@ vfs_ro_statfs (const char * path, struct statvfs * st_buf )
     if(res < 0)
         return -errno;
 
-    return 0
+    return 0;
 }
 
     static int
@@ -247,6 +297,7 @@ vfs_ro_release (const char *path, struct fuse_file_info *finfo)
     return 0;
 }
 
+#ifdef HAVE_SETXATTR
     static int
 vfs_ro_setxattr (const char *path, const char *name, const char *value, size_t size, int flags)
 {
@@ -265,7 +316,6 @@ vfs_ro_getxattr (const char *path, const char *name, char *value, size_t size)
     char fpath[PATH_MAX];
     vfs_ro_fullpath(fpath, path);
     res = lgetxattr(fpath, name, value, size);
-    free(fpath);
     if(res < 0)
         return -errno;
     return res;
@@ -293,7 +343,7 @@ vfs_ro_removexattr(const char *path, const char *name)
 
     return -EROFS;
 }
-
+#endif
 static struct fuse_operations vfs_oper = {
     .getattr = vfs_ro_getattr,
     .opendir = vfs_ro_opendir,
@@ -329,16 +379,15 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-int vfs_ro_main (struct vfs_state *vfs_data, )
+    int
+vfs_ro_main (int argc, char *argv[], struct vfs_state *vfs_data)
 {
     int fuse_status;
-    char *dirs[] = {vfs_data->mountdir, vfs_data->rootdir};
-
     fprintf (stderr, "Calling vfs_ro_main\n");
     umask(0);
-    fuse_status = (sizeof(dirs), dirs, &vfs_oper, vfs_data);
+    fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);
+    fprintf (stderr, "vfs_ro_main returned %d\n", fuse_status);
     return fuse_status;
-
 
 }
 

@@ -23,3 +23,7 @@
 #include <dirent.h>
 #include <ctype.h>
 #include <limits.h>
+
+#include "params.h"
+
+int vfs_ro_main (int argc, char *argv[], struct vfs_state *vfs_data);
