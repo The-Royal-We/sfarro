@@ -2,11 +2,9 @@
 #define SFARRO_TIMER_H
 #include <stdio.h>
 #include <time.h>
-#include <stdbool.h>
-#include <limits.h>
 
 #include "constants.h"
-extern bool ready_to_remount();
+extern int ready_to_remount();
 
 time_t* get_current_time();
 int is_last_written_time_over_limit();

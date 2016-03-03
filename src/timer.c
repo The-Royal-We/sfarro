@@ -2,10 +2,12 @@
 
 time_t last_time_written;
 
-bool
+    int
 ready_to_remount ()
 {
-  return is_last_written_time_over_limit () == 1;
+    int res;
+    res = is_last_written_time_over_limit() ;
+    return res;
 }
 
 /**
@@ -18,50 +20,50 @@ ready_to_remount ()
  *
  */
 
-int
+    int
 is_last_written_time_over_limit ()
 {
-  int res;
-  time_t current_rawtime;
-  time(&current_rawtime);
-  if (compare_times_to_limit (&last_time_written, &current_rawtime) > 0)
+    int res;
+    time_t current_rawtime;
+    time(&current_rawtime);
+    if (compare_times_to_limit (&last_time_written, &current_rawtime) > 0)
     {
-      res = 1;
+        res = 1;
     }
-  else
+    else
     {
-      res = 0;
+        res = 0;
     }
 
-  return res;
+    return res;
 }
 
-int
+    int
 compare_times_to_limit (time_t * last_read, time_t * current_time)
 {
-  int res;
-  time_t last_read_in_seconds = *last_read;
-  time_t current_time_in_seconds = *current_time;
-  double time_difference;
+    int res;
+    time_t last_read_in_seconds = *last_read;
+    time_t current_time_in_seconds = *current_time;
+    double time_difference;
 
-  time_difference = difftime (current_time_in_seconds, last_read_in_seconds);
-  fprintf(stderr, "Time Difference:%g\n ", time_difference); 
-  fprintf(stderr, "TIME_LIMIT: %d\n", TIME_LIMIT);
-  res = (time_difference > TIME_LIMIT) ? 1 : 0;
+    time_difference = difftime (current_time_in_seconds, last_read_in_seconds);
+    fprintf(stderr, "Time Difference:%g\n ", time_difference); 
+    fprintf(stderr, "TIME_LIMIT: %d\n", TIME_LIMIT);
+    res = (time_difference > TIME_LIMIT) ? 1 : 0;
 
-  fprintf(stderr, "Ready to remount: %d\n", res);
-  return res;
+    fprintf(stderr, "Ready to remount: %d\n", res);
+    return res;
 }
 
-extern time_t
+    extern time_t
 get_last_time_written ()
 {
-  return last_time_written;
+    return last_time_written;
 }
 
-extern void
+    extern void
 set_last_time_written (time_t * new_time)
 {
-  last_time_written = *new_time;
-  return;
+    last_time_written = *new_time;
+    return;
 }

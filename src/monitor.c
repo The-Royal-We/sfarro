@@ -1,13 +1,5 @@
 #include "monitor.h"
 
-void init_sfarro_monitor();
-char *remount_directory;
-bool
-periodic_remount_check ()
-{
-    return ready_to_remount ();
-}
-
 // TODO: Add in error handling
 void *
 threadproc ()
@@ -16,23 +8,21 @@ threadproc ()
     {
         fprintf(stderr, "Checking filesystem\n");
         sleep (PERIODIC_TIME_DELAY);
-        if (periodic_remount_check () == 1)
+        if (ready_to_remount())
         {
-            fprintf(stderr, "periodic mount check passed \n");
-            if (remount (remount_directory) != 0)
-            {
-                return 0;
-            }
+            fprintf(stderr, "Periodic mount check passed\n");
+            fprintf(stderr, "Remounting filesystem to READ_ONLY!");
+            set_vfs_to_read_only();
+            return 0;
         }
     }
     return 0;
 }
 
 void
-init_sfarro_monitor (char* remount_dir)
+init_sfarro_monitor ()
 {
     long initial_time = LONG_MAX;
-    remount_directory=remount_dir;
     set_last_time_written (&initial_time);
     pthread_t tid;
     pthread_create (&tid, NULL, &threadproc, NULL);

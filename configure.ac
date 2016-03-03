@@ -1,4 +1,4 @@
-AC_INIT([sfarro], [0.0.1], [brendan.carroll.92@gmail.com])
+AC_INIT([sfarro], [1.0.0], [brendan.carroll.92@gmail.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall])
 AC_CONFIG_SRCDIR([src/])

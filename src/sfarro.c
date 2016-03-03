@@ -6,7 +6,6 @@ main (int argc, char *argv[])
   int sfarro_status;
   struct vfs_state *vfs_data;
 
-
   if ((argc < 3) || (argv[argc - 2][0] == '-') || (argv[argc - 1][0] == '-'))
     {
       sfarro_usage ();
@@ -44,8 +43,7 @@ main (int argc, char *argv[])
   init_sfarro_monitor(realpath(argv[argc-1], NULL));
 
   fprintf (stderr, "Calling writable filesystem.\n");
-  //sfarro_status = vfs (argc, argv, vfs_data);
-  sfarro_status = vfs_ro_main (argc, argv, vfs_data);
+  sfarro_status = vfs (argc, argv, vfs_data);
   return sfarro_status;
 }
 
