@@ -38,11 +38,8 @@ main (int argc, char *argv[])
   argv[argc-2] = argv[argc-1];
   argv[argc-1] = NULL;
   argc--;
-
-  fprintf (stderr, "Initialising monitor system.\n");
   init_sfarro_monitor(realpath(argv[argc-1], NULL));
-
-  fprintf (stderr, "Calling writable filesystem.\n");
+  fprintf (stderr, "Starting fuse server.\n");
   sfarro_status = vfs (argc, argv, vfs_data);
   return sfarro_status;
 }

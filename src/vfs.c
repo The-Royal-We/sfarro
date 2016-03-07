@@ -687,13 +687,73 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
+static struct fuse_server {
+	pthread_t pid;
+	struct fuse *fuse;
+	struct fuse_chan *ch;
+	int failed;
+	int running;
+	char *mountpoint;
+	int multithreaded;
+	int foreground;
+}fs;
+
+static void *fuse_thread(){
+	if(fs.multithreaded){
+		printf("Using fuse_loop_mt()\n");
+		if(fuse_loop_mt(fs.fuse) < 0){
+			perror("Error in fuse_loop_mt");
+			fs.failed = 1;
+		}
+		printf("Exiting fuse_loop now!");
+	} else {
+		printf("Using fuse_loop()\n");
+		if (fuse_loop(fs.fuse) < 0){
+			perror("Error in fuse_loop");
+			fs.failed = 1;
+		}
+		printf("Exiting fuse_loop now!");
+	}
+	return NULL;
+}
+
+void run(int argc, char*argv[], struct vfs_state *vfs_data) //<- Keep an eye on this
+{
+	struct fuse_args args = FUSE_ARGS_INIT(argc, argv);
+
+	int res;
+
+	//Parse command line options;
+	res = fuse_parse_cmdline(&args, &fs.mountpoint, &fs.multithreaded, &fs.foreground);
+	if (res < 0){
+		perror("Error parsing command line options");
+		exit(1);
+	}
+
+	fuse_unmount(realpath(fs.mountpoint, NULL));
+	fs.ch = fuse_mount(fs.mountpoint, &args);
+	if(!fs.ch){
+	    fuse_unmount(fs.mountpoint, fs.ch);
+		perror("fuse_mount");
+	}
+
+	if(pthread_create(&fs.pid, NULL, fuse_thread, NULL) < 0){
+		perror("pthread_create");
+	}
+
+	printf("Fuse server alive and operational!");
+}
+
     int
 vfs (int argc, char *argv[], struct vfs_state *vfs_data)
 {
     int fuse_status;
+    memset(&fs, 0, sizeof(fs));
+    fs.running = 1;
     umask (0);
 //  Initialize sfarro as a Read-Write system
     read_only = 0;
+    fprintf (stderr, "Initialising monitor system.\n");
     fprintf (stderr, "Mounting %s to %s\n", argv[argc-1],  vfs_data->rootdir);
     fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);
     fprintf (stderr, "vfs_rw_main returned %d\n", fuse_status);

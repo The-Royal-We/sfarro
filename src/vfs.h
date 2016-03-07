@@ -22,6 +22,8 @@
 #include <dirent.h>
 #include <ctype.h>
 
+#include <fuse/fuse_lowlevel.h>
+#include "monitor.h"
 #include "params.h"
 #include "timer.h"
 
