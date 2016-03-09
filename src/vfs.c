@@ -551,7 +551,6 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-
 void
 initialize_vfs (int argc, char *argv[], struct vfs_state *vfs_data)
 {
@@ -580,6 +579,15 @@ void
     umask (0);
     fprintf (stderr, "Mounting %s to %s\n", args.argv[argc-1],  args.vfs_data->rootdir);
     fuse_main (args.argc, args.argv, &vfs_oper, &args.vfs_data);
-    fprintf (stderr, "vfs_rw_main returned %d\n", fuse_status);
+			perror("Error in fuse_loop");
+}
+
+    int
+vfs (int argc, char *argv[], struct vfs_state *vfs_data)
+{
+    int fuse_status;
+    fprintf (stderr, "Initialising monitor system.\n");
+    fprintf (stderr, "Mounting %s to %s\n", argv[argc-1],  vfs_data->rootdir);
+    fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);
     return 0 ;
 }

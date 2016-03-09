@@ -23,6 +23,8 @@
 #include <ctype.h>
 #include <pthread.h>
 
+#include <fuse/fuse_lowlevel.h>
+#include "monitor.h"
 #include "params.h"
 #include "timer.h"
 
