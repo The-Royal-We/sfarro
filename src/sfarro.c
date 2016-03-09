@@ -3,7 +3,6 @@
 int
 main (int argc, char *argv[])
 { 
-  int sfarro_status;
   struct vfs_state *vfs_data;
 
   if ((argc < 3) || (argv[argc - 2][0] == '-') || (argv[argc - 1][0] == '-'))
@@ -40,11 +39,12 @@ main (int argc, char *argv[])
   argc--;
 
   fprintf (stderr, "Initialising monitor system.\n");
-  init_sfarro_monitor(realpath(argv[argc-1], NULL));
+  init_sfarro_monitor(vfs_data);
 
   fprintf (stderr, "Calling writable filesystem.\n");
-  sfarro_status = vfs (argc, argv, vfs_data);
-  return sfarro_status;
+  initialize_vfs(argc, argv, vfs_data);
+
+  return 0; 
 }
 
 void

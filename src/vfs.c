@@ -10,16 +10,7 @@
  */
 
 
-int set_vfs_to_read_only()
-{
-    read_only = 1;
-    return 0;
-}
 
-int get_read_only()
-{
-    return read_only;
-}
 static void vfs_fullpath(char fpath[PATH_MAX], const char *path)
 {
     strcpy(fpath, VFS_DATA->rootdir);
@@ -68,8 +59,6 @@ vfs_access (const char *path, int mask)
     int res = 0;
     char fpath[PATH_MAX];
     vfs_fullpath(fpath, path);
-    if(read_only && (mask & W_OK))
-        return -EROFS;
 
     res = access(fpath, mask);
 
@@ -130,15 +119,6 @@ vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
     static int
 vfs_mknod (const char *path, mode_t mode, dev_t rdev)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) mode;
-        (void) rdev;
-
-        return -EROFS;
-    }
-
     int res;
     char fpath[PATH_MAX];
 
@@ -163,13 +143,7 @@ vfs_mknod (const char *path, mode_t mode, dev_t rdev)
     static int
 vfs_mkdir (const char *path, mode_t mode)
 {
-    if(read_only)
-    {
-        (void)path;
-        (void)mode;
-
-        return -EROFS;
-    }
+    
     int res;
     char fpath[PATH_MAX];
 
@@ -193,11 +167,6 @@ int vfs_releasedir(const char *path, struct fuse_file_info *fi)
     static int
 vfs_unlink (const char *path)
 {
-    if(read_only)
-    {
-        (void) path;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -213,11 +182,6 @@ vfs_unlink (const char *path)
     static int
 vfs_rmdir (const char *path)
 {
-    if(read_only)
-    {
-        (void) path;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -233,12 +197,6 @@ vfs_rmdir (const char *path)
     static int
 vfs_symlink (const char *path, const char *link)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) link;
-        return -EROFS;
-    }
     int res;
     char flink[PATH_MAX];
 
@@ -254,12 +212,6 @@ vfs_symlink (const char *path, const char *link)
     static int
 vfs_rename (const char *path, const char *newpath)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) newpath;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
     char fnewpath[PATH_MAX];
@@ -276,12 +228,6 @@ vfs_rename (const char *path, const char *newpath)
     static int
 vfs_link (const char *path, const char *newpath)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) newpath;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
     char fnewpath[PATH_MAX];
@@ -299,12 +245,6 @@ vfs_link (const char *path, const char *newpath)
     static int
 vfs_chmod (const char *path, mode_t mode)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) mode;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -319,13 +259,6 @@ vfs_chmod (const char *path, mode_t mode)
     static int
 vfs_chown (const char *path, uid_t uid, gid_t gid)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) uid;
-        (void) gid;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -341,12 +274,6 @@ vfs_chown (const char *path, uid_t uid, gid_t gid)
     static int
 vfs_truncate (const char *path, off_t size)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) size;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -362,12 +289,6 @@ vfs_truncate (const char *path, off_t size)
     static int
 vfs_utime(const char *path, struct utimbuf *ubuf)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) ubuf;
-        return -EROFS;
-    }
     int res = 0;
     char fpath[PATH_MAX];
 
@@ -383,12 +304,6 @@ vfs_utime(const char *path, struct utimbuf *ubuf)
     static int
 vfs_utimens (const char *path, const struct timespec ts[2])
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) ts;
-        return -EROFS;
-    }
     int res;
     char fpath[PATH_MAX];
 
@@ -411,14 +326,6 @@ vfs_open (const char *path, struct fuse_file_info *fi)
     int res = 0;
     int fd;
     int flags = fi -> flags; 
-    if(read_only)
-    {
-        if((flags & O_WRONLY) || (flags & O_RDWR) || (flags & O_CREAT) || (flags & O_EXCL) || (flags & O_TRUNC) || (flags &
-                    O_APPEND))
-        {
-            return -EROFS;
-        }
-    }
     char fpath[PATH_MAX];
     vfs_fullpath(fpath, path);
 
@@ -449,15 +356,6 @@ vfs_read (const char *path, char *buf, size_t size, off_t offset,
 vfs_write (const char *path, const char *buf, size_t size,
         off_t offset, struct fuse_file_info *fi)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) buf;
-        (void) size;
-        (void) offset;
-        (void) fi;
-        return -EROFS;
-    }
     int res;
 
     res = pwrite (fi->fh, buf, size, offset);
@@ -517,11 +415,6 @@ void *vfs_init()
 vfs_release (const char *path, struct fuse_file_info *fi)
 {
     (void) path;
-    if(read_only)
-    {
-        (void) fi;
-        return -EROFS;
-    }
     int res;
 
     res = close(fi->fh);
@@ -533,12 +426,6 @@ vfs_release (const char *path, struct fuse_file_info *fi)
 vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
 {
     (void) path;
-    if(read_only)
-    {
-        (void) fi;
-        (void) isdatasync;
-        return -EROFS;
-    }
     int res;
 
 #ifdef HAVE_FDATASYNC
@@ -555,15 +442,6 @@ vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
 vfs_fallocate (const char *path, int mode,
         off_t offset, off_t length, struct fuse_file_info *fi)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) mode;
-        (void) offset;
-        (void) length;
-        (void) fi;
-        return -EROFS;
-    }
     int fd;
     int res;
 
@@ -589,15 +467,6 @@ vfs_fallocate (const char *path, int mode,
 vfs_setxattr (const char *path, const char *name, const char *value,
         size_t size, int flags)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) name;
-        (void) value;
-        (void) size;
-        (void) flags;
-        return -EROFS;
-    }
     int res = 0;
     char fpath[PATH_MAX];
     vfs_fullpath(fpath, path);
@@ -635,13 +504,8 @@ vfs_listxattr (const char *path, char *list, size_t size)
     static int
 vfs_removexattr (const char *path, const char *name)
 {
-    if(read_only)
-    {
-        (void) path;
-        (void) name;
-        return -EROFS;
-    }
     int res = lremovexattr (path, name);
+
     if (res == -1)
         return -errno;
     return res;
@@ -687,15 +551,35 @@ static struct fuse_operations vfs_oper = {
 #endif
 };
 
-    int
-vfs (int argc, char *argv[], struct vfs_state *vfs_data)
+
+void
+initialize_vfs (int argc, char *argv[], struct vfs_state *vfs_data)
 {
-    int fuse_status;
+
+  struct Args {
+   int argc;
+   struct vfs_state *vfs_data;
+   char argv[];
+  };
+
+  struct Args args;
+  args.argc = argc;
+  args.argv = argv;
+  args.vfs_data = *vfs_data;
+
+  pthread_t vfs_tid;
+ 
+  pthread_create(&vfs_tid, NULL, &threadproc, NULL);
+
+  return 0;
+  
+}
+void
+* threadproc(struct Args args)
+{
     umask (0);
-//  Initialize sfarro as a Read-Write system
-    read_only = 0;
-    fprintf (stderr, "Mounting %s to %s\n", argv[argc-1],  vfs_data->rootdir);
-    fuse_status = fuse_main (argc, argv, &vfs_oper, vfs_data);
+    fprintf (stderr, "Mounting %s to %s\n", args.argv[argc-1],  args.vfs_data->rootdir);
+    fuse_main (args.argc, args.argv, &vfs_oper, &args.vfs_data);
     fprintf (stderr, "vfs_rw_main returned %d\n", fuse_status);
-    return fuse_status;
+    return 0 ;
 }

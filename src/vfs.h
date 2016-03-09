@@ -21,6 +21,7 @@
 #include <sys/types.h>
 #include <dirent.h>
 #include <ctype.h>
+#include <pthread.h>
 
 #include "params.h"
 #include "timer.h"
@@ -28,11 +29,6 @@
 #ifdef HAVE_SETXATTR
 #include <sys/xattr.h>
 #endif
-
-int read_only;
-int vfs(int argc, char *argv[], struct vfs_state *vfs_data);
-
 void sfarro_usage();
 void set_new_written_time_to_current_time();
-extern int set_vfs_to_read_only();
-extern int get_read_only();
+extern void initialize_vfs(int argc, char *argv[], struct vfs_state *vfs_data);

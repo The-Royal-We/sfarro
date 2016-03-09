@@ -8,9 +8,10 @@
 #include "vfs.h"
 #include "constants.h"
 #include "timer.h"
+#include "monitor.h"
 #include "params.h"
 
-extern void init_sfarro_monitor();
+extern void init_sfarro_monitor (struct vfs_state *vfs_d);
 int periodic_remount_check();
 
 #endif //MAIN_MONITOR_H
