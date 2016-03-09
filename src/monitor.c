@@ -13,7 +13,7 @@ threadproc ()
         {
             fprintf(stderr, "Periodic mount check passed\n");
             fprintf(stderr, "Remounting mountpoint to READ_ONLY!");
-            remount(vfs_data->mountdir);
+//            remount(vfs_data->mountdir);
             return 0;
         }
     }
