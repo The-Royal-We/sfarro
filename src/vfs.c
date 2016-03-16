@@ -320,11 +320,12 @@ vfs_utimens (const char *path, const struct timespec ts[2])
 
 /* We will allow file opens, unless writes are being made */
 
-	if(get_device_is_readonly() == 1){
-		remount_device(VFS_DATA->rootdir, "rw");
-		set_device_is_readonly(0);
-	}
-
+static int vfs_open(const char *path, struct fuse_file_info *fi) {
+	int res = 0;
+	int fd;
+	int flags = fi->flags;
+	char fpath[PATH_MAX];
+	vfs_fullpath(fpath, path);
 
 	fd = open(fpath, flags);
 
