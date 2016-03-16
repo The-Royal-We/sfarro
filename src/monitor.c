@@ -17,11 +17,9 @@ threadproc (void * vfs_d)
         if (ready_to_remount() && device_is_ro == 0)
         {
             fprintf(stderr, "Periodic mount check passed\n");
-            fprintf(stderr, "Remounting %s to READ_ONLY!\n", vfs_data->rootdir);
-            remount_device(vfs_data->rootdir, "ro");
-            //RESET CLOCK
-            set_last_time_written (&MAX_TIME);
-            set_device_is_readonly(1);
+            fprintf(stderr, "Remounting mountpoint to READ_ONLY!");
+//            remount(vfs_data->mountdir);
+            return 0;
         }
     }
     return 0;
