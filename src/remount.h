@@ -11,6 +11,6 @@
 
 #include "vfs.h"
 
-extern int remount(const char *remount_directory);
+extern int remount_device(const char * remount_path, const char * remount_opt);
 
 #endif //SFARRO_REMOUNT_H

@@ -13,6 +13,9 @@
 /* Define to 1 if you have the `ftruncate' function. */
 #define HAVE_FTRUNCATE 1
 
+/* Define to 1 if you have the <fuse.h> header file. */
+/* #undef HAVE_FUSE_H */
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 

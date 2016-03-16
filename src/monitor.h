@@ -8,10 +8,16 @@
 #include "vfs.h"
 #include "constants.h"
 #include "timer.h"
-#include "monitor.h"
 #include "params.h"
+#include "remount.h"
+
+
+int periodic_remount_check();
 
 extern void init_sfarro_monitor (struct vfs_state *vfs_d);
-int periodic_remount_check();
+extern int get_device_is_readonly();
+extern void set_device_is_readonly(int val);
+
+int device_is_ro;
 
 #endif //MAIN_MONITOR_H

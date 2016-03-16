@@ -17,7 +17,7 @@ main (int argc, char *argv[])
            stderr,
 	       "As in possibly blowing up a your machine if root is mounted \n"
            );
-      return -1;
+//      return -1;
     }
 
   vfs_data = malloc (sizeof (struct vfs_state));
@@ -31,20 +31,18 @@ main (int argc, char *argv[])
   /*
    * Pull the root directory from the argument list and save it in my internal data
    */
-
-
   vfs_data->rootdir = realpath(argv[argc-2], NULL);
   argv[argc-2] = argv[argc-1];
   argv[argc-1] = NULL;
   argc--;
 
+  vfs_data->mountdir = realpath(argv[argc-1], NULL);
+
   fprintf (stderr, "Initialising monitor system.\n");
   init_sfarro_monitor(vfs_data);
 
   fprintf (stderr, "Calling writable filesystem.\n");
-  initialize_vfs(argc, argv, vfs_data);
-
-  return 0; 
+  return initialize_vfs(argc, argv, vfs_data);
 }
 
 void

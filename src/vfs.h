@@ -33,4 +33,4 @@
 #endif
 void sfarro_usage();
 void set_new_written_time_to_current_time();
-extern void initialize_vfs(int argc, char *argv[], struct vfs_state *vfs_data);
+extern int initialize_vfs(int argc, char *argv[], struct vfs_state *vfs_data);
