@@ -14,11 +14,7 @@ SFARRO=../src/sfarro
 source test-utils.sh
 
 function exit_handler {
-	if [ -n "${SFARRO_PID}" ]
-	then
-		kill $SFARRO_PID
-	fi
-	
+  pkill sfarro	
 	fusermount -u $TEST_DEST_POINT
 	rm -rf $TEST_MOUNT_POINT $TEST_DEST_POINT
 }

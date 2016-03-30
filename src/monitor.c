@@ -9,7 +9,7 @@ void *
 threadproc (void * vfs_d)
 {
 	struct vfs_state *vfs_data = (struct vfs_state*) vfs_d;
-	fprintf(stderr, "Mountdir is %s \n", vfs_data->rootdir);
+	fprintf(stderr, "Mount device is %s \n", vfs_data->mountdir);
     while (1)
     {
         fprintf(stderr, "Checking filesystem\n");
@@ -17,9 +17,10 @@ threadproc (void * vfs_d)
         if (ready_to_remount() && device_is_ro == 0)
         {
             fprintf(stderr, "Periodic mount check passed\n");
-            fprintf(stderr, "Remounting mountpoint to READ_ONLY!");
-//            remount(vfs_data->mountdir);
-            return 0;
+            fprintf(stderr, "Remounting mountpoint to READ_ONLY!\n");
+            remount_device(vfs_data->mountdir, "ro");
+            //RESET CLOCK
+            set_last_time_written(&MAX_TIME);
         }
     }
     return 0;

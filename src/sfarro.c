@@ -3,6 +3,7 @@
 int
 main (int argc, char *argv[])
 { 
+  int sfarro_stat;
   struct vfs_state *vfs_data;
 
   if ((argc < 3) || (argv[argc - 2][0] == '-') || (argv[argc - 1][0] == '-'))
@@ -10,6 +11,7 @@ main (int argc, char *argv[])
       sfarro_usage ();
       return -1;
     }
+
   if ((getuid () == 0) || (geteuid () == 0))
     {
       fprintf (stderr, "Running sfarro as root opens security holes\n");
@@ -28,21 +30,21 @@ main (int argc, char *argv[])
       abort ();
     }
 
-  /*
-   * Pull the root directory from the argument list and save it in my internal data
-   */
-  vfs_data->rootdir = realpath(argv[argc-2], NULL);
+  vfs_data->mountdir = realpath(argv[argc-2], NULL);
   argv[argc-2] = argv[argc-1];
   argv[argc-1] = NULL;
   argc--;
 
-  vfs_data->mountdir = realpath(argv[argc-1], NULL);
+  vfs_data->rootdir = argv[argc-1];
 
   fprintf (stderr, "Initialising monitor system.\n");
   init_sfarro_monitor(vfs_data);
 
   fprintf (stderr, "Calling writable filesystem.\n");
-  return initialize_vfs(argc, argv, vfs_data);
+
+  sfarro_stat = initialize_vfs(argc, argv, vfs_data);
+  return sfarro_stat;
+
 }
 
 void

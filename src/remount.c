@@ -8,7 +8,7 @@ remount_device(const char * remount_path, const char * remount_opt)
     char* remount_call;
     char* space;
     space = " ";
-    remount_call = "sudo mount --options=remount,";
+    remount_call = "mount --options=remount,";
     char* system_call = (char *) malloc (1 + strlen(remount_call)
     		+ strlen(remount_opt) + strlen(space) + strlen(remount_path));
     strcpy(system_call, remount_call);
@@ -22,5 +22,6 @@ remount_device(const char * remount_path, const char * remount_opt)
     	fprintf(stderr,"Remount failed with errno: %d\n", errno);
         return errno;
     }
+    set_device_is_readonly(1);
     return res;
 }

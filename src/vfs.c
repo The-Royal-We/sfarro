@@ -9,11 +9,9 @@
  * mind
  */
 
-
-
 static void vfs_fullpath(char fpath[PATH_MAX], const char *path)
 {
-    strcpy(fpath, VFS_DATA->rootdir);
+    strcpy(fpath, VFS_DATA->mountdir);
     strncat(fpath, path, PATH_MAX);
 }
 
@@ -278,6 +276,10 @@ vfs_truncate (const char *path, off_t size)
     char fpath[PATH_MAX];
 
     vfs_fullpath(fpath, path);
+    if(get_device_is_readonly() == 1) {
+    	remount_device(VFS_DATA->mountdir, "rw");
+    	set_device_is_readonly(0);
+    }
 
     res = truncate (fpath, size);
     if (res < 0)
@@ -355,6 +357,11 @@ vfs_write (const char *path, const char *buf, size_t size,
         off_t offset, struct fuse_file_info *fi)
 {
     int res;
+    fprintf(stderr, "Is device ro: %d \n", get_device_is_readonly());
+    if(get_device_is_readonly() == 1) {
+    	remount_device(VFS_DATA->mountdir, "rw");
+    	set_device_is_readonly(0);
+    }
 
     res = pwrite (fi->fh, buf, size, offset);
     if (res < 0) {
