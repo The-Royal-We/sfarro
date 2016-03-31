@@ -12,16 +12,6 @@ main (int argc, char *argv[])
       return -1;
     }
 
-  if ((getuid () == 0) || (geteuid () == 0))
-    {
-      fprintf (stderr, "Running sfarro as root opens security holes\n");
-      fprintf (
-           stderr,
-	       "As in possibly blowing up a your machine if root is mounted \n"
-           );
-//      return -1;
-    }
-
   vfs_data = malloc (sizeof (struct vfs_state));
 
   if (vfs_data == NULL)
@@ -51,5 +41,5 @@ void
 sfarro_usage ()
 {
   fprintf (stderr,
-	   "usage:  ./sfarro [FUSE and mount options] rootDir mountPoint\n");
+	   "usage:  ./sfarro -d [FUSE and mount options] mountDirectory temporaryMirrorDirectory\n");
 }
