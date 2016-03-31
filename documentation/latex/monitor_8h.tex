@@ -1,0 +1,71 @@
+\hypertarget{monitor_8h}{}\section{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/monitor.h File Reference}
+\label{monitor_8h}\index{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/monitor.\+h@{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/monitor.\+h}}
+{\ttfamily \#include $<$fuse.\+h$>$}\\*
+{\ttfamily \#include $<$pthread.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}vfs.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}constants.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}params.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}remount.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void $\ast$ \hyperlink{monitor_8h_a4ed79507583c0e9faefe52d1545b867c}{periodic\+\_\+remount\+\_\+check} ()
+\item 
+void \hyperlink{monitor_8h_a6ce1529d06ce8c745600c011387317db}{init\+\_\+sfarro\+\_\+monitor} (struct \hyperlink{structvfs__state}{vfs\+\_\+state} $\ast$vfs\+\_\+d)
+\item 
+int \hyperlink{monitor_8h_a562c91e974e9b2efd7695b8c8a274005}{get\+\_\+device\+\_\+is\+\_\+readonly} ()
+\item 
+void \hyperlink{monitor_8h_afa30e044aa40211baeca8e7cdad2f2b5}{set\+\_\+device\+\_\+is\+\_\+readonly} (int val)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries device\+\_\+is\+\_\+ro}\hypertarget{monitor_8h_a21edd6629faa9efc3f1958172b0724a4}{}\label{monitor_8h_a21edd6629faa9efc3f1958172b0724a4}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The monitor observes the safe file system and triggers the remount function when we are ready to remount 
+
+\subsection{Function Documentation}
+\index{monitor.\+h@{monitor.\+h}!get\+\_\+device\+\_\+is\+\_\+readonly@{get\+\_\+device\+\_\+is\+\_\+readonly}}
+\index{get\+\_\+device\+\_\+is\+\_\+readonly@{get\+\_\+device\+\_\+is\+\_\+readonly}!monitor.\+h@{monitor.\+h}}
+\subsubsection[{\texorpdfstring{get\+\_\+device\+\_\+is\+\_\+readonly()}{get_device_is_readonly()}}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+device\+\_\+is\+\_\+readonly (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{monitor_8h_a562c91e974e9b2efd7695b8c8a274005}{}\label{monitor_8h_a562c91e974e9b2efd7695b8c8a274005}
+Accessor for device\+\_\+is\+\_\+ro flag \index{monitor.\+h@{monitor.\+h}!init\+\_\+sfarro\+\_\+monitor@{init\+\_\+sfarro\+\_\+monitor}}
+\index{init\+\_\+sfarro\+\_\+monitor@{init\+\_\+sfarro\+\_\+monitor}!monitor.\+h@{monitor.\+h}}
+\subsubsection[{\texorpdfstring{init\+\_\+sfarro\+\_\+monitor(struct vfs\+\_\+state $\ast$vfs\+\_\+d)}{init_sfarro_monitor(struct vfs_state *vfs_d)}}]{\setlength{\rightskip}{0pt plus 5cm}void init\+\_\+sfarro\+\_\+monitor (
+\begin{DoxyParamCaption}
+\item[{struct {\bf vfs\+\_\+state} $\ast$}]{vfs\+\_\+d}
+\end{DoxyParamCaption}
+)}\hypertarget{monitor_8h_a6ce1529d06ce8c745600c011387317db}{}\label{monitor_8h_a6ce1529d06ce8c745600c011387317db}
+Initalizes the monitor function 
+\begin{DoxyParams}{Parameters}
+{\em Struct} & carrying both our root and mount directories \\
+\hline
+\end{DoxyParams}
+\index{monitor.\+h@{monitor.\+h}!periodic\+\_\+remount\+\_\+check@{periodic\+\_\+remount\+\_\+check}}
+\index{periodic\+\_\+remount\+\_\+check@{periodic\+\_\+remount\+\_\+check}!monitor.\+h@{monitor.\+h}}
+\subsubsection[{\texorpdfstring{periodic\+\_\+remount\+\_\+check()}{periodic_remount_check()}}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ periodic\+\_\+remount\+\_\+check (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{monitor_8h_a4ed79507583c0e9faefe52d1545b867c}{}\label{monitor_8h_a4ed79507583c0e9faefe52d1545b867c}
+This function is passed into a pthread. Constantly monitors the safe filesystem and remounts device when ready \index{monitor.\+h@{monitor.\+h}!set\+\_\+device\+\_\+is\+\_\+readonly@{set\+\_\+device\+\_\+is\+\_\+readonly}}
+\index{set\+\_\+device\+\_\+is\+\_\+readonly@{set\+\_\+device\+\_\+is\+\_\+readonly}!monitor.\+h@{monitor.\+h}}
+\subsubsection[{\texorpdfstring{set\+\_\+device\+\_\+is\+\_\+readonly(int val)}{set_device_is_readonly(int val)}}]{\setlength{\rightskip}{0pt plus 5cm}void set\+\_\+device\+\_\+is\+\_\+readonly (
+\begin{DoxyParamCaption}
+\item[{int}]{val}
+\end{DoxyParamCaption}
+)}\hypertarget{monitor_8h_afa30e044aa40211baeca8e7cdad2f2b5}{}\label{monitor_8h_afa30e044aa40211baeca8e7cdad2f2b5}
+Mutator for device\+\_\+is\+\_\+ro flag 
+\begin{DoxyParams}{Parameters}
+{\em Value} & to set device\+\_\+is\+\_\+ro \\
+\hline
+\end{DoxyParams}

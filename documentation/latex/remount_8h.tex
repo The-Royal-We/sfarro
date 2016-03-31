@@ -1,0 +1,41 @@
+\hypertarget{remount_8h}{}\section{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/remount.h File Reference}
+\label{remount_8h}\index{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/remount.\+h@{C\+:/\+Users/\+Royal/\+Desktop/sfarro/sfarro/src/remount.\+h}}
+{\ttfamily \#include $<$sys/mount.\+h$>$}\\*
+{\ttfamily \#include $<$stddef.\+h$>$}\\*
+{\ttfamily \#include $<$unistd.\+h$>$}\\*
+{\ttfamily \#include $<$sys/types.\+h$>$}\\*
+{\ttfamily \#include $<$sys/stat.\+h$>$}\\*
+{\ttfamily \#include $<$fcntl.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}vfs.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{remount_8h_a282e18bce4d535cc2fc6fefc8b4ddb37}{remount\+\_\+device} (const char $\ast$remount\+\_\+path, const char $\ast$remount\+\_\+opt)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{remount_8h}{Remount.\+h} handles all logic regarding remounting our deviice 
+
+\subsection{Function Documentation}
+\index{remount.\+h@{remount.\+h}!remount\+\_\+device@{remount\+\_\+device}}
+\index{remount\+\_\+device@{remount\+\_\+device}!remount.\+h@{remount.\+h}}
+\subsubsection[{\texorpdfstring{remount\+\_\+device(const char $\ast$remount\+\_\+path, const char $\ast$remount\+\_\+opt)}{remount_device(const char *remount_path, const char *remount_opt)}}]{\setlength{\rightskip}{0pt plus 5cm}int remount\+\_\+device (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{remount\+\_\+path, }
+\item[{const char $\ast$}]{remount\+\_\+opt}
+\end{DoxyParamCaption}
+)}\hypertarget{remount_8h_a282e18bce4d535cc2fc6fefc8b4ddb37}{}\label{remount_8h_a282e18bce4d535cc2fc6fefc8b4ddb37}
+Remounts device using the given remount path to the desired mode
+
+
+\begin{DoxyParams}{Parameters}
+{\em Path} & to device to be remounted \\
+\hline
+{\em Remount} & options \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if ready to remount, otherwise return 0 
+\end{DoxyReturn}

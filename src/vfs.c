@@ -9,7 +9,7 @@
  * mind
  */
 
-static void vfs_fullpath(char fpath[PATH_MAX], const char *path)
+ void vfs_fullpath(char fpath[PATH_MAX], const char *path)
 {
     strcpy(fpath, VFS_DATA->mountdir);
     strncat(fpath, path, PATH_MAX);
@@ -18,7 +18,7 @@ static void vfs_fullpath(char fpath[PATH_MAX], const char *path)
 /*
  * Get object attributes
  */
-    static int
+     int
 vfs_getattr (const char *path, struct stat *stbuf)
 {
     int res;
@@ -36,7 +36,7 @@ vfs_getattr (const char *path, struct stat *stbuf)
  *Get file attributes
  */
 
-    static int
+     int
 vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)
 {
     int res;
@@ -51,7 +51,7 @@ vfs_fgetattr (const char *path, struct stat *stbuf, struct fuse_file_info *fi)
     return res;
 }
 
-    static int
+     int
 vfs_access (const char *path, int mask)
 {
     int res = 0;
@@ -66,7 +66,7 @@ vfs_access (const char *path, int mask)
     return res;
 }
 
-    static int
+     int
 vfs_readlink (const char *path, char *buf, size_t size)
 {
     int res;
@@ -87,7 +87,7 @@ vfs_readlink (const char *path, char *buf, size_t size)
     return res;
 }
 
-    static int
+     int
 vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
         off_t offset, struct fuse_file_info *fi)
 {
@@ -114,7 +114,7 @@ vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
     return 0;
 }
 
-    static int
+     int
 vfs_mknod (const char *path, mode_t mode, dev_t rdev)
 {
     int res;
@@ -138,7 +138,7 @@ vfs_mknod (const char *path, mode_t mode, dev_t rdev)
     return res;
 }
 
-    static int
+     int
 vfs_mkdir (const char *path, mode_t mode)
 {
     
@@ -162,7 +162,7 @@ int vfs_releasedir(const char *path, struct fuse_file_info *fi)
     return res;
 }
 
-    static int
+     int
 vfs_unlink (const char *path)
 {
     int res;
@@ -177,7 +177,7 @@ vfs_unlink (const char *path)
     return res;
 }
 
-    static int
+     int
 vfs_rmdir (const char *path)
 {
     int res;
@@ -192,7 +192,7 @@ vfs_rmdir (const char *path)
     return res;
 }
 
-    static int
+     int
 vfs_symlink (const char *path, const char *link)
 {
     int res;
@@ -207,7 +207,7 @@ vfs_symlink (const char *path, const char *link)
     return res;
 }
 
-    static int
+     int
 vfs_rename (const char *path, const char *newpath)
 {
     int res;
@@ -223,7 +223,7 @@ vfs_rename (const char *path, const char *newpath)
     return res;
 }
 
-    static int
+     int
 vfs_link (const char *path, const char *newpath)
 {
     int res;
@@ -240,7 +240,7 @@ vfs_link (const char *path, const char *newpath)
     return res;
 }
 
-    static int
+     int
 vfs_chmod (const char *path, mode_t mode)
 {
     int res;
@@ -254,7 +254,7 @@ vfs_chmod (const char *path, mode_t mode)
     return res;
 }
 
-    static int
+     int
 vfs_chown (const char *path, uid_t uid, gid_t gid)
 {
     int res;
@@ -269,7 +269,7 @@ vfs_chown (const char *path, uid_t uid, gid_t gid)
     return res;
 }
 
-    static int
+     int
 vfs_truncate (const char *path, off_t size)
 {
     int res;
@@ -288,7 +288,7 @@ vfs_truncate (const char *path, off_t size)
     return res;
 }
 
-    static int
+     int
 vfs_utime(const char *path, struct utimbuf *ubuf)
 {
     int res = 0;
@@ -303,7 +303,7 @@ vfs_utime(const char *path, struct utimbuf *ubuf)
 }
 
 #ifdef HAVE_UTIMENSAT
-    static int
+     int
 vfs_utimens (const char *path, const struct timespec ts[2])
 {
     int res;
@@ -322,7 +322,7 @@ vfs_utimens (const char *path, const struct timespec ts[2])
 
 /* We will allow file opens, unless writes are being made */
 
-static int vfs_open(const char *path, struct fuse_file_info *fi) {
+ int vfs_open(const char *path, struct fuse_file_info *fi) {
 	int res = 0;
 	int fd;
 	int flags = fi->flags;
@@ -337,7 +337,7 @@ static int vfs_open(const char *path, struct fuse_file_info *fi) {
 	return res;
 }
 
-    static int
+     int
 vfs_read (const char *path, char *buf, size_t size, off_t offset,
         struct fuse_file_info *fi)
 {
@@ -352,7 +352,7 @@ vfs_read (const char *path, char *buf, size_t size, off_t offset,
  * Set LAST_TIME_WRITTEN every time a successful write has taken place
  */
 
-    static int
+     int
 vfs_write (const char *path, const char *buf, size_t size,
         off_t offset, struct fuse_file_info *fi)
 {
@@ -379,7 +379,7 @@ set_new_written_time_to_current_time ()
     set_last_time_written (&current_time);
 }
 
-    static int
+     int
 vfs_statfs (const char *path, struct statvfs *stbuf)
 {
     int res;
@@ -394,7 +394,7 @@ vfs_statfs (const char *path, struct statvfs *stbuf)
     return res;
 }
 
-    static int
+     int
 vfs_opendir(const char *path, struct fuse_file_info *fi)
 {
     DIR *dp;
@@ -416,7 +416,7 @@ void *vfs_init()
     return VFS_DATA;
 }
 
-    static int
+     int
 vfs_release (const char *path, struct fuse_file_info *fi)
 {
     (void) path;
@@ -427,7 +427,7 @@ vfs_release (const char *path, struct fuse_file_info *fi)
     return res;
 }
 
-    static int
+     int
 vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
 {
     (void) path;
@@ -443,7 +443,7 @@ vfs_fsync (const char *path, int isdatasync, struct fuse_file_info *fi)
 }
 
 #ifdef HAVE_POSIX_FALLOCATE
-    static int
+     int
 vfs_fallocate (const char *path, int mode,
         off_t offset, off_t length, struct fuse_file_info *fi)
 {
@@ -468,7 +468,7 @@ vfs_fallocate (const char *path, int mode,
 
 #ifdef HAVE_SETXATTR
 /* xattr operations are optional and can safely be left unimplemented */
-    static int
+     int
 vfs_setxattr (const char *path, const char *name, const char *value,
         size_t size, int flags)
 {
@@ -481,7 +481,7 @@ vfs_setxattr (const char *path, const char *name, const char *value,
     return res;
 }
 
-    static int
+     int
 vfs_getxattr (const char *path, const char *name, char *value, size_t size)
 {
 
@@ -494,7 +494,7 @@ vfs_getxattr (const char *path, const char *name, char *value, size_t size)
     return res;
 }
 
-    static int
+     int
 vfs_listxattr (const char *path, char *list, size_t size)
 {
     int res = 0;
@@ -506,7 +506,7 @@ vfs_listxattr (const char *path, char *list, size_t size)
     return res;
 }
 
-    static int
+     int
 vfs_removexattr (const char *path, const char *name)
 {
     int res = lremovexattr (path, name);
