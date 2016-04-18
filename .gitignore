@@ -72,3 +72,5 @@ stamp-h1
 /tests/main-test.sh.log
 /tests/main-test.sh.trs
 /tests/test-suite.log
+
+/doxygen-doc/
