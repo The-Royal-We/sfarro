@@ -60,3 +60,17 @@
 .dirstamp
 *.o
 *~
+
+/compile
+Makefile
+Makefile.in
+/src/config.h
+/src/config.h.in
+/src/sfarro
+stamp-h1
+/test-driver
+/tests/main-test.sh.log
+/tests/main-test.sh.trs
+/tests/test-suite.log
+
+/doxygen-doc/

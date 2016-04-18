@@ -15,7 +15,7 @@ source test-utils.sh
 
 function exit_handler {
   pkill sfarro	
-	fusermount -u $TEST_DEST_POINT
+	fusermount -u $TEST_DEST_POINT || true
 	rm -rf $TEST_MOUNT_POINT $TEST_DEST_POINT
 }
 

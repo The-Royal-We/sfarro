@@ -1,8 +1,9 @@
 AC_INIT([sfarro], [1.0.0], [brendan.carroll.92@gmail.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall])
-AC_CONFIG_SRCDIR([src/])
+AC_CONFIG_SRCDIR([src/sfarro.c])
 AC_CONFIG_HEADERS([src/config.h])
+AC_CONFIG_MACRO_DIR([m4])
 
 AC_PROG_CC
 AC_LANG(C)
@@ -26,17 +27,26 @@ AC_CHECK_FUNCS([ftruncate mkdir mkfifo realpath rmdir strerror utime])
 
 AC_CHECK_FUNCS([fdatasync])
 
-my_CPPFLAGS="-D_REENTRANT -D_FILE_OFFSET_BITS=64 -DFUSE_USE_VERSION=26"
-my_CFLAGS="$my_CFLAGS -Wall"
-my_LDFLAGS="-pthread"
-
-AC_SUBST([my_CPPFLAGS])
-AC_SUBST([my_CFLAGS])
-AC_SUBST([my_LDFLAGS])
+AC_SYS_LARGEFILE
+AX_PTHREAD
+AX_CFLAGS_WARN_ALL
+CPPFLAGS="$CPPFLAGS -DFUSE_USE_VERSION=26"
 
 PKG_CHECK_MODULES([fuse], [fuse >= 2.6.0])
-AC_CONFIG_FILES([Makefile \
-				 src/Makefile \
-				 tests/Makefile])
+CFLAGS="$CFLAGS $fuse_CFLAGS"
+LIBS="$LIBS $fuse_LIBS"
+
+DX_INIT_DOXYGEN([sfarro])
+DX_DOT_FEATURE(OFF)
+DX_HTML_FEATURE(ON)
+DX_CHM_FEATURE(OFF)
+DX_CHI_FEATURE(OFF)
+DX_MAN_FEATURE(OFF)
+DX_RTF_FEATURE(OFF)
+DX_XML_FEATURE(OFF)
+DX_PDF_FEATURE(OFF)
+DX_PS_FEATURE(OFF)
+
+AC_CONFIG_FILES([Makefile src/Makefile tests/Makefile])
 
 AC_OUTPUT

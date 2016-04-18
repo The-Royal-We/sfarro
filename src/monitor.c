@@ -1,7 +1,7 @@
 #include "monitor.h"
 
 long MAX_TIME = LONG_MAX;
-device_is_ro = 0;
+volatile int device_is_ro = 0;
 // TODO: Add in error handling
 
 
