@@ -40,6 +40,6 @@ extern int get_device_is_readonly();
 */
 extern void set_device_is_readonly(int val);
 
-int device_is_ro;
+extern volatile int device_is_ro;
 
 #endif //MAIN_MONITOR_H
