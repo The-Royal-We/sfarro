@@ -9,10 +9,8 @@ void *
 threadproc (void * vfs_d)
 {
 	struct vfs_state *vfs_data = (struct vfs_state*) vfs_d;
-	fprintf(stderr, "Mount device is %s \n", vfs_data->mountdir);
     while (1)
     {
-        fprintf(stderr, "Checking filesystem\n");
         sleep (PERIODIC_TIME_DELAY);
         if (ready_to_remount() && device_is_ro == 0)
         {

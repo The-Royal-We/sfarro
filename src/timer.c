@@ -47,8 +47,6 @@ compare_times_to_limit (time_t * last_read, time_t * current_time)
     double time_difference;
 
     time_difference = difftime (current_time_in_seconds, last_read_in_seconds);
-    fprintf(stderr, "Time Difference:%g\n ", time_difference); 
-    fprintf(stderr, "TIME_LIMIT: %d\n", TIME_LIMIT);
     res = (time_difference > TIME_LIMIT) ? 1 : 0;
 
     fprintf(stderr, "Ready to remount: %d\n", res);

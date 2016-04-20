@@ -25,7 +25,10 @@ main (int argc, char *argv[])
   argv[argc-1] = NULL;
   argc--;
 
-  vfs_data->rootdir = argv[argc-1];
+  vfs_data->rootdir =  realpath(argv[argc-1],NULL);
+  fprintf(stderr, "%d\n", access(vfs_data->mountdir, W_OK) );
+
+  remount_device(vfs_data->mountdir, "ro");
 
   fprintf (stderr, "Initialising monitor system.\n");
   init_sfarro_monitor(vfs_data);

@@ -122,6 +122,12 @@ vfs_mknod (const char *path, mode_t mode, dev_t rdev)
 
     vfs_fullpath (fpath, path);
 
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+        sleep(1);
+    }
+
     if (S_ISREG (mode))
     {
         res = open (fpath, O_CREAT | O_EXCL | O_WRONLY, mode);
@@ -213,6 +219,12 @@ vfs_rename (const char *path, const char *newpath)
     int res;
     char fpath[PATH_MAX];
     char fnewpath[PATH_MAX];
+
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+        sleep(1);
+    }
 
     vfs_fullpath (fpath, path);
     vfs_fullpath (fnewpath, newpath);
@@ -323,7 +335,13 @@ vfs_utimens (const char *path, const struct timespec ts[2])
 /* We will allow file opens, unless writes are being made */
 
  int vfs_open(const char *path, struct fuse_file_info *fi) {
-	int res = 0;
+	
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
+    int res = 0;
 	int fd;
 	int flags = fi->flags;
 	char fpath[PATH_MAX];
@@ -357,11 +375,6 @@ vfs_write (const char *path, const char *buf, size_t size,
         off_t offset, struct fuse_file_info *fi)
 {
     int res;
-    fprintf(stderr, "Is device ro: %d \n", get_device_is_readonly());
-    if(get_device_is_readonly() == 1) {
-    	remount_device(VFS_DATA->mountdir, "rw");
-    	set_device_is_readonly(0);
-    }
 
     res = pwrite (fi->fh, buf, size, offset);
     if (res < 0) {
