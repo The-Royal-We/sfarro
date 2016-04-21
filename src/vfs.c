@@ -117,16 +117,14 @@ vfs_readdir (const char *path, void *buf, fuse_fill_dir_t filler,
      int
 vfs_mknod (const char *path, mode_t mode, dev_t rdev)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
     int res;
     char fpath[PATH_MAX];
 
     vfs_fullpath (fpath, path);
-
-    if(get_device_is_readonly() == 1) {
-        remount_device(VFS_DATA->mountdir, "rw");
-        set_device_is_readonly(0);
-        sleep(1);
-    }
 
     if (S_ISREG (mode))
     {
@@ -140,14 +138,18 @@ vfs_mknod (const char *path, mode_t mode, dev_t rdev)
         res = mknod (fpath, mode, rdev);
     if (res < 0)
         res = -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_mkdir (const char *path, mode_t mode)
 {
-    
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -156,7 +158,7 @@ vfs_mkdir (const char *path, mode_t mode)
     res = mkdir (fpath, mode);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
@@ -171,6 +173,11 @@ int vfs_releasedir(const char *path, struct fuse_file_info *fi)
      int
 vfs_unlink (const char *path)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -179,13 +186,18 @@ vfs_unlink (const char *path)
     res = unlink (fpath);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_rmdir (const char *path)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -194,13 +206,18 @@ vfs_rmdir (const char *path)
     res = rmdir (fpath);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_symlink (const char *path, const char *link)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char flink[PATH_MAX];
 
@@ -209,35 +226,39 @@ vfs_symlink (const char *path, const char *link)
     res = symlink (path, flink);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_rename (const char *path, const char *newpath)
 {
-    int res;
-    char fpath[PATH_MAX];
-    char fnewpath[PATH_MAX];
-
     if(get_device_is_readonly() == 1) {
         remount_device(VFS_DATA->mountdir, "rw");
         set_device_is_readonly(0);
-        sleep(1);
     }
+
+    int res;
+    char fpath[PATH_MAX];
+    char fnewpath[PATH_MAX];
 
     vfs_fullpath (fpath, path);
     vfs_fullpath (fnewpath, newpath);
     res = rename (fpath, fnewpath);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_link (const char *path, const char *newpath)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
     char fnewpath[PATH_MAX];
@@ -248,13 +269,18 @@ vfs_link (const char *path, const char *newpath)
     res = link (fpath, fnewpath);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_chmod (const char *path, mode_t mode)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -262,13 +288,18 @@ vfs_chmod (const char *path, mode_t mode)
     res = chmod (fpath, mode);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();   
     return res;
 }
 
      int
 vfs_chown (const char *path, uid_t uid, gid_t gid)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -277,13 +308,18 @@ vfs_chown (const char *path, uid_t uid, gid_t gid)
     res = lchown (fpath, uid, gid);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
      int
 vfs_truncate (const char *path, off_t size)
 {
+    if(get_device_is_readonly() == 1) {
+        remount_device(VFS_DATA->mountdir, "rw");
+        set_device_is_readonly(0);
+    }
+
     int res;
     char fpath[PATH_MAX];
 
@@ -296,7 +332,7 @@ vfs_truncate (const char *path, off_t size)
     res = truncate (fpath, size);
     if (res < 0)
         return -errno;
-
+    set_new_written_time_to_current_time ();
     return res;
 }
 
